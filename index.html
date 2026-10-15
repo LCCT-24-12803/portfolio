@@ -1,1 +1,187 @@
-<h1>Hello, it works!</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Personal Web Portfolio | Precious Micaela Alop</title>
+<meta name="description" content="Portfolio of Precious Micaela Alop, BSIT student at La Consolacion College Tanauan: web systems, UI design, and publicity materials.">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--sky:#E6F0FA;--mist:#F5F9FD;--blue:#5E94CF;--deep:#2F5D95;--navy:#1B3355;--ink:#2C3C55;--line:#CFE0F1;--serif:'Fraunces',Georgia,serif;--sans:'Nunito Sans',system-ui,sans-serif}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{font:17px/1.7 var(--sans);color:var(--ink);background:var(--mist)}
+h1,h2,h3,h4{font-family:var(--serif);color:var(--navy);font-weight:600;line-height:1.2}
+a{color:var(--deep)}
+section{padding:80px 0}
+.alt{background:var(--sky)}
+h2{font-size:clamp(1.9rem,4vw,2.5rem);margin-bottom:10px}
+.lead{font-size:1.05rem;max-width:60ch;margin-bottom:36px}
+.navbar{background:rgba(245,249,253,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.navbar-brand{font:600 1.35rem var(--serif);color:var(--navy)}
+.nav-link{font-weight:600;color:var(--ink)}
+.nav-link:hover{color:var(--blue)}
+.hero{padding:64px 0 88px;min-height:calc(100vh - 64px);display:flex;align-items:center;background:linear-gradient(180deg,var(--sky),var(--mist))}
+.hero h1{font-size:clamp(2.5rem,6vw,4.2rem);font-weight:400;margin-bottom:8px}
+.role{font:italic 1.35rem var(--serif);color:var(--deep);margin-bottom:18px}
+.hero .container{width:100%}
+.btn-navy,.btn-outline-navy{--bs-btn-border-radius:999px;--bs-btn-padding-x:1.5rem;--bs-btn-padding-y:.6rem;--bs-btn-font-weight:700;--bs-btn-border-color:var(--navy);--bs-btn-hover-border-color:var(--deep);--bs-btn-active-border-color:var(--deep)}
+.btn-navy{--bs-btn-bg:var(--navy);--bs-btn-color:#fff;--bs-btn-hover-bg:var(--deep);--bs-btn-hover-color:#fff;--bs-btn-active-bg:var(--deep);--bs-btn-active-color:#fff}
+.btn-outline-navy{--bs-btn-bg:transparent;--bs-btn-color:var(--navy);--bs-btn-hover-bg:var(--navy);--bs-btn-hover-color:#fff;--bs-btn-active-bg:var(--navy);--bs-btn-active-color:#fff}
+.arch{position:relative;width:min(100%,320px);aspect-ratio:3/4;margin:0 auto;border-radius:16px;background:linear-gradient(160deg,#BFD8F0,#8FB6E0);overflow:hidden;border:8px solid #fff;box-shadow:0 18px 40px rgba(47,93,149,.18),0 0 38px rgba(94,148,207,.4);transition:transform .35s ease,box-shadow .35s ease}.arch:hover{transform:translateY(-4px);box-shadow:0 22px 44px rgba(47,93,149,.2),0 0 54px rgba(94,148,207,.6)}
+.arch img{position:relative;z-index:1;width:100%;height:100%;object-fit:cover;object-position:center 15%;display:block}
+.arch span{position:absolute;inset:0;display:grid;place-items:center;font:400 5rem var(--serif);color:#fff}
+.box{background:#fff;border:1px solid var(--line);border-radius:20px;padding:28px}
+.facts dt{font-weight:700;color:var(--navy)}
+.facts dd{margin:0 0 14px}
+.facts dd:last-child{margin:0}
+.edu{border-left:5px solid var(--blue);border-radius:6px 20px 20px 6px}
+.edu .sub{color:var(--deep);font-weight:700;margin-bottom:8px}
+.box h3,.card h3{font-size:1.25rem;margin-bottom:12px}
+.box ul,.card ul{padding-left:1.2rem;margin:0}
+.box li::marker,.card li::marker{color:var(--blue)}
+.box li,.card li{margin-bottom:6px}
+.card{border:1px solid var(--line);border-radius:20px;background:#fff}
+.card-body{padding:26px}
+.card p{font-size:.98rem}
+.stack{font-size:.9rem;color:var(--deep);font-weight:700;margin:0}
+.ph{aspect-ratio:4/3;border-bottom:1px solid var(--line);background:repeating-linear-gradient(45deg,var(--sky),var(--sky) 12px,#EEF5FC 12px,#EEF5FC 24px);display:grid;place-items:center;position:relative;color:var(--deep);font-weight:600;font-size:.9rem}
+.ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.card.cert{overflow:hidden}
+.cert .card-body{padding:20px 22px}
+.cert h4{font-size:1.05rem;margin:0}
+.cert small{color:var(--deep);font-weight:600}
+.sub-h{font-size:1.4rem;margin:8px 0 20px}
+.links a{overflow-wrap:anywhere;background:#fff;border:1px solid var(--line);border-radius:16px;padding:14px 24px;text-decoration:none;font-weight:700;color:var(--navy)}
+.links a:hover{border-color:var(--blue)}
+footer{background:var(--navy);color:#CFE0F1;text-align:center;padding:30px 24px;font-size:.95rem}
+:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
+.btn-navy,.btn-outline-navy{transition:transform .25s ease,box-shadow .25s ease,background-color .25s,color .25s,border-color .25s}
+.btn-navy:hover,.btn-outline-navy:hover{transform:translateY(-3px);box-shadow:0 0 0 4px rgba(94,148,207,.22),0 8px 24px rgba(94,148,207,.55)}
+.btn:active{transform:translateY(0) scale(.97)}
+.nav-link{position:relative;transition:color .25s}
+.nav-link::after{content:"";position:absolute;left:.5rem;right:.5rem;bottom:2px;height:2px;background:var(--blue);box-shadow:0 0 8px var(--blue);transform:scaleX(0);transition:transform .25s}
+.nav-link:hover::after{transform:scaleX(1)}
+.card,.box,.links a{transition:transform .3s ease,box-shadow .3s ease,border-color .3s}
+.card:hover,.box:hover,.links a:hover{transform:translateY(-4px);border-color:var(--blue);box-shadow:0 0 0 3px rgba(94,148,207,.15),0 12px 30px rgba(94,148,207,.35)}
+.ph img{transition:transform .5s ease}
+.cert:hover .ph img{transform:scale(1.06)}
+.cert .ph{overflow:hidden}
+.stack{transition:letter-spacing .25s}
+.card a{transition:text-shadow .25s,color .25s}
+.card a:hover{color:var(--blue);text-shadow:0 0 10px rgba(94,148,207,.6)}
+@media(max-width:767px){section{padding:56px 0}.navbar-brand{font-size:1.1rem}.hero{padding:28px 0 48px;min-height:0;display:block}.arch{width:min(70%,230px);border-width:6px}.hero .col-md-7{text-align:center}.hero .d-flex{justify-content:center}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before{transition:none!important}.btn:hover,.card:hover,.box:hover,.arch:hover,.links a:hover{transform:none!important}}
+</style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg sticky-top" aria-label="Main">
+<div class="container">
+<a class="navbar-brand" href="#home">Personal Web Portfolio</a>
+<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu" aria-controls="menu" aria-expanded="false" aria-label="Toggle menu"><span class="navbar-toggler-icon"></span></button>
+<div class="collapse navbar-collapse justify-content-end" id="menu">
+<ul class="navbar-nav gap-lg-2">
+<li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+<li class="nav-item"><a class="nav-link" href="#education">Education</a></li>
+<li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+<li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+<li class="nav-item"><a class="nav-link" href="#certifications">Certifications</a></li>
+<li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+<li class="nav-item" id="adminLink" hidden><a class="nav-link fw-bold" href="admin/">Admin</a></li>
+</ul></div></div></nav>
+
+<main>
+<section class="hero" id="home"><div class="container"><div class="row align-items-center gy-4 gx-md-4">
+<div class="col-md-7 order-2 order-md-1">
+<h1>Precious Micaela Alop</h1>
+<p class="role">BS Information Technology student</p>
+<p class="mb-4" style="max-width:52ch">I build web systems with PHP and MySQL, design the interfaces people actually use, and make the posters and publicity materials for my student council. I'm always eager to learn the next thing.</p>
+<div class="d-flex flex-wrap gap-2">
+<a class="btn btn-navy" href="#projects">See my projects</a>
+<a class="btn btn-outline-navy" href="resume.pdf">Download resume</a>
+<a class="btn btn-outline-navy" href="#contact">Contact me</a>
+</div></div>
+<div class="col-md-5 order-1 order-md-2"><div class="arch"><span aria-hidden="true">PA</span><img src="images/profile.jpg" alt="Portrait of Precious Micaela Alop" onerror="this.remove()"></div></div>
+</div></div></section>
+
+<section id="about"><div class="container">
+<h2>About me</h2>
+<div class="row g-4 mt-1">
+<div class="col-lg-7">
+<p>Hi, I'm Mica, a Bachelor of Science in Information Technology student at La Consolacion College Tanauan.</p>
+<p>I love both sides of building software: writing the code that makes a system work and designing how it looks and feels. My projects range from PHP and MySQL systems to UI designs and prototypes.</p>
+<p class="mb-0">As PRO of our student council, I handle publicity materials and technical tasks. That keeps my design and editing skills sharp and teaches me to deliver for real deadlines and real audiences.</p>
+</div>
+<div class="col-lg-5"><dl class="box facts mb-0">
+<dt>School</dt><dd>La Consolacion College Tanauan</dd>
+<dt>Program</dt><dd>BS Information Technology</dd>
+<dt>Student council</dt><dd>PRO, publicity materials and technical tasks</dd>
+<dt>Based in</dt><dd>Sto. Tomas City, Batangas, Philippines</dd>
+</dl></div>
+</div></div></section>
+
+<section class="alt" id="education"><div class="container">
+<h2>Education</h2>
+<div class="box edu mt-4" style="max-width:760px">
+<h3>Bachelor of Science in Information Technology</h3>
+<p class="sub">La Consolacion College Tanauan</p>
+<p class="mb-0">Coursework in programming, databases, web development, and networking, applied through full-stack projects, UI/UX design, and system documentation.</p>
+</div></div></section>
+
+<section id="skills"><div class="container">
+<h2>Skills</h2>
+<p class="lead">The tools I use to take an idea from sketch to working system.</p>
+<div class="row g-4">
+<div class="col-sm-6 col-lg-3"><div class="box h-100"><h3>Frontend</h3><ul><li>HTML</li><li>CSS</li><li>JavaScript</li><li>Bootstrap</li></ul></div></div>
+<div class="col-sm-6 col-lg-3"><div class="box h-100"><h3>Backend and data</h3><ul><li>PHP</li><li>MySQL</li><li>CRUD systems</li><li>Laragon</li></ul></div></div>
+<div class="col-sm-6 col-lg-3"><div class="box h-100"><h3>Design</h3><ul><li>UI/UX design</li><li>Pubmats</li><li>Photo and video editing</li></ul></div></div>
+<div class="col-sm-6 col-lg-3"><div class="box h-100"><h3>Working style</h3><ul><li>System documentation</li><li>Quick learner</li><li>Teamwork</li></ul></div></div>
+</div></div></section>
+
+<section class="alt" id="projects"><div class="container">
+<h2>Projects</h2>
+<p class="lead">Academic and personal systems, from capstone work to event sites.</p>
+<div class="row g-4">
+<div class="col-md-6 col-lg-4"><article class="card h-100"><div class="card-body d-flex flex-column"><h3>QBOMS</h3><p class="flex-grow-1">QR-Based Operation Management System, a multi-tenant web platform built in PHP. This is my capstone project.</p><p class="stack">PHP, MySQL, QR codes</p></div></article></div>
+<div class="col-md-6 col-lg-4"><article class="card h-100"><div class="card-body d-flex flex-column"><h3>SAO Help Desk</h3><p class="flex-grow-1">A student ticketing site for the Student Affairs Office of LCCT, so concerns can be submitted and tracked in one place.</p><p class="stack">PHP, MySQL, Bootstrap</p></div></article></div>
+<div class="col-md-6 col-lg-4"><article class="card h-100"><div class="card-body d-flex flex-column"><h3>myRDA+PLUS</h3><p class="flex-grow-1">A library system moved from an old desktop application to a modern PHP and MySQL web app.</p><p class="stack">PHP, MySQL</p></div></article></div>
+<div class="col-md-6 col-lg-4"><article class="card h-100"><div class="card-body d-flex flex-column"><h3>Goodreads redesign</h3><p class="flex-grow-1">A fresh take on the Goodreads book-tracking experience, built as a working CRUD app.</p><p class="stack">PHP, MySQL, UI design</p></div></article></div>
+<div class="col-md-6 col-lg-4"><article class="card h-100"><div class="card-body d-flex flex-column"><h3>LCCStats</h3><p class="flex-grow-1">An interactive prototype of an app that helps students keep track of their requirements.</p><p class="stack">HTML, CSS, JavaScript</p></div></article></div>
+<div class="col-md-6 col-lg-4"><article class="card h-100"><div class="card-body d-flex flex-column"><h3>Intrams website</h3><p class="flex-grow-1">A website for the intramurals event.</p><p class="mb-0"><a class="fw-bold" href="https://intrams.42web.io/" target="_blank" rel="noopener">Visit the site</a></p></div></article></div>
+</div></div></section>
+
+<section id="certifications"><div class="container">
+<h2>Certifications and training</h2>
+<p class="lead">Courses and events that keep my skills growing. Click a certificate image once you've added it.</p>
+<h3 class="sub-h">Cisco Networking Academy</h3>
+<div class="row g-4 mb-5">
+<div class="col-sm-6 col-lg-4"><div class="card cert h-100"><div class="ph">Certificate image<img src="certificates/cert-1.jpg" alt="HTML Essentials certificate" onerror="this.remove()"></div><div class="card-body"><h4>HTML Essentials</h4></div></div></div>
+<div class="col-sm-6 col-lg-4"><div class="card cert h-100"><div class="ph">Certificate image<img src="certificates/cert-2.jpg" alt="Network Addressing and Basic Troubleshooting certificate" onerror="this.remove()"></div><div class="card-body"><h4>Network Addressing and Basic Troubleshooting</h4></div></div></div>
+<div class="col-sm-6 col-lg-4"><div class="card cert h-100"><div class="ph">Certificate image<img src="certificates/cert-3.jpg" alt="Networking Basics certificate" onerror="this.remove()"></div><div class="card-body"><h4>Networking Basics</h4></div></div></div>
+<div class="col-sm-6 col-lg-4"><div class="card cert h-100"><div class="ph">Certificate image<img src="certificates/cert-4.jpg" alt="Networking Devices and Basic Configuration certificate" onerror="this.remove()"></div><div class="card-body"><h4>Networking Devices and Basic Configuration</h4></div></div></div>
+<div class="col-sm-6 col-lg-4"><div class="card cert h-100"><div class="ph">Certificate image<img src="certificates/cert-5.jpg" alt="Network Support and Security certificate" onerror="this.remove()"></div><div class="card-body"><h4>Network Support and Security</h4></div></div></div>
+<div class="col-sm-6 col-lg-4"><div class="card cert h-100"><div class="ph">Certificate image<img src="certificates/cert-6.jpg" alt="Network Technician Career Path certificate" onerror="this.remove()"></div><div class="card-body"><h4>Network Technician Career Path</h4></div></div></div>
+</div>
+<h3 class="sub-h">Seminars and technical events</h3>
+<div class="row g-4">
+<div class="col-sm-6 col-lg-4"><div class="card cert h-100"><div class="ph">Certificate image<img src="certificates/cert-7.jpg" alt="IT Week 2026 seminar certificate" onerror="this.remove()"></div><div class="card-body"><h4>Bridging Business and Technology for the Next Generation</h4><small>IT Week 2026</small></div></div></div>
+<div class="col-sm-6 col-lg-4"><div class="card cert h-100"><div class="ph">Certificate image<img src="certificates/cert-8.jpg" alt="ICT Week 2026 robotics workshop certificate" onerror="this.remove()"></div><div class="card-body"><h4>Design, Build, Innovate: The Robotics Experience</h4><small>ICT Week 2026</small></div></div></div>
+</div>
+</div></section>
+
+<section class="alt text-center" id="contact"><div class="container">
+<h2>Let's connect</h2>
+<p class="lead mx-auto">Have a project, an opportunity, or an idea? I'd love to hear from you.</p>
+<div class="links d-flex flex-wrap justify-content-center gap-3 mb-4">
+<a href="mailto:mypreciousme09@gmail.com">mypreciousme09@gmail.com</a>
+<a href="tel:+639480131192">0948 013 1192</a>
+</div>
+<p class="mb-0">Sto. Tomas City, Batangas, Philippines</p>
+</div></section>
+</main>
+
+<footer>&copy; 2026 Precious Micaela Alop. La Consolacion College Tanauan.</footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>try{var d=JSON.parse(localStorage.getItem('portfolioAdmin')||'null');if(d&&Date.now()-d.t<6048e5)document.getElementById('adminLink').hidden=false}catch(e){}</script>
+</body>
+</html>
