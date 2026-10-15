@@ -25,6 +25,7 @@ h2{font-size:clamp(1.9rem,4vw,2.5rem);margin-bottom:10px}
 .hero h1{font-size:clamp(2.5rem,6vw,4.2rem);font-weight:400;margin-bottom:8px}
 .role{font:italic 1.35rem var(--serif);color:var(--deep);margin-bottom:18px}
 .hero .container{width:100%}
+#aboutText p:last-child{margin-bottom:0}
 .btn-navy,.btn-outline-navy{--bs-btn-border-radius:999px;--bs-btn-padding-x:1.5rem;--bs-btn-padding-y:.6rem;--bs-btn-font-weight:700;--bs-btn-border-color:var(--navy);--bs-btn-hover-border-color:var(--deep);--bs-btn-active-border-color:var(--deep)}
 .btn-navy{--bs-btn-bg:var(--navy);--bs-btn-color:#fff;--bs-btn-hover-bg:var(--deep);--bs-btn-hover-color:#fff;--bs-btn-active-bg:var(--deep);--bs-btn-active-color:#fff}
 .btn-outline-navy{--bs-btn-bg:transparent;--bs-btn-color:var(--navy);--bs-btn-hover-bg:var(--navy);--bs-btn-hover-color:#fff;--bs-btn-active-bg:var(--navy);--bs-btn-active-color:#fff}
@@ -93,95 +94,80 @@ footer{background:var(--navy);color:#CFE0F1;text-align:center;padding:30px 24px;
 <main>
 <section class="hero" id="home"><div class="container"><div class="row align-items-center gy-4 gx-md-4">
 <div class="col-md-7 order-2 order-md-1">
-<h1>Precious Micaela Alop</h1>
-<p class="role">BS Information Technology student</p>
-<p class="mb-4" style="max-width:52ch">I build web systems with PHP and MySQL, design the interfaces people actually use, and make the posters and publicity materials for my student council. I'm always eager to learn the next thing.</p>
+<h1 id="name"></h1>
+<p class="role" id="role"></p>
+<p class="mb-4" id="intro" style="max-width:52ch"></p>
 <div class="d-flex flex-wrap gap-2">
 <a class="btn btn-navy" href="#projects">See my projects</a>
 <a class="btn btn-outline-navy" href="resume.pdf">Download resume</a>
 <a class="btn btn-outline-navy" href="#contact">Contact me</a>
 </div></div>
-<div class="col-md-5 order-1 order-md-2"><div class="arch"><span aria-hidden="true">PA</span><img src="images/profile.jpg" alt="Portrait of Precious Micaela Alop" onerror="this.remove()"></div></div>
+<div class="col-md-5 order-1 order-md-2"><div class="arch"><span id="initials" aria-hidden="true"></span><img id="photo" alt="Portrait" onerror="this.remove()"></div></div>
 </div></div></section>
 
 <section id="about"><div class="container">
 <h2>About me</h2>
 <div class="row g-4 mt-1">
-<div class="col-lg-7">
-<p>Hi, I'm Mica, a Bachelor of Science in Information Technology student at La Consolacion College Tanauan.</p>
-<p>I love both sides of building software: writing the code that makes a system work and designing how it looks and feels. My projects range from PHP and MySQL systems to UI designs and prototypes.</p>
-<p class="mb-0">As PRO of our student council, I handle publicity materials and technical tasks. That keeps my design and editing skills sharp and teaches me to deliver for real deadlines and real audiences.</p>
-</div>
-<div class="col-lg-5"><dl class="box facts mb-0">
-<dt>School</dt><dd>La Consolacion College Tanauan</dd>
-<dt>Program</dt><dd>BS Information Technology</dd>
-<dt>Student council</dt><dd>PRO, publicity materials and technical tasks</dd>
-<dt>Based in</dt><dd>Sto. Tomas City, Batangas, Philippines</dd>
-</dl></div>
+<div class="col-lg-7" id="aboutText"></div>
+<div class="col-lg-5"><dl class="box facts mb-0" id="facts"></dl></div>
 </div></div></section>
 
 <section class="alt" id="education"><div class="container">
 <h2>Education</h2>
-<div class="box edu mt-4" style="max-width:760px">
-<h3>Bachelor of Science in Information Technology</h3>
-<p class="sub">La Consolacion College Tanauan</p>
-<p class="mb-0">Coursework in programming, databases, web development, and networking, applied through full-stack projects, UI/UX design, and system documentation.</p>
-</div></div></section>
+<div class="box edu mt-4" id="edu" style="max-width:760px"></div>
+</div></section>
 
 <section id="skills"><div class="container">
 <h2>Skills</h2>
 <p class="lead">The tools I use to take an idea from sketch to working system.</p>
-<div class="row g-4">
-<div class="col-sm-6 col-lg-3"><div class="box h-100"><h3>Frontend</h3><ul><li>HTML</li><li>CSS</li><li>JavaScript</li><li>Bootstrap</li></ul></div></div>
-<div class="col-sm-6 col-lg-3"><div class="box h-100"><h3>Backend and data</h3><ul><li>PHP</li><li>MySQL</li><li>CRUD systems</li><li>Laragon</li></ul></div></div>
-<div class="col-sm-6 col-lg-3"><div class="box h-100"><h3>Design</h3><ul><li>UI/UX design</li><li>Pubmats</li><li>Photo and video editing</li></ul></div></div>
-<div class="col-sm-6 col-lg-3"><div class="box h-100"><h3>Working style</h3><ul><li>System documentation</li><li>Quick learner</li><li>Teamwork</li></ul></div></div>
-</div></div></section>
+<div class="row g-4" id="skillGrid"></div>
+</div></section>
 
 <section class="alt" id="projects"><div class="container">
 <h2>Projects</h2>
 <p class="lead">Academic and personal systems, from capstone work to event sites.</p>
-<div class="row g-4">
-<div class="col-md-6 col-lg-4"><article class="card h-100"><div class="card-body d-flex flex-column"><h3>QBOMS</h3><p class="flex-grow-1">QR-Based Operation Management System, a multi-tenant web platform built in PHP. This is my capstone project.</p><p class="stack">PHP, MySQL, QR codes</p></div></article></div>
-<div class="col-md-6 col-lg-4"><article class="card h-100"><div class="card-body d-flex flex-column"><h3>SAO Help Desk</h3><p class="flex-grow-1">A student ticketing site for the Student Affairs Office of LCCT, so concerns can be submitted and tracked in one place.</p><p class="stack">PHP, MySQL, Bootstrap</p></div></article></div>
-<div class="col-md-6 col-lg-4"><article class="card h-100"><div class="card-body d-flex flex-column"><h3>myRDA+PLUS</h3><p class="flex-grow-1">A library system moved from an old desktop application to a modern PHP and MySQL web app.</p><p class="stack">PHP, MySQL</p></div></article></div>
-<div class="col-md-6 col-lg-4"><article class="card h-100"><div class="card-body d-flex flex-column"><h3>Goodreads redesign</h3><p class="flex-grow-1">A fresh take on the Goodreads book-tracking experience, built as a working CRUD app.</p><p class="stack">PHP, MySQL, UI design</p></div></article></div>
-<div class="col-md-6 col-lg-4"><article class="card h-100"><div class="card-body d-flex flex-column"><h3>LCCStats</h3><p class="flex-grow-1">An interactive prototype of an app that helps students keep track of their requirements.</p><p class="stack">HTML, CSS, JavaScript</p></div></article></div>
-<div class="col-md-6 col-lg-4"><article class="card h-100"><div class="card-body d-flex flex-column"><h3>Intrams website</h3><p class="flex-grow-1">A website for the intramurals event.</p><p class="mb-0"><a class="fw-bold" href="https://intrams.42web.io/" target="_blank" rel="noopener">Visit the site</a></p></div></article></div>
-</div></div></section>
+<div class="row g-4" id="projGrid"></div>
+</div></section>
 
 <section id="certifications"><div class="container">
 <h2>Certifications and training</h2>
-<p class="lead">Courses and events that keep my skills growing. Click a certificate image once you've added it.</p>
-<h3 class="sub-h">Cisco Networking Academy</h3>
-<div class="row g-4 mb-5">
-<div class="col-sm-6 col-lg-4"><div class="card cert h-100"><div class="ph">Certificate image<img src="certificates/cert-1.jpg" alt="HTML Essentials certificate" onerror="this.remove()"></div><div class="card-body"><h4>HTML Essentials</h4></div></div></div>
-<div class="col-sm-6 col-lg-4"><div class="card cert h-100"><div class="ph">Certificate image<img src="certificates/cert-2.jpg" alt="Network Addressing and Basic Troubleshooting certificate" onerror="this.remove()"></div><div class="card-body"><h4>Network Addressing and Basic Troubleshooting</h4></div></div></div>
-<div class="col-sm-6 col-lg-4"><div class="card cert h-100"><div class="ph">Certificate image<img src="certificates/cert-3.jpg" alt="Networking Basics certificate" onerror="this.remove()"></div><div class="card-body"><h4>Networking Basics</h4></div></div></div>
-<div class="col-sm-6 col-lg-4"><div class="card cert h-100"><div class="ph">Certificate image<img src="certificates/cert-4.jpg" alt="Networking Devices and Basic Configuration certificate" onerror="this.remove()"></div><div class="card-body"><h4>Networking Devices and Basic Configuration</h4></div></div></div>
-<div class="col-sm-6 col-lg-4"><div class="card cert h-100"><div class="ph">Certificate image<img src="certificates/cert-5.jpg" alt="Network Support and Security certificate" onerror="this.remove()"></div><div class="card-body"><h4>Network Support and Security</h4></div></div></div>
-<div class="col-sm-6 col-lg-4"><div class="card cert h-100"><div class="ph">Certificate image<img src="certificates/cert-6.jpg" alt="Network Technician Career Path certificate" onerror="this.remove()"></div><div class="card-body"><h4>Network Technician Career Path</h4></div></div></div>
-</div>
-<h3 class="sub-h">Seminars and technical events</h3>
-<div class="row g-4">
-<div class="col-sm-6 col-lg-4"><div class="card cert h-100"><div class="ph">Certificate image<img src="certificates/cert-7.jpg" alt="IT Week 2026 seminar certificate" onerror="this.remove()"></div><div class="card-body"><h4>Bridging Business and Technology for the Next Generation</h4><small>IT Week 2026</small></div></div></div>
-<div class="col-sm-6 col-lg-4"><div class="card cert h-100"><div class="ph">Certificate image<img src="certificates/cert-8.jpg" alt="ICT Week 2026 robotics workshop certificate" onerror="this.remove()"></div><div class="card-body"><h4>Design, Build, Innovate: The Robotics Experience</h4><small>ICT Week 2026</small></div></div></div>
-</div>
+<p class="lead">Courses and events that keep my skills growing.</p>
+<div id="certArea"></div>
 </div></section>
 
 <section class="alt text-center" id="contact"><div class="container">
 <h2>Let's connect</h2>
 <p class="lead mx-auto">Have a project, an opportunity, or an idea? I'd love to hear from you.</p>
-<div class="links d-flex flex-wrap justify-content-center gap-3 mb-4">
-<a href="mailto:mypreciousme09@gmail.com">mypreciousme09@gmail.com</a>
-<a href="tel:+639480131192">0948 013 1192</a>
-</div>
-<p class="mb-0">Sto. Tomas City, Batangas, Philippines</p>
+<div class="links d-flex flex-wrap justify-content-center gap-3 mb-4" id="contactLinks"></div>
+<p class="mb-0" id="contactLoc"></p>
 </div></section>
 </main>
 
-<footer>&copy; 2026 Precious Micaela Alop. La Consolacion College Tanauan.</footer>
+<footer id="foot"></footer>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<script>try{var d=JSON.parse(localStorage.getItem('portfolioAdmin')||'null');if(d&&Date.now()-d.t<6048e5)document.getElementById('adminLink').hidden=false}catch(e){}</script>
+<script>
+const $=id=>document.getElementById(id);
+const e=v=>String(v==null?'':v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function render(d){
+document.title='Personal Web Portfolio | '+d.name;
+$('name').textContent=d.name;$('role').textContent=d.role;$('intro').textContent=d.intro;
+const w=d.name.trim().split(/\s+/);$('initials').textContent=(w[0][0]+(w.length>1?w[w.length-1][0]:'')).toUpperCase();
+if($('photo'))$('photo').src=d.photo||'images/profile.jpg';
+$('aboutText').innerHTML=d.about.map(p=>'<p>'+e(p)+'</p>').join('');
+$('facts').innerHTML=d.facts.map(f=>'<dt>'+e(f[0])+'</dt><dd>'+e(f[1])+'</dd>').join('');
+$('edu').innerHTML='<h3>'+e(d.education.degree)+'</h3><p class="sub">'+e(d.education.school)+'</p><p class="mb-0">'+e(d.education.text)+'</p>';
+$('skillGrid').innerHTML=d.skills.map(g=>'<div class="col-sm-6 col-lg-3"><div class="box h-100"><h3>'+e(g.title)+'</h3><ul>'+g.items.map(x=>'<li>'+e(x)+'</li>').join('')+'</ul></div></div>').join('');
+$('projGrid').innerHTML=d.projects.map(p=>'<div class="col-md-6 col-lg-4"><article class="card h-100"><div class="card-body d-flex flex-column"><h3>'+e(p.title)+'</h3><p class="flex-grow-1">'+e(p.desc)+'</p>'+(p.stack?'<p class="stack">'+e(p.stack)+'</p>':'')+(p.link?'<p class="mb-0"><a class="fw-bold" href="'+e(p.link)+'" target="_blank" rel="noopener">Visit the site</a></p>':'')+'</div></article></div>').join('');
+const groups=[];d.certs.forEach(c=>{let g=groups.find(x=>x.n===c.group);if(!g)groups.push(g={n:c.group,l:[]});g.l.push(c)});
+$('certArea').innerHTML=groups.map((g,i)=>'<h3 class="sub-h">'+e(g.n)+'</h3><div class="row g-4 '+(i<groups.length-1?'mb-5':'')+'">'+g.l.map(c=>'<div class="col-sm-6 col-lg-4"><div class="card cert h-100"><div class="ph">Certificate image'+(c.img?'<img src="'+e(c.img)+'" alt="'+e(c.title)+' certificate" onerror="this.remove()">':'')+'</div><div class="card-body"><h4>'+e(c.title)+'</h4>'+(c.sub?'<small>'+e(c.sub)+'</small>':'')+'</div></div></div>').join('')+'</div>').join('');
+const ph=d.contact.phone.replace(/\D/g,''),tel=ph.startsWith('0')?'+63'+ph.slice(1):'+'+ph;
+$('contactLinks').innerHTML='<a href="mailto:'+e(d.contact.email)+'">'+e(d.contact.email)+'</a><a href="tel:'+e(tel)+'">'+e(d.contact.phone)+'</a>';
+$('contactLoc').textContent=d.contact.location;
+$('foot').innerHTML='&copy; 2026 '+e(d.name)+'. '+e(d.education.school)+'.';
+}
+const DEFAULT={"name": "Precious Micaela Alop", "role": "BS Information Technology student", "intro": "I build web systems with PHP and MySQL, design the interfaces people actually use, and make the posters and publicity materials for my student council. I'm always eager to learn the next thing.", "photo": "images/profile.jpg", "about": ["Hi, I'm Mica, a Bachelor of Science in Information Technology student at La Consolacion College Tanauan.", "I love both sides of building software: writing the code that makes a system work and designing how it looks and feels. My projects range from PHP and MySQL systems to UI designs and prototypes.", "As PRO of our student council, I handle publicity materials and technical tasks. That keeps my design and editing skills sharp and teaches me to deliver for real deadlines and real audiences."], "facts": [["School", "La Consolacion College Tanauan"], ["Program", "BS Information Technology"], ["Student council", "PRO, publicity materials and technical tasks"], ["Based in", "Sto. Tomas City, Batangas, Philippines"]], "education": {"degree": "Bachelor of Science in Information Technology", "school": "La Consolacion College Tanauan", "text": "Coursework in programming, databases, web development, and networking, applied through full-stack projects, UI/UX design, and system documentation."}, "skills": [{"title": "Frontend", "items": ["HTML", "CSS", "JavaScript", "Bootstrap"]}, {"title": "Backend and data", "items": ["PHP", "MySQL", "CRUD systems", "Laragon"]}, {"title": "Design", "items": ["UI/UX design", "Pubmats", "Photo and video editing"]}, {"title": "Working style", "items": ["System documentation", "Quick learner", "Teamwork"]}], "projects": [{"title": "QBOMS", "desc": "QR-Based Operation Management System, a multi-tenant web platform built in PHP. This is my capstone project.", "stack": "PHP, MySQL, QR codes", "link": ""}, {"title": "SAO Help Desk", "desc": "A student ticketing site for the Student Affairs Office of LCCT, so concerns can be submitted and tracked in one place.", "stack": "PHP, MySQL, Bootstrap", "link": ""}, {"title": "myRDA+PLUS", "desc": "A library system moved from an old desktop application to a modern PHP and MySQL web app.", "stack": "PHP, MySQL", "link": ""}, {"title": "Goodreads redesign", "desc": "A fresh take on the Goodreads book-tracking experience, built as a working CRUD app.", "stack": "PHP, MySQL, UI design", "link": ""}, {"title": "LCCStats", "desc": "An interactive prototype of an app that helps students keep track of their requirements.", "stack": "HTML, CSS, JavaScript", "link": ""}, {"title": "Intrams website", "desc": "A website for the intramurals event.", "stack": "", "link": "https://intrams.42web.io/"}], "certs": [{"group": "Cisco Networking Academy", "title": "HTML Essentials", "sub": "", "img": "certificates/cert-1.jpg"}, {"group": "Cisco Networking Academy", "title": "Network Addressing and Basic Troubleshooting", "sub": "", "img": "certificates/cert-2.jpg"}, {"group": "Cisco Networking Academy", "title": "Networking Basics", "sub": "", "img": "certificates/cert-3.jpg"}, {"group": "Cisco Networking Academy", "title": "Networking Devices and Basic Configuration", "sub": "", "img": "certificates/cert-4.jpg"}, {"group": "Cisco Networking Academy", "title": "Network Support and Security", "sub": "", "img": "certificates/cert-5.jpg"}, {"group": "Cisco Networking Academy", "title": "Network Technician Career Path", "sub": "", "img": "certificates/cert-6.jpg"}, {"group": "Seminars and technical events", "title": "Bridging Business and Technology for the Next Generation", "sub": "IT Week 2026", "img": "certificates/cert-7.jpg"}, {"group": "Seminars and technical events", "title": "Design, Build, Innovate: The Robotics Experience", "sub": "ICT Week 2026", "img": "certificates/cert-8.jpg"}], "contact": {"email": "mypreciousme09@gmail.com", "phone": "0948 013 1192", "location": "Sto. Tomas City, Batangas, Philippines"}};
+fetch('content.json?'+Date.now()).then(r=>{if(!r.ok)throw 0;return r.json()}).then(render).catch(()=>render(DEFAULT));
+try{var d=JSON.parse(localStorage.getItem('portfolioAdmin')||'null');if(d&&Date.now()-d.t<6048e5)$('adminLink').hidden=false}catch(x){}
+</script>
 </body>
 </html>
