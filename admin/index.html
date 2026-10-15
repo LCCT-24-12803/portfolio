@@ -61,7 +61,7 @@ input:focus,textarea:focus,button:focus-visible,a:focus-visible{outline:3px soli
 
 </main>
 <script>
-const PASS_HASH = '';
+const PASS_HASH = '508f92df76cf359df1c0126b2514f1e8ff4c0d85622c7a35133236d90e7dce78';
 const KEY = 'portfolioAdmin', DAYS = 7;
 const $ = id => document.getElementById(id);
 const hash = async t => [...new Uint8Array(await crypto.subtle.digest('SHA-256', new TextEncoder().encode('mica-portfolio:' + t)))].map(b => b.toString(16).padStart(2, '0')).join('');
