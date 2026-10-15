@@ -25,6 +25,10 @@ h2{font-size:clamp(1.9rem,4vw,2.5rem);margin-bottom:10px}
 .hero h1{font-size:clamp(2.5rem,6vw,4.2rem);font-weight:400;margin-bottom:8px}
 .role{font:italic 1.35rem var(--serif);color:var(--deep);margin-bottom:18px}
 .hero .container{width:100%}
+[data-zoom]{cursor:zoom-in}
+.modal-title{font-family:var(--serif);color:var(--navy);font-weight:600}
+.modal-content{border-radius:20px;border:1px solid var(--line)}
+#imgBig{max-width:100%;max-height:80vh;object-fit:contain;border-radius:12px}
 #aboutText p:last-child{margin-bottom:0}
 .btn-navy,.btn-outline-navy{--bs-btn-border-radius:999px;--bs-btn-padding-x:1.5rem;--bs-btn-padding-y:.6rem;--bs-btn-font-weight:700;--bs-btn-border-color:var(--navy);--bs-btn-hover-border-color:var(--deep);--bs-btn-active-border-color:var(--deep)}
 .btn-navy{--bs-btn-bg:var(--navy);--bs-btn-color:#fff;--bs-btn-hover-bg:var(--deep);--bs-btn-hover-color:#fff;--bs-btn-active-bg:var(--deep);--bs-btn-active-color:#fff}
@@ -102,7 +106,7 @@ footer{background:var(--navy);color:#CFE0F1;text-align:center;padding:30px 24px;
 <a class="btn btn-outline-navy" href="resume.pdf">Download resume</a>
 <a class="btn btn-outline-navy" href="#contact">Contact me</a>
 </div></div>
-<div class="col-md-5 order-1 order-md-2"><div class="arch"><span id="initials" aria-hidden="true"></span><img id="photo" alt="Portrait" onerror="this.remove()"></div></div>
+<div class="col-md-5 order-1 order-md-2"><div class="arch" data-zoom tabindex="0" role="button" aria-label="View photo larger"><span id="initials" aria-hidden="true"></span><img id="photo" alt="Portrait" onerror="this.remove()"></div></div>
 </div></div></section>
 
 <section id="about"><div class="container">
@@ -144,6 +148,11 @@ footer{background:var(--navy);color:#CFE0F1;text-align:center;padding:30px 24px;
 </main>
 
 <footer id="foot"></footer>
+<div class="modal fade" id="imgModal" tabindex="-1" aria-labelledby="imgTitle" aria-hidden="true">
+<div class="modal-dialog modal-dialog-centered modal-xl"><div class="modal-content">
+<div class="modal-header"><h5 class="modal-title" id="imgTitle"></h5><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+<div class="modal-body text-center p-2"><img id="imgBig" alt=""></div>
+</div></div></div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
 const $=id=>document.getElementById(id);
@@ -152,20 +161,23 @@ function render(d){
 document.title='Personal Web Portfolio | '+d.name;
 $('name').textContent=d.name;$('role').textContent=d.role;$('intro').textContent=d.intro;
 const w=d.name.trim().split(/\s+/);$('initials').textContent=(w[0][0]+(w.length>1?w[w.length-1][0]:'')).toUpperCase();
-if($('photo'))$('photo').src=d.photo||'images/profile.jpg';
+if($('photo')){$('photo').src=d.photo||'images/profile.jpg';$('photo').alt='Portrait of '+d.name}
 $('aboutText').innerHTML=d.about.map(p=>'<p>'+e(p)+'</p>').join('');
 $('facts').innerHTML=d.facts.map(f=>'<dt>'+e(f[0])+'</dt><dd>'+e(f[1])+'</dd>').join('');
 $('edu').innerHTML='<h3>'+e(d.education.degree)+'</h3><p class="sub">'+e(d.education.school)+'</p><p class="mb-0">'+e(d.education.text)+'</p>';
 $('skillGrid').innerHTML=d.skills.map(g=>'<div class="col-sm-6 col-lg-3"><div class="box h-100"><h3>'+e(g.title)+'</h3><ul>'+g.items.map(x=>'<li>'+e(x)+'</li>').join('')+'</ul></div></div>').join('');
 $('projGrid').innerHTML=d.projects.map(p=>'<div class="col-md-6 col-lg-4"><article class="card h-100"><div class="card-body d-flex flex-column"><h3>'+e(p.title)+'</h3><p class="flex-grow-1">'+e(p.desc)+'</p>'+(p.stack?'<p class="stack">'+e(p.stack)+'</p>':'')+(p.link?'<p class="mb-0"><a class="fw-bold" href="'+e(p.link)+'" target="_blank" rel="noopener">Visit the site</a></p>':'')+'</div></article></div>').join('');
 const groups=[];d.certs.forEach(c=>{let g=groups.find(x=>x.n===c.group);if(!g)groups.push(g={n:c.group,l:[]});g.l.push(c)});
-$('certArea').innerHTML=groups.map((g,i)=>'<h3 class="sub-h">'+e(g.n)+'</h3><div class="row g-4 '+(i<groups.length-1?'mb-5':'')+'">'+g.l.map(c=>'<div class="col-sm-6 col-lg-4"><div class="card cert h-100"><div class="ph">Certificate image'+(c.img?'<img src="'+e(c.img)+'" alt="'+e(c.title)+' certificate" onerror="this.remove()">':'')+'</div><div class="card-body"><h4>'+e(c.title)+'</h4>'+(c.sub?'<small>'+e(c.sub)+'</small>':'')+'</div></div></div>').join('')+'</div>').join('');
+$('certArea').innerHTML=groups.map((g,i)=>'<h3 class="sub-h">'+e(g.n)+'</h3><div class="row g-4 '+(i<groups.length-1?'mb-5':'')+'">'+g.l.map(c=>'<div class="col-sm-6 col-lg-4"><div class="card cert h-100"><div class="ph"'+(c.img?' data-zoom tabindex="0" role="button" aria-label="View '+e(c.title)+' certificate larger"':'')+'>Certificate image'+(c.img?'<img src="'+e(c.img)+'" alt="'+e(c.title)+' certificate" onerror="this.remove()">':'')+'</div><div class="card-body"><h4>'+e(c.title)+'</h4>'+(c.sub?'<small>'+e(c.sub)+'</small>':'')+'</div></div></div>').join('')+'</div>').join('');
 const ph=d.contact.phone.replace(/\D/g,''),tel=ph.startsWith('0')?'+63'+ph.slice(1):'+'+ph;
 $('contactLinks').innerHTML='<a href="mailto:'+e(d.contact.email)+'">'+e(d.contact.email)+'</a><a href="tel:'+e(tel)+'">'+e(d.contact.phone)+'</a>';
 $('contactLoc').textContent=d.contact.location;
 $('foot').innerHTML='&copy; 2026 '+e(d.name)+'. '+e(d.education.school)+'.';
 }
 const DEFAULT={"name": "Precious Micaela Alop", "role": "BS Information Technology student", "intro": "I build web systems with PHP and MySQL, design the interfaces people actually use, and make the posters and publicity materials for my student council. I'm always eager to learn the next thing.", "photo": "images/profile.jpg", "about": ["Hi, I'm Mica, a Bachelor of Science in Information Technology student at La Consolacion College Tanauan.", "I love both sides of building software: writing the code that makes a system work and designing how it looks and feels. My projects range from PHP and MySQL systems to UI designs and prototypes.", "As PRO of our student council, I handle publicity materials and technical tasks. That keeps my design and editing skills sharp and teaches me to deliver for real deadlines and real audiences."], "facts": [["School", "La Consolacion College Tanauan"], ["Program", "BS Information Technology"], ["Student council", "PRO, publicity materials and technical tasks"], ["Based in", "Sto. Tomas City, Batangas, Philippines"]], "education": {"degree": "Bachelor of Science in Information Technology", "school": "La Consolacion College Tanauan", "text": "Coursework in programming, databases, web development, and networking, applied through full-stack projects, UI/UX design, and system documentation."}, "skills": [{"title": "Frontend", "items": ["HTML", "CSS", "JavaScript", "Bootstrap"]}, {"title": "Backend and data", "items": ["PHP", "MySQL", "CRUD systems", "Laragon"]}, {"title": "Design", "items": ["UI/UX design", "Pubmats", "Photo and video editing"]}, {"title": "Working style", "items": ["System documentation", "Quick learner", "Teamwork"]}], "projects": [{"title": "QBOMS", "desc": "QR-Based Operation Management System, a multi-tenant web platform built in PHP. This is my capstone project.", "stack": "PHP, MySQL, QR codes", "link": ""}, {"title": "SAO Help Desk", "desc": "A student ticketing site for the Student Affairs Office of LCCT, so concerns can be submitted and tracked in one place.", "stack": "PHP, MySQL, Bootstrap", "link": ""}, {"title": "myRDA+PLUS", "desc": "A library system moved from an old desktop application to a modern PHP and MySQL web app.", "stack": "PHP, MySQL", "link": ""}, {"title": "Goodreads redesign", "desc": "A fresh take on the Goodreads book-tracking experience, built as a working CRUD app.", "stack": "PHP, MySQL, UI design", "link": ""}, {"title": "LCCStats", "desc": "An interactive prototype of an app that helps students keep track of their requirements.", "stack": "HTML, CSS, JavaScript", "link": ""}, {"title": "Intrams website", "desc": "A website for the intramurals event.", "stack": "", "link": "https://intrams.42web.io/"}], "certs": [{"group": "Cisco Networking Academy", "title": "HTML Essentials", "sub": "", "img": "certificates/cert-1.jpg"}, {"group": "Cisco Networking Academy", "title": "Network Addressing and Basic Troubleshooting", "sub": "", "img": "certificates/cert-2.jpg"}, {"group": "Cisco Networking Academy", "title": "Networking Basics", "sub": "", "img": "certificates/cert-3.jpg"}, {"group": "Cisco Networking Academy", "title": "Networking Devices and Basic Configuration", "sub": "", "img": "certificates/cert-4.jpg"}, {"group": "Cisco Networking Academy", "title": "Network Support and Security", "sub": "", "img": "certificates/cert-5.jpg"}, {"group": "Cisco Networking Academy", "title": "Network Technician Career Path", "sub": "", "img": "certificates/cert-6.jpg"}, {"group": "Seminars and technical events", "title": "Bridging Business and Technology for the Next Generation", "sub": "IT Week 2026", "img": "certificates/cert-7.jpg"}, {"group": "Seminars and technical events", "title": "Design, Build, Innovate: The Robotics Experience", "sub": "ICT Week 2026", "img": "certificates/cert-8.jpg"}], "contact": {"email": "mypreciousme09@gmail.com", "phone": "0948 013 1192", "location": "Sto. Tomas City, Batangas, Philippines"}};
+function zoom(el){const im=el.querySelector('img');if(!im)return;$('imgBig').src=im.currentSrc||im.src;$('imgBig').alt=im.alt;$('imgTitle').textContent=im.alt||'';bootstrap.Modal.getOrCreateInstance($('imgModal')).show()}
+document.addEventListener('click',ev=>{const t=ev.target.closest('[data-zoom]');if(t)zoom(t)});
+document.addEventListener('keydown',ev=>{if(ev.key!=='Enter'&&ev.key!==' ')return;const t=ev.target.closest&&ev.target.closest('[data-zoom]');if(t){ev.preventDefault();zoom(t)}});
 fetch('content.json?'+Date.now()).then(r=>{if(!r.ok)throw 0;return r.json()}).then(render).catch(()=>render(DEFAULT));
 try{var d=JSON.parse(localStorage.getItem('portfolioAdmin')||'null');if(d&&Date.now()-d.t<6048e5)$('adminLink').hidden=false}catch(x){}
 </script>
