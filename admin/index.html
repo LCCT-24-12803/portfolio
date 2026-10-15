@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Admin | Personal Web Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;600&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--sky:#E6F0FA;--mist:#F5F9FD;--blue:#5E94CF;--deep:#2F5D95;--navy:#1B3355;--ink:#2C3C55;--line:#CFE0F1}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;display:grid;place-items:center;padding:24px;font:17px/1.6 'Nunito Sans',system-ui,sans-serif;color:var(--ink);background:linear-gradient(180deg,var(--sky),var(--mist))}
+[hidden]{display:none!important}
+.box{width:100%;max-width:440px;background:#fff;border:1px solid var(--line);border-radius:20px;padding:32px;box-shadow:0 0 0 3px rgba(94,148,207,.12),0 16px 40px rgba(94,148,207,.25)}
+h1{font:600 1.7rem 'Fraunces',Georgia,serif;color:var(--navy);margin:0 0 6px}
+p{margin:0 0 18px}
+label{display:block;font-weight:700;color:var(--navy);margin-bottom:6px}
+input,textarea{width:100%;padding:12px 14px;border:1px solid var(--line);border-radius:12px;font:inherit;margin-bottom:16px;background:var(--mist)}
+textarea{font:.85rem/1.4 monospace;height:90px}
+input:focus,textarea:focus,button:focus-visible,a:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+.btn{display:inline-block;width:100%;padding:12px 24px;border-radius:999px;border:2px solid var(--navy);background:var(--navy);color:#fff;font:700 1rem inherit;text-align:center;text-decoration:none;cursor:pointer;transition:transform .25s,box-shadow .25s,background .25s}
+.btn:hover{background:var(--deep);border-color:var(--deep);transform:translateY(-3px);box-shadow:0 0 0 4px rgba(94,148,207,.22),0 8px 24px rgba(94,148,207,.55)}
+.btn.ghost{background:transparent;color:var(--navy);margin-top:12px}
+.btn.ghost:hover{color:#fff;background:var(--navy)}
+.err{color:#B3261E;font-weight:600;min-height:1.4em;margin:-6px 0 10px}
+.small{font-size:.9rem;color:var(--deep)}
+@media(prefers-reduced-motion:reduce){.btn{transition:none}.btn:hover{transform:none}}
+</style>
+</head>
+<body>
+<main class="box">
+
+<form id="setup" hidden>
+<h1>Set your password</h1>
+<p>First-time setup. Choose a password, copy the line it creates, and paste it into this file in place of <code>const PASS_HASH = '';</code> then commit.</p>
+<label for="np">New password</label>
+<input id="np" type="password" autocomplete="new-password" minlength="8" required>
+<button class="btn" type="submit">Create line</button>
+<div id="out" hidden style="margin-top:16px"><label for="line">Copy this line</label><textarea id="line" readonly></textarea></div>
+</form>
+
+<form id="login" hidden>
+<h1>Admin login</h1>
+<p>Enter your password to unlock admin access.</p>
+<label for="pw">Password</label>
+<input id="pw" type="password" autocomplete="current-password" required>
+<div class="err" id="err" role="alert"></div>
+<button class="btn" type="submit">Log in</button>
+<a class="btn ghost" href="../">Back to portfolio</a>
+</form>
+
+<section id="panel" hidden>
+<h1>Welcome back, Mica</h1>
+<p>Admin access is on. The Admin button now shows on your portfolio in this browser.</p>
+<a class="btn" href="https://github.com/lcct-24-12803/portfolio/edit/main/index.html" target="_blank" rel="noopener">Edit portfolio on GitHub</a>
+<a class="btn ghost" href="https://github.com/lcct-24-12803/portfolio" target="_blank" rel="noopener">Open repository</a>
+<a class="btn ghost" href="../">View portfolio</a>
+<button class="btn ghost" id="out-btn" type="button">Log out</button>
+<p class="small" style="margin:16px 0 0">Logging out hides the Admin button again.</p>
+</section>
+
+</main>
+<script>
+const PASS_HASH = '';
+const KEY = 'portfolioAdmin', DAYS = 7;
+const $ = id => document.getElementById(id);
+const hash = async t => [...new Uint8Array(await crypto.subtle.digest('SHA-256', new TextEncoder().encode('mica-portfolio:' + t)))].map(b => b.toString(16).padStart(2, '0')).join('');
+function authed(){try{const d=JSON.parse(localStorage.getItem(KEY)||'null');return !!(PASS_HASH&&d&&d.h===PASS_HASH&&Date.now()-d.t<DAYS*864e5)}catch(e){return false}}
+function view(){$('setup').hidden=!!PASS_HASH;$('login').hidden=!PASS_HASH||authed();$('panel').hidden=!authed()}
+$('setup').addEventListener('submit',async e=>{e.preventDefault();$('line').value="const PASS_HASH = '"+await hash($('np').value)+"';";$('out').hidden=false;$('line').select()});
+$('login').addEventListener('submit',async e=>{e.preventDefault();
+  if(await hash($('pw').value)===PASS_HASH){try{localStorage.setItem(KEY,JSON.stringify({h:PASS_HASH,t:Date.now()}))}catch(x){}$('err').textContent='';$('pw').value='';view()}
+  else{$('err').textContent='Wrong password. Try again.';$('pw').select()}});
+$('out-btn').addEventListener('click',()=>{try{localStorage.removeItem(KEY)}catch(e){}view()});
+view();
+</script>
+</body>
+</html>
