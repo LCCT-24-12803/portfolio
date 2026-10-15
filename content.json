@@ -1,0 +1,163 @@
+{
+  "name": "Precious Micaela Alop",
+  "role": "BS Information Technology student",
+  "intro": "I build web systems with PHP and MySQL, design the interfaces people actually use, and make the posters and publicity materials for my student council. I'm always eager to learn the next thing.",
+  "photo": "images/profile.jpg",
+  "about": [
+    "Hi, I'm Mica, a Bachelor of Science in Information Technology student at La Consolacion College Tanauan.",
+    "I love both sides of building software: writing the code that makes a system work and designing how it looks and feels. My projects range from PHP and MySQL systems to UI designs and prototypes.",
+    "As PRO of our student council, I handle publicity materials and technical tasks. That keeps my design and editing skills sharp and teaches me to deliver for real deadlines and real audiences."
+  ],
+  "facts": [
+    [
+      "School",
+      "La Consolacion College Tanauan"
+    ],
+    [
+      "Program",
+      "BS Information Technology"
+    ],
+    [
+      "Student council",
+      "PRO, publicity materials and technical tasks"
+    ],
+    [
+      "Based in",
+      "Sto. Tomas City, Batangas, Philippines"
+    ]
+  ],
+  "education": {
+    "degree": "Bachelor of Science in Information Technology",
+    "school": "La Consolacion College Tanauan",
+    "text": "Coursework in programming, databases, web development, and networking, applied through full-stack projects, UI/UX design, and system documentation."
+  },
+  "skills": [
+    {
+      "title": "Frontend",
+      "items": [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "Bootstrap"
+      ]
+    },
+    {
+      "title": "Backend and data",
+      "items": [
+        "PHP",
+        "MySQL",
+        "CRUD systems",
+        "Laragon"
+      ]
+    },
+    {
+      "title": "Design",
+      "items": [
+        "UI/UX design",
+        "Pubmats",
+        "Photo and video editing"
+      ]
+    },
+    {
+      "title": "Working style",
+      "items": [
+        "System documentation",
+        "Quick learner",
+        "Teamwork"
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "title": "QBOMS",
+      "desc": "QR-Based Operation Management System, a multi-tenant web platform built in PHP. This is my capstone project.",
+      "stack": "PHP, MySQL, QR codes",
+      "link": ""
+    },
+    {
+      "title": "SAO Help Desk",
+      "desc": "A student ticketing site for the Student Affairs Office of LCCT, so concerns can be submitted and tracked in one place.",
+      "stack": "PHP, MySQL, Bootstrap",
+      "link": ""
+    },
+    {
+      "title": "myRDA+PLUS",
+      "desc": "A library system moved from an old desktop application to a modern PHP and MySQL web app.",
+      "stack": "PHP, MySQL",
+      "link": ""
+    },
+    {
+      "title": "Goodreads redesign",
+      "desc": "A fresh take on the Goodreads book-tracking experience, built as a working CRUD app.",
+      "stack": "PHP, MySQL, UI design",
+      "link": ""
+    },
+    {
+      "title": "LCCStats",
+      "desc": "An interactive prototype of an app that helps students keep track of their requirements.",
+      "stack": "HTML, CSS, JavaScript",
+      "link": ""
+    },
+    {
+      "title": "Intrams website",
+      "desc": "A website for the intramurals event.",
+      "stack": "",
+      "link": "https://intrams.42web.io/"
+    }
+  ],
+  "certs": [
+    {
+      "group": "Cisco Networking Academy",
+      "title": "HTML Essentials",
+      "sub": "",
+      "img": "certificates/cert-1.jpg"
+    },
+    {
+      "group": "Cisco Networking Academy",
+      "title": "Network Addressing and Basic Troubleshooting",
+      "sub": "",
+      "img": "certificates/cert-2.jpg"
+    },
+    {
+      "group": "Cisco Networking Academy",
+      "title": "Networking Basics",
+      "sub": "",
+      "img": "certificates/cert-3.jpg"
+    },
+    {
+      "group": "Cisco Networking Academy",
+      "title": "Networking Devices and Basic Configuration",
+      "sub": "",
+      "img": "certificates/cert-4.jpg"
+    },
+    {
+      "group": "Cisco Networking Academy",
+      "title": "Network Support and Security",
+      "sub": "",
+      "img": "certificates/cert-5.jpg"
+    },
+    {
+      "group": "Cisco Networking Academy",
+      "title": "Network Technician Career Path",
+      "sub": "",
+      "img": "certificates/cert-6.jpg"
+    },
+    {
+      "group": "Seminars and technical events",
+      "title": "Bridging Business and Technology for the Next Generation",
+      "sub": "IT Week 2026",
+      "img": "certificates/cert-7.jpg"
+    },
+    {
+      "group": "Seminars and technical events",
+      "title": "Design, Build, Innovate: The Robotics Experience",
+      "sub": "ICT Week 2026",
+      "img": "certificates/cert-8.jpg"
+    }
+  ],
+  "contact": {
+    "email": "mypreciousme09@gmail.com",
+    "phone": "0948 013 1192",
+    "location": "Sto. Tomas City, Batangas, Philippines"
+  }
+}
