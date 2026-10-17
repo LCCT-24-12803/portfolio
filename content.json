@@ -33,37 +33,39 @@
   },
   "skills": [
     {
-      "title": "Frontend",
+      "title": "Web Development",
       "items": [
-        "HTML",
-        "CSS",
-        "JavaScript",
-        "Bootstrap"
+        "HTML and CSS",
+        "Basic Web Development",
+        "SQL Database Fundamentals",
+        "Basic Debugging and Testing"
       ]
     },
     {
-      "title": "Backend and data",
+      "title": "Technical Skills",
       "items": [
-        "PHP",
-        "MySQL",
-        "CRUD systems",
-        "Laragon"
+        "Microsoft Office",
+        "Basic Networking and Cabling",
+        "Computer Troubleshooting",
+        "Network Addressing and Configuration"
       ]
     },
     {
-      "title": "Design",
+      "title": "Design and Creativity",
       "items": [
-        "UI/UX design",
-        "Pubmats",
-        "Photo and video editing"
+        "UI/ UX Design",
+        "Graphic Design and Layout",
+        "Photo and Video Editing"
       ]
     },
     {
-      "title": "Working style",
+      "title": "Professional Skills",
       "items": [
-        "System documentation",
-        "Quick learner",
-        "Teamwork"
+        "Communication and Teamwork",
+        "Time Management",
+        "Problem-Solving",
+        "Adaptability",
+        "Willingness to Learn"
       ]
     }
   ],
