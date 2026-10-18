@@ -4,9 +4,18 @@
   "intro": "I’m a third-year BSIT student eager to strengthen my skills in programming, web development, and graphic design. I have experience building web projects using PHP and MySQL, designing user-friendly interfaces, and creating publication materials for student organizations. I’m looking forward to gaining hands-on experience, learning from IT professionals, and understanding how technology is applied in real-world work environments.",
   "photo": "images/profile.jpg",
   "about": [
-    "Hi, I'm Mica, a third-year Bachelor of Science in Information Technology student at La Consolacion College Tanauan.",
-    "I enjoy both programming and design, from developing functional web applications to creating clean, user-friendly interfaces. I have experience working with PHP and MySQL, building web projects, and exploring UI design and prototyping.",
-    "As the Public Relations Officer of our student council, I handle publication materials, graphic design, editing, and technical tasks. These experiences have helped me develop my creativity, technical skills, and ability to work with deadlines. I'm eager to learn more about programming, gain practical experience, and understand how IT professionals apply their skills in real-world environments."
+    {
+      "text": "Hi, I'm Mica, a third-year Bachelor of Science in Information Technology student at La Consolacion College Tanauan.",
+      "fmt": {}
+    },
+    {
+      "text": "I enjoy both programming and design, from developing functional web applications to creating clean, user-friendly interfaces. I have experience working with PHP and MySQL, building web projects, and exploring UI design and prototyping.",
+      "fmt": {}
+    },
+    {
+      "text": "As the Public Relations Officer of our student council, I handle publication materials, graphic design, editing, and technical tasks. These experiences have helped me develop my creativity, technical skills, and ability to work with deadlines. I'm eager to learn more about programming, gain practical experience, and understand how IT professionals apply their skills in real-world environments.",
+      "fmt": {}
+    }
   ],
   "facts": [
     [
@@ -29,7 +38,8 @@
   "education": {
     "degree": "College - Bachelor of Science in Information Technology",
     "school": "La Consolacion College Tanauan",
-    "text": "Coursework in programming, databases, web development, and networking, applied through full-stack projects, UI/UX design, and system documentation."
+    "text": "Coursework in programming, databases, web development, and networking, applied through full-stack projects, UI/UX design, and system documentation.",
+    "textFmt": {}
   },
   "skills": [
     {
@@ -74,37 +84,43 @@
       "title": "QBOMS",
       "desc": "QR-Based Operation Management System, a multi-tenant web platform built in PHP. This is my capstone project.",
       "stack": "PHP, MySQL, QR codes",
-      "link": ""
+      "link": "",
+      "descFmt": {}
     },
     {
       "title": "SAO Help Desk",
       "desc": "A student ticketing site for the Student Affairs Office of LCCT, so concerns can be submitted and tracked in one place.",
       "stack": "PHP, MySQL, Bootstrap",
-      "link": ""
+      "link": "",
+      "descFmt": {}
     },
     {
       "title": "SALRC_LCCT",
       "desc": "A library system moved from an old desktop application to a modern PHP and MySQL web app.",
       "stack": "PHP, MySQL",
-      "link": ""
+      "link": "",
+      "descFmt": {}
     },
     {
       "title": "Goodreads redesign",
       "desc": "A fresh take on the Goodreads book-tracking experience, built as a working CRUD app.",
       "stack": "PHP, MySQL, UI design",
-      "link": ""
+      "link": "",
+      "descFmt": {}
     },
     {
       "title": "LCCStats",
       "desc": "An interactive prototype of an app that helps students keep track of their requirements.",
       "stack": "HTML, CSS, JavaScript",
-      "link": ""
+      "link": "",
+      "descFmt": {}
     },
     {
       "title": "Intrams website",
       "desc": "A website for the intramurals event.",
       "stack": "",
-      "link": "https://intrams.42web.io/"
+      "link": "https://intrams.42web.io/",
+      "descFmt": {}
     }
   ],
   "certs": [
@@ -161,5 +177,8 @@
     "email": "mypreciousme09@gmail.com",
     "phone": "0948 013 1192",
     "location": "Sto. Tomas City, Batangas, Philippines"
+  },
+  "introFmt": {
+    "a": "justify"
   }
 }
