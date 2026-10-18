@@ -45,6 +45,9 @@ dialog::backdrop{background:rgba(27,51,85,.55)}
 .cropbox{max-height:58vh;overflow:hidden;background:var(--sky);border-radius:12px}
 #cropimg{display:block;max-width:100%}
 .btn.on{background:var(--navy);color:#fff}
+.fmt{margin:2px 0 14px;align-items:center}
+.fmt .btn.sm{padding:4px 12px;font-size:.85rem}
+.fmt .sep{width:1px;height:22px;background:var(--line);margin:0 4px}
 @media(prefers-reduced-motion:reduce){.btn{transition:none}.btn:hover{transform:none}}
 </style>
 <link href="https://cdn.jsdelivr.net/npm/cropperjs@1.6.2/dist/cropper.min.css" rel="stylesheet">
@@ -171,18 +174,27 @@ function imgField(label,it,key,newPath,max,ratio){
  if(it[key])th.src='../'+it[key];else{th.hidden=true;cb.hidden=true}
  fi.onchange=()=>{const f=fi.files[0];fi.value='';if(f)start(URL.createObjectURL(f))};
  return h('div',{class:'f'},h('span',{},label+' (choose a file to crop and upload)'),th,fi,cb,st)}
+function fmtBar(o,key){
+ if(!o[key])o[key]={};const f=o[key],btns=[];
+ const paint=()=>btns.forEach(([b,on])=>{const v=!!on();b.classList.toggle('on',v);b.setAttribute('aria-pressed',v)});
+ const add=(label,on,click)=>{const b=h('button',{type:'button',class:'btn ghost sm',style:'margin:0',onclick:()=>{click();paint()}},label);btns.push([b,on]);return b};
+ const al=[['Left','left'],['Center','center'],['Right','right'],['Justify','justify']].map(([l,v])=>add(l,()=>(f.a||'left')===v,()=>{f.a=v}));
+ const bi=[add('Bold',()=>f.b,()=>{f.b=!f.b}),add('Italic',()=>f.i,()=>{f.i=!f.i})];
+ const sz=[['Small','sm'],['Normal',''],['Large','lg']].map(([l,v])=>add(l,()=>(f.s||'')===v,()=>{f.s=v}));
+ const bar=h('div',{class:'ops fmt',role:'group','aria-label':'Text format'},...al,h('span',{class:'sep'}),...bi,h('span',{class:'sep'}),...sz);
+ paint();return bar}
 function build(){
  const d=data;
  $('editor').replaceChildren(
-  sec('Profile',field('Name',d,'name'),field('Role line',d,'role'),field('Intro',d,'intro',1),imgField('Profile photo',d,'photo',()=>'images/profile.jpg',1000,3/4)),
-  sec('About me',listHost(d.about,(p,i)=>field('Paragraph '+(i+1),d.about,i,1),()=>'','Add paragraph'),h('h2',{style:'margin-top:20px'},'Quick facts'),listHost(d.facts,f=>h('div',{},field('Label',f,0),field('Value',f,1)),()=>['',''],'Add fact')),
-  sec('Education',field('Degree',d.education,'degree'),field('School',d.education,'school'),field('Description',d.education,'text',1)),
+  sec('Profile',field('Name',d,'name'),field('Role line',d,'role'),field('Intro',d,'intro',1),fmtBar(d,'introFmt'),imgField('Profile photo',d,'photo',()=>'images/profile.jpg',1000,3/4)),
+  sec('About me',listHost(d.about,(p,i)=>h('div',{},field('Paragraph '+(i+1),p,'text',1),fmtBar(p,'fmt')),()=>({text:'',fmt:{}}),'Add paragraph'),h('h2',{style:'margin-top:20px'},'Quick facts'),listHost(d.facts,f=>h('div',{},field('Label',f,0),field('Value',f,1)),()=>['',''],'Add fact')),
+  sec('Education',field('Degree',d.education,'degree'),field('School',d.education,'school'),field('Description',d.education,'text',1),fmtBar(d.education,'textFmt')),
   sec('Skills',listHost(d.skills,s=>{const i=h('input',{type:'text'});i.value=s.items.join(', ');i.oninput=()=>{s.items=i.value.split(',').map(x=>x.trim()).filter(Boolean)};return h('div',{},field('Group name',s,'title'),h('label',{class:'f'},h('span',{},'Skills (separate with commas)'),i))},()=>({title:'',items:[]}),'Add skill group')),
-  sec('Projects',listHost(d.projects,p=>h('div',{},field('Title',p,'title'),field('Description',p,'desc',1),field('Tools used (optional)',p,'stack'),field('Link (optional)',p,'link')),()=>({title:'',desc:'',stack:'',link:''}),'Add project')),
+  sec('Projects',listHost(d.projects,p=>h('div',{},field('Title',p,'title'),field('Description',p,'desc',1),fmtBar(p,'descFmt'),field('Tools used (optional)',p,'stack'),field('Link (optional)',p,'link')),()=>({title:'',desc:'',stack:'',link:''}),'Add project')),
   sec('Certifications',listHost(d.certs,c=>h('div',{},field('Group',c,'group'),field('Title',c,'title'),field('Extra line (optional)',c,'sub'),imgField('Certificate image',c,'img',()=>'certificates/cert-'+Date.now()+'.jpg',1400,4/3)),()=>({group:(d.certs.length?d.certs[d.certs.length-1].group:''),title:'',sub:'',img:''}),'Add certificate')),
   sec('Contact',field('Email',d.contact,'email'),field('Phone',d.contact,'phone'),field('Location',d.contact,'location')))}
 async function init(){tokenUI();
- try{const r=await fetch('../content.json?'+Date.now());if(!r.ok)throw 0;data=await r.json()}
+ try{const r=await fetch('../content.json?'+Date.now());if(!r.ok)throw 0;data=await r.json();data.about=data.about.map(p=>typeof p==='string'?{text:p,fmt:{}}:p)}
  catch(e){$('editor').textContent='Could not load content.json. Upload it to the main folder of your repository first.';return}
  build()}
 $('save').onclick=async()=>{const st=$('status');if(!data){st.textContent='Nothing to save yet.';return}st.textContent='Saving...';
