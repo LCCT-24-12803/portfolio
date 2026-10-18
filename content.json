@@ -6,15 +6,21 @@
   "about": [
     {
       "text": "Hi, I'm Mica, a third-year Bachelor of Science in Information Technology student at La Consolacion College Tanauan.",
-      "fmt": {}
+      "fmt": {
+        "a": "justify"
+      }
     },
     {
       "text": "I enjoy both programming and design, from developing functional web applications to creating clean, user-friendly interfaces. I have experience working with PHP and MySQL, building web projects, and exploring UI design and prototyping.",
-      "fmt": {}
+      "fmt": {
+        "a": "justify"
+      }
     },
     {
       "text": "As the Public Relations Officer of our student council, I handle publication materials, graphic design, editing, and technical tasks. These experiences have helped me develop my creativity, technical skills, and ability to work with deadlines. I'm eager to learn more about programming, gain practical experience, and understand how IT professionals apply their skills in real-world environments.",
-      "fmt": {}
+      "fmt": {
+        "a": "justify"
+      }
     }
   ],
   "facts": [
