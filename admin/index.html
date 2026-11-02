@@ -3,303 +3,229 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Personal Web Portfolio | Precious Micaela Alop</title>
-<meta name="description" content="Portfolio of Precious Micaela Alop, BSIT student at La Consolacion College Tanauan: web systems, UI design, and publicity materials.">
-<meta name="theme-color" content="#021F2E">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<meta name="robots" content="noindex, nofollow">
+<title>Admin | Personal Web Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;600&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
-/* Palette: Fresco Blue, Mitchell Blue, Oxford by Night, Mystic Blue, Van Gogh Blue */
-:root{--oxford:#021F2E;--fresco:#044B66;--mitchell:#09799E;--mystic:#47A9CF;--vg:#A6E0F4;
---panel:#033246;--panel2:#033E55;--line:rgba(71,169,207,.3);--text:#C6E9F6;--muted:rgba(166,224,244,.86);
---head:'Bricolage Grotesque',Georgia,sans-serif;--sans:'IBM Plex Sans',system-ui,sans-serif;--mono:'JetBrains Mono',ui-monospace,Consolas,monospace}
-html{scroll-behavior:smooth;scroll-padding-top:72px;background:var(--oxford)}
-body{font:17px/1.7 var(--sans);color:var(--text);background:transparent}
-body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
-background:radial-gradient(60% 45% at 85% 0,rgba(9,121,158,.38),transparent 70%),radial-gradient(45% 40% at 0 100%,rgba(4,75,102,.55),transparent 70%),radial-gradient(rgba(71,169,207,.16) 1px,transparent 1.2px) 0 0/26px 26px}
-h1,h2,h3,h4{font-family:var(--head);color:var(--vg);font-weight:700;line-height:1.15;letter-spacing:-.01em}
-a{color:var(--mystic)}a:hover{color:var(--vg)}
-section{padding:92px 0}
-.alt{background:rgba(3,50,70,.5);border-block:1px solid var(--line)}
-h2{font-size:clamp(1.9rem,4vw,2.6rem);margin-bottom:10px}
-.lead{font-size:1.05rem;max-width:60ch;margin-bottom:36px;color:var(--muted)}
-.navbar{background:rgba(2,31,46,.88);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
-.navbar-brand{font:700 1.25rem var(--head);color:var(--vg)}
-.navbar-brand:hover{color:var(--vg)}
-.navbar-brand .tag{font:600 .9rem var(--mono);color:var(--mystic);margin-right:8px}
-.nav-link{font-weight:500;color:var(--text)}
-.nav-link:hover{color:var(--vg)}
-.navbar-toggler{border-color:var(--line)}
-/* editor windows */
-.win{background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:hidden}
-.win-bar{display:flex;align-items:center;padding:9px 14px;background:var(--panel2);border-bottom:1px solid var(--line);font:400 .8rem var(--mono);color:var(--muted)}
-.win-bar::before{content:"";flex:none;width:9px;height:9px;border-radius:50%;background:var(--mitchell);box-shadow:15px 0 0 var(--mystic),30px 0 0 var(--vg);margin-right:48px}
-.win-body{padding:24px 26px}
-.code{margin:0;font:400 .88rem/1.75 var(--mono);color:var(--text);white-space:pre-wrap;overflow-wrap:anywhere}
-.code .k{color:var(--mystic)}.code .s{color:var(--vg)}.code .p{color:var(--muted)}
-/* hero */
-.hero{padding:64px 0 88px;min-height:calc(100vh - 64px);display:flex;align-items:center}
-.hero .container{width:100%}
-.hero h1{font-size:clamp(2.6rem,6.2vw,4.5rem);color:#E3F6FC;margin-bottom:10px}
-.role{font:500 1.25rem var(--head);color:var(--mystic);margin-bottom:18px}
-.status{display:inline-flex;align-items:center;gap:10px;border:1px solid var(--line);background:var(--panel);border-radius:8px;padding:6px 14px;font-weight:500;font-size:.92rem;color:var(--vg);margin-bottom:22px}
-.status::before{content:"";width:9px;height:9px;border-radius:50%;background:var(--vg);box-shadow:0 0 0 0 rgba(166,224,244,.6);animation:ping 2.4s ease-out infinite}
-@keyframes ping{70%{box-shadow:0 0 0 9px rgba(166,224,244,0)}100%{box-shadow:0 0 0 0 rgba(166,224,244,0)}}
-.hero .win.mini{max-width:520px;margin-top:34px}
-.hero .win.mini .win-body{padding:16px 22px}
-[data-zoom]{cursor:zoom-in}
-.shot-wrap{position:relative;width:min(100%,340px);margin:0 auto}.shot{width:100%}
-.shot .pic{position:relative;aspect-ratio:3/4;background:linear-gradient(160deg,var(--fresco),var(--mitchell));display:grid;place-items:center;align-content:center;gap:6px}
-.shot .pic img{position:absolute;inset:0;z-index:1;width:100%;height:100%;object-fit:cover;object-position:center 15%;display:block}
-.shot #initials{font:700 5rem var(--head);color:var(--vg)}
-.shot .ph-note{font:400 .8rem var(--mono);color:var(--vg);opacity:.8}
-.modal-title{font-family:var(--head);color:var(--vg)}
-.modal-content{background:var(--oxford);border-radius:14px;border:1px solid var(--line)}
-#imgBig{max-width:100%;max-height:80vh;object-fit:contain;border-radius:8px}
-#aboutText p:last-child{margin-bottom:0}
-/* buttons */
-.btn-navy,.btn-outline-navy{--bs-btn-border-radius:8px;--bs-btn-padding-x:1.4rem;--bs-btn-padding-y:.6rem;--bs-btn-font-weight:600;--bs-btn-border-color:var(--mystic);--bs-btn-hover-border-color:var(--vg);--bs-btn-active-border-color:var(--vg)}
-.btn-navy{--bs-btn-bg:var(--mystic);--bs-btn-color:var(--oxford);--bs-btn-hover-bg:var(--vg);--bs-btn-hover-color:var(--oxford);--bs-btn-active-bg:var(--vg);--bs-btn-active-color:var(--oxford)}
-.btn-outline-navy{--bs-btn-bg:transparent;--bs-btn-color:var(--vg);--bs-btn-hover-bg:var(--fresco);--bs-btn-hover-color:#fff;--bs-btn-active-bg:var(--fresco);--bs-btn-active-color:#fff}
-.btn{transition:background-color .2s,color .2s,border-color .2s}
-/* boxes and cards */
-.box{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:26px}
-.facts dt{font-weight:600;color:var(--vg)}
-.facts dd{margin:0 0 14px;color:var(--text)}
-.facts dd:last-child{margin:0}
-.box h3,.card h3{font-size:1.2rem;margin-bottom:12px}
-.box ul,.card ul{padding-left:1.2rem;margin:0}
-.box li::marker,.card li::marker{color:var(--mystic)}
-.box li,.card li{margin-bottom:6px}
-.card{border:1px solid var(--line);border-radius:12px;background:var(--panel);overflow:hidden;color:var(--text)}
-.card-body{padding:22px 24px}
-.card p{font-size:.98rem}
-.edu{border-left:4px solid var(--mystic);border-radius:4px 12px 12px 4px}
-.edu .sub{color:var(--mystic);font-weight:600;margin-bottom:8px}
-.ph{aspect-ratio:4/3;border-bottom:1px solid var(--line);background:repeating-linear-gradient(135deg,var(--panel2),var(--panel2) 12px,var(--panel) 12px,var(--panel) 24px);display:grid;place-items:center;position:relative;overflow:hidden;color:var(--muted);font:400 .82rem var(--mono)}
-.ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
-.card:hover .ph img{transform:scale(1.04)}
-.chips{display:flex;flex-wrap:wrap;gap:6px;list-style:none;padding:0!important;margin:0 0 12px!important}
-.chips li{margin:0;font:400 .78rem var(--mono);color:var(--vg);background:var(--panel2);border:1px solid var(--line);border-radius:6px;padding:2px 9px}
-.card .chips{margin-top:auto!important}
-.cert h4{font-size:1.02rem;margin:0}
-.cert small{color:var(--mystic);font-weight:600}
-.sub-h{font-size:1.35rem;margin:8px 0 20px}
-.card,.box,.links a{transition:border-color .25s}
-.card:hover,.links a:hover{border-color:var(--mystic)}
-/* OJT */
-.ojt-ico{width:42px;height:42px;border-radius:10px;background:var(--fresco);display:grid;place-items:center;margin-bottom:16px}
-.ojt-ico svg{width:22px;height:22px;stroke:var(--vg);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
-.ojt-card p{margin:0;font-size:.97rem}
-/* journey */
-.tl{list-style:none;margin:0;padding:0 0 0 28px;border-left:2px solid var(--line)}
-.tl>li{position:relative;padding-bottom:30px;margin:0}
-.tl>li:last-child{padding-bottom:0}
-.tl>li::before{content:"";position:absolute;left:-37px;top:7px;width:14px;height:14px;border-radius:50%;background:var(--oxford);border:3px solid var(--mystic)}
-.tl .when{font:600 .82rem var(--mono);color:var(--mystic)}
-.tl h3{font-size:1.15rem;margin:2px 0 4px}
-.tl p{margin:0;max-width:62ch}
-.ref h3{font-size:1.1rem;margin-bottom:4px}
-.ref p{margin:0}
-.ref .ph-no{margin-top:10px;font-weight:600}
-.ref .ph-no a{text-decoration:none}
-/* faq */
-.faq details{border:1px solid var(--line);border-radius:10px;background:var(--panel);margin-bottom:10px}
-.faq summary{list-style:none;cursor:pointer;padding:16px 22px;font-weight:600;color:var(--vg);display:flex;justify-content:space-between;gap:16px}
-.faq summary::-webkit-details-marker{display:none}
-.faq summary::after{content:"+";font:600 1.2rem var(--mono);color:var(--mystic)}
-.faq details[open] summary::after{content:"\2212"}
-.faq details[open]{border-color:var(--mystic)}
-.faq details p{margin:0;padding:0 22px 18px;max-width:70ch}
-/* contact */
-.links a{overflow-wrap:anywhere;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px 24px;text-decoration:none;font-weight:600;color:var(--vg)}
-footer{background:#011722;border-top:1px solid var(--line);color:var(--muted);text-align:center;padding:30px 24px;font-size:.95rem}
-
-.hero{background:radial-gradient(520px circle at var(--mx,72%) var(--my,30%),rgba(71,169,207,.16),transparent 62%)}
-.typed{font:500 1rem var(--mono);color:var(--vg);margin:-6px 0 18px;min-height:1.7em}
-.typed::before{content:"> building: ";color:var(--mystic)}
-.typed::after{content:"";display:inline-block;width:9px;height:1.05em;background:var(--mystic);margin-left:3px;vertical-align:-.15em;animation:blink 1s steps(1) infinite}
-@keyframes blink{50%{opacity:0}}
-.fchip{position:absolute;z-index:3;font:600 .8rem var(--mono);color:var(--vg);background:var(--oxford);border:1px solid var(--mystic);border-radius:6px;padding:4px 10px;box-shadow:0 8px 20px rgba(2,31,46,.7);animation:float 5s ease-in-out infinite}
-@keyframes float{50%{transform:translateY(-10px)}}
-.card>.win-bar{border-radius:0}
-
-.tl>li{padding-bottom:20px}.tl>li::before{top:26px}
-.tl-card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:20px 24px;transition:border-color .25s,transform .3s}
-.tl-card:hover{border-color:var(--mystic);transform:translateX(4px)}
-.tl .when{display:flex;align-items:center;gap:10px;font:600 .88rem var(--head);color:var(--mystic)}
-.tl .when::before{content:"";width:22px;height:2px;background:var(--mystic);transition:width .3s}
-.tl-card:hover .when::before{width:40px}
-.tl .chips{margin:14px 0 0!important}
-
-@keyframes rise{from{opacity:0;transform:translateY(22px)}}
-.hero .col-md-7>*{animation:rise .8s cubic-bezier(.2,.7,.2,1) both}
-.hero .col-md-7>:nth-child(2){animation-delay:.08s}.hero .col-md-7>:nth-child(3){animation-delay:.16s}.hero .col-md-7>:nth-child(4){animation-delay:.24s}.hero .col-md-7>:nth-child(5){animation-delay:.32s}.hero .col-md-7>:nth-child(6){animation-delay:.4s}.hero .col-md-7>:nth-child(7){animation-delay:.48s}
-.hero .shot-wrap{animation:rise 1s .25s cubic-bezier(.2,.7,.2,1) both}
-.rv{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1),border-color .25s}
-.rv.in{opacity:1;transform:none}
-.rv.in.card:hover,.rv.in.box:hover{transform:translateY(-5px)}
-h2::after{content:"";display:block;height:3px;width:56px;background:var(--mystic);border-radius:2px;margin-top:10px;transition:width .9s .25s cubic-bezier(.2,.7,.2,1)}
-h2.rv:not(.in)::after{width:0}
-.text-center h2::after{margin-inline:auto}
-.tl>li.in::before{animation:pop .6s .15s both}
-@keyframes pop{0%{transform:scale(0)}70%{transform:scale(1.35)}100%{transform:scale(1)}}
-.btn:hover{transform:translateY(-2px)}
-.ojt-ico{transition:transform .35s}.box:hover .ojt-ico{transform:rotate(-8deg) scale(1.1)}
-.nav-link{position:relative}.nav-link::after{content:"";position:absolute;left:var(--bs-navbar-nav-link-padding-x,.5rem);right:var(--bs-navbar-nav-link-padding-x,.5rem);bottom:2px;height:2px;background:var(--mystic);transform:scaleX(0);transform-origin:left;transition:transform .3s}.nav-link:hover::after{transform:scaleX(1)}
-.chips li{transition:background-color .2s,color .2s}.chips li:hover{background:var(--mitchell);color:#fff}
-:focus-visible{outline:3px solid var(--mystic);outline-offset:3px}
-@media(max-width:767px){section{padding:60px 0}.navbar-brand{font-size:1.1rem}.hero{padding:28px 0 48px;min-height:0;display:block}.shot-wrap{width:min(72%,250px)}.win-body{padding:18px}}
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before{transition:none!important;animation:none!important}}
+:root{--sky:#D3EFFA;--mist:#EEF9FD;--blue:#47A9CF;--deep:#09799E;--navy:#044B66;--ink:#021F2E;--line:#A6E0F4}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;padding:24px;font:17px/1.6 'Nunito Sans',system-ui,sans-serif;color:var(--ink);background:linear-gradient(180deg,var(--sky),var(--mist)) fixed}
+[hidden]{display:none!important}
+.box{width:100%;max-width:440px;margin:8vh auto 0;background:#fff;border:1px solid var(--line);border-radius:20px;padding:32px;box-shadow:0 0 0 3px rgba(71,169,207,.12),0 16px 40px rgba(71,169,207,.25)}
+.wrap{max-width:860px;margin:0 auto}
+h1{font:600 1.7rem 'Fraunces',Georgia,serif;color:var(--navy);margin:0 0 6px}
+h2{font:600 1.3rem 'Fraunces',Georgia,serif;color:var(--navy);margin:0 0 14px}
+p{margin:0 0 14px}
+label{display:block;font-weight:700;color:var(--navy);margin-bottom:6px}
+input,textarea{width:100%;padding:11px 14px;border:1px solid var(--line);border-radius:12px;font:inherit;margin-bottom:16px;background:var(--mist)}
+textarea{resize:vertical}
+#line{font:.85rem/1.4 monospace;height:90px}
+.f{display:block;margin-bottom:12px}
+.f span{display:block;font-weight:700;color:var(--navy);margin-bottom:4px;font-size:.95rem}
+.f input,.f textarea{margin:0;font-weight:400;color:var(--ink)}
+input:focus,textarea:focus,button:focus-visible,a:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+.btn{display:inline-block;width:100%;padding:12px 24px;border-radius:999px;border:2px solid var(--navy);background:var(--navy);color:#fff;font:700 1rem inherit;text-align:center;text-decoration:none;cursor:pointer;transition:transform .25s,box-shadow .25s,background .25s,color .25s}
+.btn:hover{background:var(--deep);border-color:var(--deep);transform:translateY(-3px);box-shadow:0 0 0 4px rgba(71,169,207,.22),0 8px 24px rgba(71,169,207,.55)}
+.btn.ghost{background:transparent;color:var(--navy);margin-top:12px}
+.btn.ghost:hover{color:#fff;background:var(--navy)}
+.btn.sm{width:auto;margin:0;padding:6px 16px;font-size:.9rem}
+.err{color:#B3261E;font-weight:600;min-height:1.4em;margin:-6px 0 10px}
+.small{font-size:.9rem;color:var(--deep)}
+.sec{background:#fff;border:1px solid var(--line);border-radius:20px;padding:24px;margin-bottom:20px}
+.item{border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:14px;background:var(--mist)}
+.ops{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.thumb{max-width:170px;max-height:120px;border-radius:10px;display:block;margin:6px 0;border:1px solid var(--line)}
+.top{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;margin-bottom:20px}
+.top div{display:flex;flex-wrap:wrap;gap:10px}
+.bar{position:sticky;bottom:0;background:rgba(238,249,253,.96);border-top:1px solid var(--line);padding:14px 0;display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.bar .btn{width:auto}
+#status{font-weight:600;color:var(--deep)}
+dialog{border:none;border-radius:20px;padding:22px;width:min(94vw,780px);max-width:94vw;color:var(--ink);box-shadow:0 20px 60px rgba(2,31,46,.4)}
+dialog::backdrop{background:rgba(2,31,46,.55)}
+.cropbox{max-height:58vh;overflow:hidden;background:var(--sky);border-radius:12px}
+#cropimg{display:block;max-width:100%}
+.btn.on{background:var(--navy);color:#fff}
+.fmt{margin:2px 0 14px;align-items:center}
+.fmt .btn.sm{padding:4px 12px;font-size:.85rem}
+.pv{max-width:430px;border:1px dashed var(--line);border-radius:10px;padding:10px 12px;background:#fff;font-size:.95rem;margin:0 0 14px;max-height:150px;overflow:auto}
+.btn.pending{box-shadow:0 0 0 4px rgba(71,169,207,.35),0 8px 24px rgba(71,169,207,.55)}
+.fmt .sep{width:1px;height:22px;background:var(--line);margin:0 4px}
+@media(prefers-reduced-motion:reduce){.btn{transition:none}.btn:hover{transform:none}}
 </style>
+<link href="https://cdn.jsdelivr.net/npm/cropperjs@1.6.2/dist/cropper.min.css" rel="stylesheet">
 </head>
 <body>
-<nav class="navbar navbar-expand-lg sticky-top" data-bs-theme="dark" aria-label="Main">
-<div class="container">
-<a class="navbar-brand" href="#home"><span class="tag" aria-hidden="true">&lt;/&gt;</span>Personal Web Portfolio</a>
-<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu" aria-controls="menu" aria-expanded="false" aria-label="Toggle menu"><span class="navbar-toggler-icon"></span></button>
-<div class="collapse navbar-collapse justify-content-end" id="menu">
-<ul class="navbar-nav gap-lg-2">
-<li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-<li class="nav-item"><a class="nav-link" href="#journey">Journey</a></li>
-<li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
-<li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
-<li class="nav-item"><a class="nav-link" href="#certifications">Certifications</a></li>
-<li class="nav-item"><a class="nav-link" href="#faq">FAQ</a></li>
-<li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-<li class="nav-item" id="adminLink" hidden><a class="nav-link fw-bold" href="admin/">Admin</a></li>
-</ul></div></div></nav>
 
-<main>
-<section class="hero" id="home"><div class="container"><div class="row align-items-center gy-5 gx-lg-5">
-<div class="col-md-7 order-2 order-md-1">
-<div class="status" id="statusBadge" hidden></div>
-<h1 id="name"></h1>
-<p class="role" id="role"></p>
-<p class="typed" id="typed"></p>
-<p class="mb-4" id="intro" style="max-width:52ch"></p>
-<div class="d-flex flex-wrap gap-2">
-<a class="btn btn-navy" href="#projects">See my projects</a>
-<a class="btn btn-outline-navy" href="resume.pdf">Download resume</a>
-<a class="btn btn-outline-navy" href="#contact">Contact me</a>
-</div>
-<div class="win mini"><div class="win-bar">profile.js</div><div class="win-body"><pre class="code" id="codeBlock"></pre></div></div>
-</div>
-<div class="col-md-5 order-1 order-md-2"><div class="shot-wrap"><div class="win shot" data-zoom tabindex="0" role="button" aria-label="View photo larger"><div class="win-bar">profile.jpg</div><div class="pic"><span id="initials" aria-hidden="true"></span><span class="ph-note">Photo placeholder</span><img id="photo" alt="Portrait" onerror="this.remove()"></div></div><div id="chips" aria-hidden="true"></div></div></div>
-</div></div></section>
-
-<section id="about"><div class="container">
-<h2>About me</h2>
-<div class="row g-4 mt-1">
-<div class="col-lg-7" id="aboutText"></div>
-<div class="col-lg-5"><div class="win"><div class="win-bar">facts.json</div><dl class="win-body facts mb-0" id="facts"></dl></div></div>
-</div></div></section>
-
-<section class="alt" id="ojt"><div class="container">
-<h2 id="ojtTitle">Ready for OJT</h2>
-<p class="lead" id="ojtText"></p>
-<div class="row g-4" id="ojtGrid"></div>
-<div class="d-flex flex-wrap gap-2 mt-4" id="ojtCta"></div>
-</div></section>
-
-<section id="journey"><div class="container">
-<h2>Journey</h2>
-<p class="lead">Where I study, what I've done, and what I'm learning next.</p>
-<div class="box edu mb-5" id="edu" style="max-width:760px"></div>
-<div class="row g-5">
-<div class="col-lg-7"><h3 class="sub-h">Experience and learning</h3><ul class="tl" id="timeline"></ul></div>
-<div class="col-lg-5"><h3 class="sub-h">References</h3><div class="d-grid gap-3" id="refs"></div></div>
-</div>
-</div></section>
-
-<section class="alt" id="skills"><div class="container">
-<h2>Skills</h2>
-<p class="lead">The tools I use to take an idea from sketch to working system.</p>
-<div class="row g-4" id="skillGrid"></div>
-<h3 class="sub-h mt-5">Tools stack</h3>
-<div class="win"><div class="win-bar">stack.json</div><div class="win-body"><div class="row g-4" id="toolGrid"></div></div></div>
-</div></section>
-
-<section id="projects"><div class="container">
-<h2>Projects</h2>
-<p class="lead">Academic and personal systems, from capstone work to event sites.</p>
-<div class="row g-4" id="projGrid"></div>
-</div></section>
-
-<section class="alt" id="certifications"><div class="container">
-<h2>Certifications and training</h2>
-<p class="lead">Courses and events that keep my skills growing.</p>
-<div id="certArea"></div>
-</div></section>
-
-<section id="faq"><div class="container">
-<h2>Quick answers</h2>
-<p class="lead">What recruiters and teams usually ask first.</p>
-<div class="faq" id="faqList" style="max-width:820px"></div>
-</div></section>
-
-<section class="alt text-center" id="contact"><div class="container">
-<h2>Let's connect</h2>
-<p class="lead mx-auto">Have a project, an opportunity, or an idea? I'd love to hear from you.</p>
-<div class="links d-flex flex-wrap justify-content-center gap-3 mb-4" id="contactLinks"></div>
-<p class="mb-0" id="contactLoc"></p>
-</div></section>
+<main class="box" id="gate">
+<form id="setup" hidden>
+<h1>Set your password</h1>
+<p>First-time setup. Choose a password, copy the line it creates, and paste it into this file in place of the empty <code>PASS_HASH</code> line, then commit.</p>
+<label for="np">New password</label>
+<input id="np" type="password" autocomplete="new-password" minlength="8" required>
+<button class="btn" type="submit">Create line</button>
+<div id="out" hidden style="margin-top:16px"><label for="line">Copy this line</label><textarea id="line" readonly></textarea></div>
+</form>
+<form id="login" hidden>
+<h1>Admin login</h1>
+<p>Enter your password to unlock admin access.</p>
+<label for="pw">Password</label>
+<input id="pw" type="password" autocomplete="current-password" required>
+<div class="err" id="err" role="alert"></div>
+<button class="btn" type="submit">Log in</button>
+<a class="btn ghost" href="../">Back to portfolio</a>
+</form>
 </main>
 
-<footer id="foot"></footer>
-<div class="modal fade" id="imgModal" tabindex="-1" aria-labelledby="imgTitle" aria-hidden="true" data-bs-theme="dark">
-<div class="modal-dialog modal-dialog-centered modal-xl"><div class="modal-content">
-<div class="modal-header"><h5 class="modal-title" id="imgTitle"></h5><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
-<div class="modal-body text-center p-2"><img id="imgBig" alt=""></div>
-</div></div></div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<div class="wrap" id="panel" hidden>
+<div class="top">
+<h1>Edit your portfolio</h1>
+<div><a class="btn ghost sm" href="../">View site</a><button class="btn ghost sm" id="out-btn" type="button">Log out</button></div>
+</div>
+
+<section class="sec">
+<h2>GitHub token</h2>
+<p class="small" id="tkstate"></p>
+<p>Saving changes needs a GitHub token that can edit this repository. Create one at GitHub, Settings, Developer settings, Personal access tokens, Fine-grained tokens: choose only the <b>portfolio</b> repository and set <b>Contents</b> to <b>Read and write</b>. Paste it here once. It stays in this browser only.</p>
+<label class="f"><span>Token</span><input id="tk" type="password" autocomplete="off" placeholder="github_pat_..."></label>
+<div class="ops"><button class="btn sm" id="tksave" type="button">Save token</button><button class="btn ghost sm" id="tkdel" type="button" style="margin:0">Remove token</button></div>
+</section>
+
+<div id="editor"><p>Loading your content...</p></div>
+
+<div class="bar"><button class="btn" id="save" type="button">Save changes</button><span id="status" role="status"></span></div>
+</div>
+
+<dialog id="cropdlg" aria-labelledby="croptitle">
+<h2 id="croptitle">Crop your picture</h2>
+<p class="small">Drag the box to move it, drag its edges to resize, and scroll to zoom. Pick a shape below, or choose Free.</p>
+<div class="cropbox"><img id="cropimg" alt="Picture to crop"></div>
+<div class="ops" id="shapes"></div>
+<div class="ops"><button type="button" class="btn ghost sm" style="margin:0" id="rotl">Rotate left</button><button type="button" class="btn ghost sm" style="margin:0" id="rotr">Rotate right</button></div>
+<div class="ops" style="margin-top:18px"><button type="button" class="btn sm" id="cropok">Crop and upload</button><button type="button" class="btn ghost sm" style="margin:0" id="cropcancel">Cancel</button></div>
+</dialog>
+
+<script src="https://cdn.jsdelivr.net/npm/cropperjs@1.6.2/dist/cropper.min.js"></script>
 <script>
+const PASS_HASH = '508f92df76cf359df1c0126b2514f1e8ff4c0d85622c7a35133236d90e7dce78';
+const KEY='portfolioAdmin',DAYS=7,TK='portfolioToken',OWNER='lcct-24-12803',REPO='portfolio',BR='main';
 const $=id=>document.getElementById(id);
-const e=v=>String(v==null?'':v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const st=f=>{f=f||{};let s='';if(['left','center','right','justify'].includes(f.a))s+='text-align:'+f.a+';'+(f.a==='justify'?'hyphens:auto;':'');if(f.b)s+='font-weight:700;';if(f.i)s+='font-style:italic;';if(f.s==='sm')s+='font-size:.9em;';if(f.s==='lg')s+='font-size:1.15em;';return s};
-const fs=f=>{const x=st(f);return x?' style="'+x+'"':''};
-const ICONS=['<polyline points="8 6 2 12 8 18"/><polyline points="16 6 22 12 16 18"/>','<ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v6c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 11v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/>','<circle cx="12" cy="5" r="2.5"/><circle cx="5" cy="19" r="2.5"/><circle cx="19" cy="19" r="2.5"/><path d="M12 7.5v4M12 11.5H5v5M12 11.5h7v5"/>','<path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 013 3L7 19l-4 1 1-4z"/>'];
-function render(d){
-document.title='Personal Web Portfolio | '+d.name;
-$('name').textContent=d.name;$('role').textContent=d.role;$('intro').textContent=d.intro;{const f=d.introFmt||{};$('intro').setAttribute('style','max-width:52ch;'+(f.a==='center'?'margin-inline:auto;':f.a==='right'?'margin-left:auto;':'')+st(f))}
-const w=d.name.trim().split(/\s+/);$('initials').textContent=(w[0][0]+(w.length>1?w[w.length-1][0]:'')).toUpperCase();
-if($('photo')){$('photo').src=d.photo||'images/profile.jpg';$('photo').alt='Portrait of '+d.name}
-if(d.status){$('statusBadge').textContent=d.status;$('statusBadge').hidden=false}else $('statusBadge').hidden=true;
-const stack=((d.tools&&d.tools[0]&&d.tools[0].items)||[]).slice(0,6);
-$('codeBlock').innerHTML='<span class="k">const</span> profile <span class="p">=</span> <span class="p">{</span>\n  role<span class="p">:</span> <span class="s">"'+e(d.role)+'"</span><span class="p">,</span>\n  school<span class="p">:</span> <span class="s">"'+e(d.education.school)+'"</span><span class="p">,</span>\n'+(stack.length?'  stack<span class="p">:</span> <span class="p">[</span>'+stack.map(x=>'<span class="s">"'+e(x)+'"</span>').join('<span class="p">,</span> ')+'<span class="p">],</span>\n':'')+(d.status?'  status<span class="p">:</span> <span class="s">"'+e(d.status)+'"</span><span class="p">,</span>\n':'')+'<span class="p">};</span>';
-$('chips').innerHTML=stack.slice(0,3).map((s,i)=>'<span class="fchip" style="'+['top:12%;left:-14px','top:46%;right:-14px','bottom:9%;left:-6px'][i]+';animation-delay:'+(-i*1.7)+'s">'+e(s)+'</span>').join('');
-{const words=((d.ojt&&d.ojt.points)||[]).map(p=>p.title).filter(Boolean),el=$('typed');clearInterval(window._ty);if(words.length&&!matchMedia('(prefers-reduced-motion: reduce)').matches){let w=0,c=0,del=false;window._ty=setInterval(()=>{const x=words[w];c+=del?-1:1;el.textContent=x.slice(0,Math.max(c,0));if(!del&&c>=x.length){del=true;c=x.length+10}else if(del&&c<=0){del=false;w=(w+1)%words.length;c=0}},85)}else el.textContent=words[0]||''}
-$('aboutText').innerHTML=d.about.map(p=>{const o=typeof p==='string'?{text:p}:p;return '<p'+fs(o.fmt)+'>'+e(o.text)+'</p>'}).join('');
-$('facts').innerHTML=d.facts.map(f=>'<dt>'+e(f[0])+'</dt><dd>'+e(f[1])+'</dd>').join('');
-const o=d.ojt||{points:[]};
-$('ojtTitle').textContent=o.title||'Ready for OJT';$('ojtText').textContent=o.text||'';
-$('ojtGrid').innerHTML=(o.points||[]).map((p,i)=>'<div class="col-sm-6 col-lg-3"><div class="box ojt-card h-100"><div class="ojt-ico"><svg viewBox="0 0 24 24" aria-hidden="true">'+ICONS[i%4]+'</svg></div><h3>'+e(p.title)+'</h3><p>'+e(p.text)+'</p></div></div>').join('');
-$('ojtCta').innerHTML='<a class="btn btn-navy" href="mailto:'+e(d.contact.email)+'">Email me</a><a class="btn btn-outline-navy" href="resume.pdf">Download resume</a>';
-$('edu').innerHTML='<h3>'+e(d.education.degree)+'</h3><p class="sub">'+e(d.education.school)+'</p><p class="mb-0"'+fs(d.education.textFmt)+'>'+e(d.education.text)+'</p>';
-$('timeline').innerHTML=(d.timeline||[]).map(t=>'<li><div class="tl-card"><span class="when">'+e(t.when)+'</span><h3>'+e(t.title)+'</h3><p>'+e(t.text)+'</p>'+(t.tags?'<ul class="chips">'+String(t.tags).split(',').map(s=>s.trim()).filter(Boolean).map(s=>'<li>'+e(s)+'</li>').join('')+'</ul>':'')+'</div></li>').join('');
-$('refs').innerHTML=(d.references||[]).map(r=>{const n=String(r.phone||'').replace(/\D/g,''),tl=n.startsWith('0')?'+63'+n.slice(1):'+'+n;return '<div class="box ref"><h3>'+e(r.name)+'</h3><p>'+e(r.role)+'</p><p>'+e(r.org)+'</p>'+(r.phone?'<p class="ph-no"><a href="tel:'+e(tl)+'">'+e(r.phone)+'</a></p>':'')+'</div>'}).join('');
-$('skillGrid').innerHTML=d.skills.map(g=>'<div class="col-sm-6 col-lg-3"><div class="box h-100"><h3>'+e(g.title)+'</h3><ul>'+g.items.map(x=>'<li>'+e(x)+'</li>').join('')+'</ul></div></div>').join('');
-$('toolGrid').innerHTML=(d.tools||[]).map(g=>'<div class="col-sm-6 col-lg-4"><h3 style="font-size:1.05rem">'+e(g.title)+'</h3><ul class="chips">'+g.items.map(x=>'<li>'+e(x)+'</li>').join('')+'</ul></div>').join('');
-$('projGrid').innerHTML=d.projects.map(p=>'<div class="col-md-6 col-lg-4"><article class="card h-100"><div class="win-bar">projects/'+e(p.title.toLowerCase().replace(/[^a-z0-9]+/g,'-'))+'</div><div class="ph"'+(p.img?' data-zoom tabindex="0" role="button" aria-label="View '+e(p.title)+' screenshot larger"':'')+'>Project screenshot'+(p.img?'<img src="'+e(p.img)+'" alt="'+e(p.title)+' screenshot" onerror="this.remove()">':'')+'</div><div class="card-body d-flex flex-column"><h3>'+e(p.title)+'</h3><p class="flex-grow-1"'+fs(p.descFmt)+'>'+e(p.desc)+'</p>'+(p.stack?'<ul class="chips">'+p.stack.split(',').map(s=>s.trim()).filter(Boolean).map(s=>'<li>'+e(s)+'</li>').join('')+'</ul>':'')+(p.link?'<p class="mb-0"><a class="fw-bold" href="'+e(p.link)+'" target="_blank" rel="noopener">Visit the site</a></p>':'')+'</div></article></div>').join('');
-const groups=[];d.certs.forEach(c=>{let g=groups.find(x=>x.n===c.group);if(!g)groups.push(g={n:c.group,l:[]});g.l.push(c)});
-$('certArea').innerHTML=groups.map((g,i)=>'<h3 class="sub-h">'+e(g.n)+'</h3><div class="row g-4 '+(i<groups.length-1?'mb-5':'')+'">'+g.l.map(c=>'<div class="col-sm-6 col-lg-4"><div class="card cert h-100"><div class="ph"'+(c.img?' data-zoom tabindex="0" role="button" aria-label="View '+e(c.title)+' certificate larger"':'')+'>Certificate image'+(c.img?'<img src="'+e(c.img)+'" alt="'+e(c.title)+' certificate" onerror="this.remove()">':'')+'</div><div class="card-body"><h4>'+e(c.title)+'</h4>'+(c.sub?'<small>'+e(c.sub)+'</small>':'')+'</div></div></div>').join('')+'</div>').join('');
-$('faqList').innerHTML=(d.faq||[]).map(q=>'<details><summary>'+e(q.q)+'</summary><p>'+e(q.a)+'</p></details>').join('');
-const ph=d.contact.phone.replace(/\D/g,''),tel=ph.startsWith('0')?'+63'+ph.slice(1):'+'+ph;
-$('contactLinks').innerHTML='<a href="mailto:'+e(d.contact.email)+'">'+e(d.contact.email)+'</a><a href="tel:'+e(tel)+'">'+e(d.contact.phone)+'</a>'+(d.contact.github?'<a href="'+e(d.contact.github)+'" target="_blank" rel="noopener">GitHub</a>':'');
-$('contactLoc').textContent=d.contact.location;
-$('foot').innerHTML='&copy; 2026 '+e(d.name)+'. '+e(d.education.school)+'.<br><span style="font:400 .85rem var(--mono);color:var(--mystic)">$ exit 0</span>';
-reveal();
+const hash=async t=>[...new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode('mica-portfolio:'+t)))].map(b=>b.toString(16).padStart(2,'0')).join('');
+function authed(){try{const d=JSON.parse(localStorage.getItem(KEY)||'null');return !!(PASS_HASH&&d&&d.h===PASS_HASH&&Date.now()-d.t<DAYS*864e5)}catch(e){return false}}
+let started=false,data=null;
+function view(){const a=authed();$('gate').hidden=a;$('setup').hidden=!!PASS_HASH;$('login').hidden=!PASS_HASH||a;$('panel').hidden=!a;if(a&&!started){started=true;init()}}
+$('setup').addEventListener('submit',async ev=>{ev.preventDefault();$('line').value="const PASS_HASH = '"+await hash($('np').value)+"';";$('out').hidden=false;$('line').select()});
+$('login').addEventListener('submit',async ev=>{ev.preventDefault();
+ if(await hash($('pw').value)===PASS_HASH){try{localStorage.setItem(KEY,JSON.stringify({h:PASS_HASH,t:Date.now()}))}catch(x){}$('err').textContent='';$('pw').value='';view()}
+ else{$('err').textContent='Wrong password. Try again.';$('pw').select()}});
+$('out-btn').addEventListener('click',()=>{try{localStorage.removeItem(KEY)}catch(e){}view()});
+
+/* ---- GitHub API ---- */
+const api=(p,o={})=>fetch('https://api.github.com/repos/'+OWNER+'/'+REPO+'/contents/'+p,{...o,headers:{Authorization:'Bearer '+localStorage.getItem(TK),Accept:'application/vnd.github+json','Content-Type':'application/json'}});
+const errMsg=s=>s===401?'GitHub rejected the token. Check that it is correct and not expired.':(s===403||s===404)?'No access. Make sure the token has Contents: Read and write on the portfolio repository.':(s===409||s===422)?'Conflict. Reload this page and try again.':'GitHub error '+s+'.';
+async function put(path,b64,msg){
+ if(!localStorage.getItem(TK))throw new Error('Add your GitHub token first (top of the page).');
+ let sha;const g=await api(path+'?ref='+BR+'&t='+Date.now());
+ if(g.ok)sha=(await g.json()).sha;else if(g.status!==404)throw new Error(errMsg(g.status));
+ const r=await api(path,{method:'PUT',body:JSON.stringify({message:msg,content:b64,branch:BR,sha})});
+ if(!r.ok)throw new Error(errMsg(r.status));
 }
-function reveal(){if(matchMedia('(prefers-reduced-motion: reduce)').matches||!('IntersectionObserver' in window))return;
-const io=new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting){const el=x.target;el.classList.add('in');io.unobserve(el);setTimeout(()=>{el.style.transitionDelay=''},1300)}}),{threshold:.12});
-document.querySelectorAll('main section:not(.hero) :is(h2,.lead,.box,.card,.win,.faq details,.tl>li,.links a)').forEach(el=>{const q=el.closest('[class*="col-"]')||el,i=[...q.parentNode.children].indexOf(q);el.classList.add('rv');el.style.transitionDelay=(i%6)*80+'ms';io.observe(el)})}
-const DEFAULT={"name": "Precious Micaela A. Alop", "role": "BS Information Technology student", "intro": "I’m a third-year BSIT student eager to strengthen my skills in programming, web development, and graphic design. I have experience building web projects using PHP and MySQL, designing user-friendly interfaces, and creating publication materials for student organizations. I’m looking forward to gaining hands-on experience, learning from IT professionals, and understanding how technology is applied in real-world work environments.", "photo": "images/profile.jpg", "about": [{"text": "Hi, I'm Mica, a third-year Bachelor of Science in Information Technology student at La Consolacion College Tanauan.", "fmt": {"a": "justify"}}, {"text": "I enjoy both programming and design, from developing functional web applications to creating clean, user-friendly interfaces. I have experience working with PHP and MySQL, building web projects, and exploring UI design and prototyping.", "fmt": {"a": "justify"}}, {"text": "As the Public Relations Officer of our student council, I handle publication materials, graphic design, editing, and technical tasks. These experiences have helped me develop my creativity, technical skills, and ability to work with deadlines. I'm eager to learn more about programming, gain practical experience, and understand how IT professionals apply their skills in real-world environments.", "fmt": {"a": "justify"}}], "facts": [["School", "La Consolacion College Tanauan"], ["Program", "BS Information Technology"], ["Student council", "PRO, publicity materials and technical tasks"], ["Based in", "Sto. Tomas City, Batangas, Philippines"], ["Availability", "Open to OJT / internship"]], "education": {"degree": "College - Bachelor of Science in Information Technology", "school": "La Consolacion College Tanauan", "text": "Coursework in programming, databases, web development, and networking, applied through full-stack projects, UI/UX design, and system documentation.", "textFmt": {}}, "skills": [{"title": "Web Development", "items": ["HTML and CSS", "Basic Web Development", "SQL Database Fundamentals", "Basic Debugging and Testing"]}, {"title": "Technical Skills", "items": ["Microsoft Office", "Basic Networking and Cabling", "Computer Troubleshooting", "Network Addressing and Configuration", "AI Literacy"]}, {"title": "Design and Creativity", "items": ["UI/ UX Design", "Graphic Design and Layout", "Photo and Video Editing"]}, {"title": "Professional Skills", "items": ["Communication and Teamwork", "Time Management", "Problem-Solving", "Adaptability", "Willingness to Learn", "Attention to Detail"]}], "projects": [{"title": "QBOMS", "desc": "QR-Based Operation Management System, a multi-tenant web platform built in PHP. This is my capstone project.", "stack": "PHP, MySQL, QR codes", "link": "", "descFmt": {}, "img": ""}, {"title": "SAO Help Desk", "desc": "A student ticketing site for the Student Affairs Office of LCCT, so concerns can be submitted and tracked in one place.", "stack": "PHP, MySQL, Bootstrap", "link": "", "descFmt": {}, "img": ""}, {"title": "SALRC_LCCT", "desc": "A library system moved from an old desktop application to a modern PHP and MySQL web app.", "stack": "PHP, MySQL", "link": "", "descFmt": {}, "img": ""}, {"title": "Goodreads redesign", "desc": "A fresh take on the Goodreads book-tracking experience, built as a working CRUD app.", "stack": "PHP, MySQL, UI design", "link": "", "descFmt": {}, "img": ""}, {"title": "LCCStats", "desc": "An interactive prototype of an app that helps students keep track of their requirements.", "stack": "HTML, CSS, JavaScript", "link": "", "descFmt": {}, "img": ""}, {"title": "Intrams website", "desc": "A website for the intramurals event.", "stack": "", "link": "https://intrams.42web.io/", "descFmt": {}, "img": ""}], "certs": [{"group": "Cisco Networking Academy", "title": "HTML Essentials", "sub": "", "img": "certificates/cert-1.jpg?v=1792280820216"}, {"group": "Cisco Networking Academy", "title": "Network Addressing and Basic Troubleshooting", "sub": "", "img": "certificates/cert-2.jpg?v=1792280862812"}, {"group": "Cisco Networking Academy", "title": "Networking Basics", "sub": "", "img": "certificates/cert-3.jpg?v=1792280879288"}, {"group": "Cisco Networking Academy", "title": "Networking Devices and Basic Configuration", "sub": "", "img": "certificates/cert-4.jpg?v=1792280896186"}, {"group": "Cisco Networking Academy", "title": "Network Support and Security", "sub": "", "img": "certificates/cert-5.jpg?v=1792280915054"}, {"group": "Cisco Networking Academy", "title": "Network Technician Career Path", "sub": "", "img": "certificates/cert-6.jpg?v=1792280933372"}, {"group": "Seminars and technical events", "title": "Bridging Business and Technology for the Next Generation", "sub": "IT Week 2026", "img": "certificates/cert-7.jpg"}, {"group": "Seminars and technical events", "title": "Design, Build, Innovate: The Robotics Experience", "sub": "ICT Week 2026", "img": "certificates/cert-8.jpg"}], "contact": {"email": "mypreciousme09@gmail.com", "phone": "0948 013 1192", "location": "Sto. Tomas City, Batangas, Philippines", "github": "https://github.com/lcct-24-12803"}, "introFmt": {"a": "justify"}, "status": "Open to OJT / internship", "ojt": {"title": "Ready for OJT", "text": "I'm looking for an on-the-job training placement where I can apply what I've learned, contribute to real work, and keep growing alongside a professional team.", "points": [{"title": "Web development", "text": "Responsive pages and interfaces built with HTML, CSS and JavaScript."}, {"title": "Systems and databases", "text": "PHP and MySQL systems, from the database structure to a clean interface."}, {"title": "Networking and IT support", "text": "Basic configuration, cabling and troubleshooting, backed by Cisco Networking Academy training."}, {"title": "Design and publicity", "text": "Layouts, photo and video editing, and publication materials as student council PRO."}]}, "tools": [{"title": "Languages", "items": ["HTML", "CSS", "JavaScript", "PHP", "SQL"]}, {"title": "Frameworks", "items": ["Bootstrap"]}, {"title": "Dev tools", "items": ["Local web hosting", "Git and GitHub"]}, {"title": "Design and office", "items": ["Graphic design and layout", "Microsoft Office", "Microsoft Excel"]}, {"title": "Networking", "items": ["Cabling", "Network addressing", "Troubleshooting"]}], "timeline": [{"when": "2026 – 2027", "title": "Student council PRO", "text": "Handling publication materials, graphic design, editing and technical tasks for the council.", "tags": "Leadership, Graphic Design, Publicity"}, {"when": "2026", "title": "IT Week and ICT Week seminars", "text": "Attended talks on business and technology, and a hands-on robotics experience.", "tags": "Seminars, Robotics"}, {"when": "2024 – Present", "title": "BS Information Technology", "text": "Studying programming, databases, web development and networking at La Consolacion College Tanauan.", "tags": "Programming, Databases, Networking"}, {"when": "2023 – 2024", "title": "Creotec experience: Microsoft Excel", "text": "Gained experience with Microsoft Excel through Creotec finance activities, organizing data and working with spreadsheets.", "tags": "Microsoft Excel, Finance"}, {"when": "Training", "title": "Cisco Networking Academy courses", "text": "Completed six courses, from HTML Essentials to the Network Technician Career Path.", "tags": "Networking, Web"}, {"when": "Development", "title": "Locally hosted web projects", "text": "Built and tested web projects in a local development environment, practicing page design with HTML, CSS and web programming.", "tags": "HTML, CSS, Web Programming"}], "references": [{"name": "Dr. Salem M. Laylo", "role": "IT Program Chair", "org": "La Consolacion College Tanauan", "phone": "+63917 889 8876"}], "faq": [{"q": "Are you open for OJT or an internship?", "a": "Yes. I'm open to OJT and internship opportunities. The fastest way to reach me is by email or phone."}, {"q": "What can you build?", "a": "Responsive websites and PHP and MySQL web systems, such as ticketing, library and operations management systems."}, {"q": "What is your tech stack?", "a": "HTML, CSS, JavaScript, PHP and MySQL, plus networking knowledge from Cisco Networking Academy, UI/UX design and the Microsoft Office suite."}, {"q": "Do you do design work too?", "a": "Yes. As student council PRO, I make publication materials, layouts and edited photos and videos."}, {"q": "Where are you based?", "a": "Sto. Tomas City, Batangas, Philippines. I study at La Consolacion College Tanauan."}, {"q": "Can I see your certificates and resume?", "a": "Yes. My certificates are in the Certifications section and my resume is available as a PDF download."}]};
-$('home').addEventListener('pointermove',ev=>{const r=ev.currentTarget.getBoundingClientRect();ev.currentTarget.style.setProperty('--mx',ev.clientX-r.left+'px');ev.currentTarget.style.setProperty('--my',ev.clientY-r.top+'px')});
-function zoom(el){const im=el.querySelector('img');if(!im)return;$('imgBig').src=im.currentSrc||im.src;$('imgBig').alt=im.alt;$('imgTitle').textContent=im.alt||'';bootstrap.Modal.getOrCreateInstance($('imgModal')).show()}
-document.addEventListener('click',ev=>{const t=ev.target.closest('[data-zoom]');if(t)zoom(t)});
-document.addEventListener('keydown',ev=>{if(ev.key!=='Enter'&&ev.key!==' ')return;const t=ev.target.closest&&ev.target.closest('[data-zoom]');if(t){ev.preventDefault();zoom(t)}});
-fetch('content.json?'+Date.now()).then(r=>{if(!r.ok)throw 0;return r.json()}).then(render).catch(()=>render(DEFAULT));
-try{var d=JSON.parse(localStorage.getItem('portfolioAdmin')||'null');if(d&&Date.now()-d.t<6048e5)$('adminLink').hidden=false}catch(x){}
+
+
+/* ---- crop dialog ---- */
+const SHAPES=[['Free',NaN],['Portrait 3:4',3/4],['Landscape 4:3',4/3],['Square 1:1',1],['Wide 16:9',16/9]];
+let cropper=null,cur=null;
+const dlg=$('cropdlg'),cimg=$('cropimg');
+function openCrop(src,ratio,max,done){
+ cur={max,done,src};
+ const sh=$('shapes');sh.replaceChildren();
+ SHAPES.forEach(([n,v])=>{const b=h('button',{type:'button',class:'btn ghost sm'+(v===ratio?' on':''),style:'margin:0',onclick:()=>{cropper&&cropper.setAspectRatio(v);[...sh.children].forEach(x=>x.classList.remove('on'));b.classList.add('on')}},n);sh.append(b)});
+ cimg.onload=()=>{if(cropper)cropper.destroy();cropper=new Cropper(cimg,{viewMode:1,aspectRatio:ratio,autoCropArea:1,background:false,responsive:true})};
+ cimg.src=src;dlg.showModal()}
+dlg.addEventListener('close',()=>{if(cropper){cropper.destroy();cropper=null}if(cur&&cur.src.startsWith('blob:'))URL.revokeObjectURL(cur.src);cur=null});
+$('cropcancel').onclick=()=>dlg.close();
+$('rotl').onclick=()=>cropper&&cropper.rotate(-90);
+$('rotr').onclick=()=>cropper&&cropper.rotate(90);
+$('cropok').onclick=()=>{if(!cropper)return;const c=cropper.getCroppedCanvas({maxWidth:cur.max,maxHeight:cur.max,fillColor:'#fff',imageSmoothingQuality:'high'});if(!c)return;const url=c.toDataURL('image/jpeg',.85),done=cur.done;dlg.close();done(url)};
+
+/* ---- token box ---- */
+function tokenUI(){$('tkstate').textContent=localStorage.getItem(TK)?'A token is saved in this browser.':'No token saved yet.'}
+$('tksave').onclick=()=>{const v=$('tk').value.trim();if(v){localStorage.setItem(TK,v);$('tk').value='';tokenUI()}};
+$('tkdel').onclick=()=>{localStorage.removeItem(TK);tokenUI()};
+
+/* ---- editor ---- */
+const h=(t,a={},...k)=>{const n=document.createElement(t);for(const[x,v]of Object.entries(a)){if(x.startsWith('on'))n[x]=v;else n.setAttribute(x,v)}k.flat().forEach(c=>n.append(c));return n};
+const sec=(t,...k)=>h('section',{class:'sec'},h('h2',{},t),...k);
+function field(label,obj,key,area){const i=h(area?'textarea':'input',area?{rows:3}:{type:'text'});i.value=obj[key]==null?'':obj[key];i.oninput=()=>{obj[key]=i.value};return h('label',{class:'f'},h('span',{},label),i)}
+function listHost(arr,mk,blank,label){
+ const host=h('div');
+ const redo=()=>{host.replaceChildren();
+  arr.forEach((it,i)=>host.append(h('div',{class:'item'},mk(it,i),h('div',{class:'ops'},
+   h('button',{type:'button',class:'btn ghost sm',style:'margin:0',onclick:()=>{if(i){[arr[i-1],arr[i]]=[arr[i],arr[i-1]];redo()}}},'Move up'),
+   h('button',{type:'button',class:'btn ghost sm',style:'margin:0',onclick:()=>{if(i<arr.length-1){[arr[i+1],arr[i]]=[arr[i],arr[i+1]];redo()}}},'Move down'),
+   h('button',{type:'button',class:'btn ghost sm',style:'margin:0',onclick:()=>{if(confirm('Remove this item?')){arr.splice(i,1);redo()}}},'Remove')))));
+  host.append(h('button',{type:'button',class:'btn sm',onclick:()=>{arr.push(blank());redo()}},label))};
+ redo();return host}
+function imgField(label,it,key,newPath,max,ratio){
+ const th=h('img',{class:'thumb',alt:''}),st=h('span',{class:'small'}),fi=h('input',{type:'file',accept:'image/*',style:'margin:0'});
+ const cb=h('button',{type:'button',class:'btn ghost sm',style:'margin:6px 0 0','data-nodirty':'1',onclick:()=>start('../'+it[key].split('?')[0]+'?t='+Date.now())},'Crop current image');
+ const start=src=>openCrop(src,ratio,max,async url=>{st.textContent='Uploading...';
+  try{const path=it[key]?it[key].split('?')[0]:newPath();await put(path,url.split(',')[1],'Update '+path);
+   it[key]=path+'?v='+Date.now();th.src=url;th.hidden=false;cb.hidden=false;st.textContent='Uploaded. Click Save changes to finish.';mark()}
+  catch(e){st.textContent=e.message}});
+ th.onerror=()=>{th.hidden=true};
+ if(it[key])th.src='../'+it[key];else{th.hidden=true;cb.hidden=true}
+ fi.onchange=()=>{const f=fi.files[0];fi.value='';if(f)start(URL.createObjectURL(f))};
+ return h('div',{class:'f'},h('span',{},label+' (choose a file to crop and upload)'),th,fi,cb,st)}
+const st=f=>{f=f||{};let s='';if(['left','center','right','justify'].includes(f.a))s+='text-align:'+f.a+';'+(f.a==='justify'?'hyphens:auto;':'');if(f.b)s+='font-weight:700;';if(f.i)s+='font-style:italic;';if(f.s==='sm')s+='font-size:.9em;';if(f.s==='lg')s+='font-size:1.15em;';return s};
+function fmtBar(o,key,txt){
+ if(!o[key])o[key]={};const f=o[key],btns=[];
+ const pv=h('div',{class:'pv fmtpv'});pv._u=()=>{pv.textContent=(txt&&txt())||'Your text shows here.';pv.setAttribute('style',st(f))};
+ const paint=()=>{pv._u();btns.forEach(([b,on])=>{const v=!!on();b.classList.toggle('on',v);b.setAttribute('aria-pressed',v)})};
+ const add=(label,on,click)=>{const b=h('button',{type:'button',class:'btn ghost sm',style:'margin:0',onclick:()=>{click();paint()}},label);btns.push([b,on]);return b};
+ const al=[['Left','left'],['Center','center'],['Right','right'],['Justify','justify']].map(([l,v])=>add(l,()=>(f.a||'left')===v,()=>{f.a=v}));
+ const bi=[add('Bold',()=>f.b,()=>{f.b=!f.b}),add('Italic',()=>f.i,()=>{f.i=!f.i})];
+ const sz=[['Small','sm'],['Normal',''],['Large','lg']].map(([l,v])=>add(l,()=>(f.s||'')===v,()=>{f.s=v}));
+ const bar=h('div',{class:'ops fmt',role:'group','aria-label':'Text format'},...al,h('span',{class:'sep'}),...bi,h('span',{class:'sep'}),...sz);
+ paint();return h('div',{},bar,pv)}
+function build(){
+ const d=data;
+ $('editor').replaceChildren(
+  sec('Profile',field('Name',d,'name'),field('Role line',d,'role'),field('Status badge (leave empty to hide)',d,'status'),field('Intro',d,'intro',1),fmtBar(d,'introFmt',()=>d.intro),imgField('Profile photo',d,'photo',()=>'images/profile.jpg',1000,3/4)),
+  sec('About me',h('div',{class:'f'},h('span',{},'Align all paragraphs at once'),h('div',{class:'ops'},...['left','center','right','justify'].map(v=>h('button',{type:'button',class:'btn ghost sm',style:'margin:0',onclick:()=>{d.about.forEach(p=>{p.fmt=p.fmt||{};p.fmt.a=v});const y=scrollY;build();scrollTo(0,y)}},v[0].toUpperCase()+v.slice(1))))),listHost(d.about,(p,i)=>h('div',{},field('Paragraph '+(i+1),p,'text',1),fmtBar(p,'fmt',()=>p.text)),()=>({text:'',fmt:{}}),'Add paragraph'),h('h2',{style:'margin-top:20px'},'Quick facts'),listHost(d.facts,f=>h('div',{},field('Label',f,0),field('Value',f,1)),()=>['',''],'Add fact')),
+  sec('Ready for OJT',field('Heading',d.ojt,'title'),field('Text',d.ojt,'text',1),listHost(d.ojt.points,p=>h('div',{},field('Title',p,'title'),field('Text',p,'text',1)),()=>({title:'',text:''}),'Add point')),
+  sec('Education',field('Degree',d.education,'degree'),field('School',d.education,'school'),field('Description',d.education,'text',1),fmtBar(d.education,'textFmt',()=>d.education.text)),
+  sec('Journey (experience and learning)',listHost(d.timeline,t=>h('div',{},field('Label (a year like 2026, or a word like Development)',t,'when'),field('Title',t,'title'),field('Description',t,'text',1),field('Tags (separate with commas)',t,'tags')),()=>({when:'',title:'',text:'',tags:''}),'Add timeline item')),
+  sec('References',listHost(d.references,r=>h('div',{},field('Name',r,'name'),field('Position',r,'role'),field('School or company',r,'org'),field('Phone',r,'phone')),()=>({name:'',role:'',org:'',phone:''}),'Add reference')),
+  sec('Skills',listHost(d.skills,s=>{const i=h('input',{type:'text'});i.value=s.items.join(', ');i.oninput=()=>{s.items=i.value.split(',').map(x=>x.trim()).filter(Boolean)};return h('div',{},field('Group name',s,'title'),h('label',{class:'f'},h('span',{},'Skills (separate with commas)'),i))},()=>({title:'',items:[]}),'Add skill group')),
+  sec('Tools stack',listHost(d.tools,s=>{const i=h('input',{type:'text'});i.value=s.items.join(', ');i.oninput=()=>{s.items=i.value.split(',').map(x=>x.trim()).filter(Boolean)};return h('div',{},field('Group name',s,'title'),h('label',{class:'f'},h('span',{},'Tools (separate with commas)'),i))},()=>({title:'',items:[]}),'Add tool group')),
+  sec('Projects',listHost(d.projects,p=>h('div',{},field('Title',p,'title'),field('Description',p,'desc',1),fmtBar(p,'descFmt',()=>p.desc),field('Tools used (optional)',p,'stack'),field('Link (optional)',p,'link'),imgField('Project screenshot',p,'img',()=>'projects/project-'+Date.now()+'.jpg',1400,4/3)),()=>({title:'',desc:'',stack:'',link:'',img:''}),'Add project')),
+  sec('Certifications',listHost(d.certs,c=>h('div',{},field('Group',c,'group'),field('Title',c,'title'),field('Extra line (optional)',c,'sub'),imgField('Certificate image',c,'img',()=>'certificates/cert-'+Date.now()+'.jpg',1400,4/3)),()=>({group:(d.certs.length?d.certs[d.certs.length-1].group:''),title:'',sub:'',img:''}),'Add certificate')),
+  sec('Quick answers (FAQ)',listHost(d.faq,q=>h('div',{},field('Question',q,'q'),field('Answer',q,'a',1)),()=>({q:'',a:''}),'Add question')),
+  sec('Contact',field('Email',d.contact,'email'),field('Phone',d.contact,'phone'),field('Location',d.contact,'location'),field('GitHub link (optional)',d.contact,'github')))}
+function fillNew(d){if(d.status==null)d.status='';d.ojt=d.ojt||{title:'Ready for OJT',text:'',points:[]};d.ojt.points=d.ojt.points||[];['tools','timeline','references','faq'].forEach(k=>{d[k]=d[k]||[]});d.contact=d.contact||{};if(d.contact.github==null)d.contact.github='';(d.projects||[]).forEach(p=>{if(p.img==null)p.img=''})}
+async function init(){tokenUI();
+ try{const r=await fetch('../content.json?'+Date.now());if(!r.ok)throw 0;data=await r.json();fillNew(data);data.about=data.about.map(p=>typeof p==='string'?{text:p,fmt:{}}:p)}
+ catch(e){$('editor').textContent='Could not load content.json. Upload it to the main folder of your repository first.';return}
+ build()}
+let dirty=false,polling=0;
+function mark(){if(!data)return;dirty=true;polling++;$('status').textContent='Unsaved changes. Click Save changes.';$('save').classList.add('pending')}
+$('editor').addEventListener('input',ev=>{document.querySelectorAll('.fmtpv').forEach(e=>e._u&&e._u());if(ev.target.type!=='file')mark()});
+$('editor').addEventListener('click',ev=>{const b=ev.target.closest('button');if(b&&!b.dataset.nodirty)mark()});
+window.addEventListener('beforeunload',ev=>{if(dirty){ev.preventDefault();ev.returnValue=''}});
+async function waitLive(want,id){const el=$('status');
+ for(let i=0;i<30&&id===polling;i++){
+  el.textContent=i?'Saved. Waiting for your site to update... ('+(i*8)+'s)':'Saved to GitHub. Waiting for your site to update...';
+  await new Promise(r=>setTimeout(r,8000));
+  try{const r=await fetch('../content.json?t='+Date.now(),{cache:'no-store'});if(r.ok){const j=await r.json();j.about=j.about.map(p=>typeof p==='string'?{text:p,fmt:{}}:p);if(JSON.stringify(j)===want&&id===polling){el.textContent='Live now! Refresh your website to see the changes.';return}}}catch(e){}
+ }
+ if(id===polling)el.textContent='Saved. Your site is still updating. Refresh it in a minute or two.'}
+$('save').onclick=async()=>{const el=$('status');if(!data){el.textContent='Nothing to save yet.';return}
+ $('save').disabled=true;el.textContent='Saving...';
+ try{await put('content.json',btoa(unescape(encodeURIComponent(JSON.stringify(data,null,2)))),'Update content via admin');
+  dirty=false;$('save').classList.remove('pending');waitLive(JSON.stringify(data),++polling)}
+ catch(e){el.textContent=e.message}
+ $('save').disabled=false};
+view();
 </script>
 </body>
 </html>
