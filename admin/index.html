@@ -106,7 +106,7 @@ dialog::backdrop{background:rgba(2,31,46,.55)}
 
 <script src="https://cdn.jsdelivr.net/npm/cropperjs@1.6.2/dist/cropper.min.js"></script>
 <script>
-const PASS_HASH = '508f92df76cf359df1c0126b2514f1e8ff4c0d85622c7a35133236d90e7dce78';
+const PASS_HASH = '';
 const KEY='portfolioAdmin',DAYS=7,TK='portfolioToken',OWNER='lcct-24-12803',REPO='portfolio',BR='main';
 const $=id=>document.getElementById(id);
 const hash=async t=>[...new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode('mica-portfolio:'+t)))].map(b=>b.toString(16).padStart(2,'0')).join('');
