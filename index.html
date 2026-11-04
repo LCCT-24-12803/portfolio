@@ -219,7 +219,34 @@ main section:not(.hero):not(.strip) h2::before{content:"// 0" counter(sec);displ
 .kbtn{display:inline-flex;align-items:center;gap:8px}
 .kbtn svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .kbtn .i-moon{display:none}html[data-theme=light] .kbtn .i-sun{display:none}html[data-theme=light] .kbtn .i-moon{display:block}
-.resume-frame{width:100%;height:min(78vh,820px);border:0;display:block;background:#fff}
+.rs{background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:0 20px 50px rgba(2,31,46,.28)}
+.rs-head{display:flex;align-items:center;gap:24px;padding:30px 34px;background:linear-gradient(120deg,var(--fresco),var(--mitchell));color:#fff;position:relative;overflow:hidden}
+.rs-head::after{content:"";position:absolute;right:-40px;top:-60px;width:220px;height:220px;border-radius:50%;border:1px solid rgba(255,255,255,.25);box-shadow:0 0 0 28px rgba(255,255,255,.05),0 0 0 56px rgba(255,255,255,.04)}
+.rs-ph{flex:none;position:relative;width:104px;height:104px;border-radius:50%;border:3px solid rgba(255,255,255,.85);background:rgba(2,31,46,.45);display:grid;place-items:center;font:700 2rem var(--head);color:#fff;overflow:hidden}
+.rs-ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 15%}
+.rs-head h3{color:#fff;font-size:clamp(1.5rem,3.2vw,2.1rem);margin:0 0 4px}
+.rs-role{font:500 1.05rem var(--head);color:#CFEFFA;margin:0 0 10px}
+.rs-st{display:inline-block;font:500 .8rem var(--mono);color:#fff;background:rgba(2,31,46,.4);border:1px solid rgba(255,255,255,.35);border-radius:6px;padding:2px 10px;margin:0}
+.rs-body{display:grid;grid-template-columns:300px 1fr}
+.rs-side{background:var(--panel2);border-right:1px solid var(--line);padding:26px}
+.rs-main{padding:26px 32px}
+.rs h4{font:600 .78rem var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--mystic);border-bottom:1px solid var(--line);padding-bottom:6px;margin:0 0 12px}
+.rs section,.rs .rs-blk{padding:0;margin:0 0 24px}
+.rs .rs-blk:last-child{margin-bottom:0}
+.rs-ct{list-style:none;padding:0;margin:0;font-size:.92rem;display:grid;gap:8px}
+.rs-ct li{margin:0;overflow-wrap:anywhere}.rs-ct small{display:block;font:400 .72rem var(--mono);color:var(--mystic);text-transform:uppercase;letter-spacing:.08em}
+.rs-ct a{color:var(--text);text-decoration:none}.rs-ct a:hover{color:var(--vg);text-decoration:underline}
+.rs-g{margin-bottom:14px}.rs-g b{display:block;font-size:.9rem;color:var(--vg);margin-bottom:6px}
+.rs-g .chips{margin:0!important}
+.rs-it{margin-bottom:16px;padding-left:14px;border-left:2px solid var(--line)}.rs-it:last-child{margin-bottom:0}
+.rs-it b{display:block;color:var(--vg);font-size:1rem;line-height:1.35}
+.rs-it .w{font:400 .76rem var(--mono);color:var(--mystic)}
+.rs-it p{margin:4px 0 0;font-size:.92rem;line-height:1.55}
+.rs-it .chips{margin:8px 0 0!important}
+.rs-sum{margin:0;font-size:.98rem;line-height:1.65}
+.rs-cl{margin:0;padding-left:1.1rem;font-size:.9rem}.rs-cl li{margin-bottom:3px}
+.rs-foot{padding:12px 32px;border-top:1px dashed var(--line);font:400 .78rem var(--mono);color:var(--muted)}
+@media(max-width:767px){.rs-body{grid-template-columns:1fr}.rs-side{border-right:0;border-bottom:1px solid var(--line)}.rs-head{flex-direction:column;text-align:center;padding:26px 20px}.rs-main{padding:22px 20px}.rs-foot{padding:12px 20px}}
 /* light theme */
 html[data-theme=light]{--bg:#EEF7FB;--nav:rgba(238,247,251,.92);--panel:#fff;--panel2:#E3F1F8;--line:rgba(4,75,102,.2);--text:#173A4C;--muted:#41667A;--vg:#04435E;--mystic:#0A6F94}
 html[data-theme=light] body::before{background:radial-gradient(60% 45% at 85% 0,rgba(71,169,207,.22),transparent 70%),radial-gradient(45% 40% at 0 100%,rgba(166,224,244,.5),transparent 70%),radial-gradient(rgba(4,75,102,.1) 1px,transparent 1.2px) 0 0/26px 26px}
@@ -238,7 +265,7 @@ html[data-theme=light] :is(.ph,.shot .pic,.modal){--vg:#A6E0F4;--mystic:#47A9CF;
 .toast-lite.on{opacity:1;transform:translate(-50%,0)}
 .links button{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px 24px;font:inherit;font-weight:600;color:var(--vg);cursor:pointer;transition:border-color .25s}
 .links button:hover{border-color:var(--mystic)}
-@media(max-width:767px){.sl-btn{width:34px;height:34px}.resume-win{display:none}}
+@media(max-width:767px){.sl-btn{width:34px;height:34px}}
 @media(max-width:767px){section{padding:60px 0}.navbar-brand{font-size:1.1rem}.hero{padding:28px 0 48px;min-height:0;display:block}.shot-wrap{width:min(72%,250px)}.win-body{padding:18px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before{transition:none!important;animation:none!important}}
 </style>
@@ -331,9 +358,9 @@ html[data-theme=light] :is(.ph,.shot .pic,.modal){--vg:#A6E0F4;--mystic:#47A9CF;
 
 <section id="resume"><div class="container">
 <h2>Resume</h2>
-<p class="lead">My details on one page. Download a copy or read it right here.</p>
+<p class="lead">My details on one page. Read it here or download the PDF.</p>
 <div class="d-flex flex-wrap gap-3 mb-4"><a class="btn btn-navy" href="resume.pdf" download>Download resume (PDF)</a><a class="btn btn-outline-navy" href="resume.pdf" target="_blank" rel="noopener">Open in a new tab</a></div>
-<div class="win resume-win"><div class="win-bar">resume.pdf</div><iframe class="resume-frame" src="resume.pdf#view=FitH" title="Resume preview" loading="lazy"></iframe></div>
+<div class="rs" id="resumeSheet" aria-label="Resume preview"></div>
 </div></section>
 
 <section class="alt text-center" id="contact"><div class="container">
@@ -385,6 +412,7 @@ $('ojtCta').innerHTML='<a class="btn btn-navy" href="mailto:'+e(d.contact.email)
 $('edu').innerHTML='<h3>'+e(d.education.degree)+'</h3><p class="sub">'+e(d.education.school)+'</p><p class="mb-0"'+fs(d.education.textFmt)+'>'+e(d.education.text)+'</p>';
 $('timeline').innerHTML=(d.timeline||[]).map(t=>'<li><div class="tl-card"><span class="when">'+e(t.when)+'</span><h3>'+e(t.title)+'</h3><p>'+e(t.text)+'</p>'+(t.tags?'<ul class="chips">'+String(t.tags).split(',').map(s=>s.trim()).filter(Boolean).map(s=>'<li>'+e(s)+'</li>').join('')+'</ul>':'')+'</div></li>').join('');
 $('refs').innerHTML=(d.references||[]).map(r=>{const n=String(r.phone||'').replace(/\D/g,''),tl=n.startsWith('0')?'+63'+n.slice(1):'+'+n;return '<div class="box ref"><h3>'+e(r.name)+'</h3><p>'+e(r.role)+'</p><p>'+e(r.org)+'</p>'+(r.phone?'<p class="ph-no"><a href="tel:'+e(tl)+'">'+e(r.phone)+'</a></p>':'')+'</div>'}).join('');
+$('resumeSheet').innerHTML=resumeHtml(d);
 $('skillGrid').innerHTML=d.skills.map(g=>'<div class="col-sm-6 col-lg-3"><div class="box h-100"><h3>'+e(g.title)+'</h3><ul>'+g.items.map(x=>'<li>'+e(x)+'</li>').join('')+'</ul></div></div>').join('');
 $('toolGrid').innerHTML=(d.tools||[]).map(g=>'<div class="col-sm-6 col-lg-4"><h3 style="font-size:1.05rem">'+e(g.title)+'</h3><ul class="chips">'+g.items.map(x=>'<li>'+e(x)+'</li>').join('')+'</ul></div>').join('');
 CVN={};PROJ=d.projects;$('projGrid').innerHTML=PROJ.map(projCard).join('');
@@ -463,6 +491,23 @@ function coverHtml(p,soon){const txt=((p.title||'')+' '+(p.desc||'')+' '+(p.stac
  return cvBuild(c[0]==='web'?'web':c[0],p.title,'p','Default cover for '+(p.title||'project')+' ('+c[2]+')',soon?c[2]+' · cover coming soon':'',false)}
 function certCover(c,soon){const txt=((c.group||'')+' '+(c.title||'')+' '+(c.sub||'')).toLowerCase(),k=CCATS.find(x=>x[1].test(txt))||['award',0,'Achievement'];
  return cvBuild(k[0],c.title,'c','Default cover for '+(c.title||'certificate')+' ('+k[2]+')','Certificate · '+k[2],soon)}
+function resumeHtml(d){
+ const w=d.name.trim().split(/\s+/),ini=(w[0][0]+(w.length>1?w[w.length-1][0]:'')).toUpperCase(),c=d.contact||{},
+  li=a=>a.map(x=>'<li>'+e(x)+'</li>').join(''),
+  tl=(d.timeline||[]).map(t=>'<div class="rs-it"><span class="w">'+e(t.when)+'</span><b>'+e(t.title)+'</b><p>'+e(t.text)+'</p></div>').join(''),
+  pr=(d.projects||[]).map(p=>'<div class="rs-it"><b>'+e(p.title)+'</b><p>'+e(p.desc)+'</p>'+(p.stack?'<ul class="chips">'+li(p.stack.split(',').map(x=>x.trim()).filter(Boolean))+'</ul>':'')+'</div>').join(''),
+  gs=[];(d.certs||[]).forEach(x=>{let g=gs.find(y=>y.n===x.group);if(!g)gs.push(g={n:x.group,l:[]});g.l.push(x)});
+ const ct=[['Email',c.email,c.email?'mailto:'+c.email:''],['Phone',c.phone,c.phone?'tel:'+String(c.phone).replace(/[^\d+]/g,''):''],['Location',c.location,''],['GitHub',c.github?String(c.github).replace(/^https?:\/\/(www\.)?/,''):'',c.github||'']].filter(x=>x[1]).map(x=>'<li><small>'+x[0]+'</small>'+(x[2]?'<a href="'+e(x[2])+'"'+(x[0]==='GitHub'?' target="_blank" rel="noopener"':'')+'>'+e(x[1])+'</a>':e(x[1]))+'</li>').join('');
+ return '<header class="rs-head"><div class="rs-ph"><span aria-hidden="true">'+e(ini)+'</span><img src="'+e(d.photo||'images/profile.jpg')+'" alt="" onerror="this.remove()"></div><div><h3>'+e(d.name)+'</h3><p class="rs-role">'+e(d.role)+'</p>'+(d.status?'<p class="rs-st">'+e(d.status)+'</p>':'')+'</div></header>'
+ +'<div class="rs-body"><aside class="rs-side"><div class="rs-blk"><h4>Contact</h4><ul class="rs-ct">'+ct+'</ul></div>'
+ +'<div class="rs-blk"><h4>Skills</h4>'+(d.skills||[]).map(g=>'<div class="rs-g"><b>'+e(g.title)+'</b><ul class="chips">'+li(g.items)+'</ul></div>').join('')+'</div>'
+ +((d.references||[]).length?'<div class="rs-blk"><h4>References</h4>'+d.references.map(r=>'<div class="rs-g"><b>'+e(r.name)+'</b><div style="font-size:.9rem">'+e(r.role)+'<br>'+e(r.org)+(r.phone?'<br>'+e(r.phone):'')+'</div></div>').join('')+'</div>':'')
+ +'</aside><div class="rs-main"><div class="rs-blk"><h4>Profile</h4><p class="rs-sum">'+e(d.intro)+'</p></div>'
+ +(d.education?'<div class="rs-blk"><h4>Education</h4><div class="rs-it"><b>'+e(d.education.degree)+'</b><span class="w">'+e(d.education.school)+'</span><p>'+e(d.education.text)+'</p></div></div>':'')
+ +(tl?'<div class="rs-blk"><h4>Experience and learning</h4>'+tl+'</div>':'')
+ +(pr?'<div class="rs-blk"><h4>Projects</h4>'+pr+'</div>':'')
+ +(gs.length?'<div class="rs-blk"><h4>Certifications</h4>'+gs.map(g=>'<div class="rs-g"><b>'+e(g.n)+'</b><ul class="rs-cl">'+g.l.map(x=>'<li>'+e(x.title)+(x.sub?' ('+e(x.sub)+')':'')+'</li>').join('')+'</ul></div>').join('')+'</div>':'')
+ +'</div></div><div class="rs-foot">// need a printable copy? use the download button above (resume.pdf)</div>'}
 function projCard(p,i){
  const pics=picsOf(p),n=pics.length,link=normLink(p.link),slug=p.title.toLowerCase().replace(/[^a-z0-9]+/g,'-'),qr=link?qrSvg(link,3):'';
  let ph='<div class="ph slider'+(n>1?' multi':'')+'" data-n="'+n+'">'+coverHtml(p,!n);
