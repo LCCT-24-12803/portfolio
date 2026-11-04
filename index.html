@@ -6,14 +6,15 @@
 <title>Personal Web Portfolio | Precious Micaela Alop</title>
 <meta name="description" content="Portfolio of Precious Micaela Alop, BSIT student at La Consolacion College Tanauan: web systems, UI design, and publicity materials.">
 <meta name="theme-color" content="#021F2E">
+<script>try{if(localStorage.getItem("portfolioTheme")==="light")document.documentElement.setAttribute("data-theme","light")}catch(e){}</script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 <style>
 /* Palette: Fresco Blue, Mitchell Blue, Oxford by Night, Mystic Blue, Van Gogh Blue */
 :root{--oxford:#021F2E;--fresco:#044B66;--mitchell:#09799E;--mystic:#47A9CF;--vg:#A6E0F4;
---panel:#033246;--panel2:#033E55;--line:rgba(71,169,207,.3);--text:#C6E9F6;--muted:rgba(166,224,244,.86);
+--bg:#021F2E;--nav:rgba(2,31,46,.88);--panel:#033246;--panel2:#033E55;--line:rgba(71,169,207,.3);--text:#C6E9F6;--muted:rgba(166,224,244,.86);
 --head:'Bricolage Grotesque',Georgia,sans-serif;--sans:'IBM Plex Sans',system-ui,sans-serif;--mono:'JetBrains Mono',ui-monospace,Consolas,monospace}
-html{scroll-behavior:smooth;scroll-padding-top:72px;background:var(--oxford)}
+html{scroll-behavior:smooth;scroll-padding-top:72px;background:var(--bg)}
 body{font:17px/1.7 var(--sans);color:var(--text);background:transparent}
 body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
 background:radial-gradient(60% 45% at 85% 0,rgba(9,121,158,.38),transparent 70%),radial-gradient(45% 40% at 0 100%,rgba(4,75,102,.55),transparent 70%),radial-gradient(rgba(71,169,207,.16) 1px,transparent 1.2px) 0 0/26px 26px}
@@ -23,7 +24,7 @@ section{padding:92px 0}
 .alt{background:rgba(3,50,70,.5);border-block:1px solid var(--line)}
 h2{font-size:clamp(1.9rem,4vw,2.6rem);margin-bottom:10px}
 .lead{font-size:1.05rem;max-width:60ch;margin-bottom:36px;color:var(--muted)}
-.navbar{background:rgba(2,31,46,.88);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.navbar{background:var(--nav);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
 .navbar-brand{font:700 1.25rem var(--head);color:var(--vg)}
 .navbar-brand:hover{color:var(--vg)}
 .navbar-brand .tag{font:600 .9rem var(--mono);color:var(--mystic);margin-right:8px}
@@ -96,7 +97,7 @@ h2{font-size:clamp(1.9rem,4vw,2.6rem);margin-bottom:10px}
 .tl{list-style:none;margin:0;padding:0 0 0 28px;border-left:2px solid var(--line)}
 .tl>li{position:relative;padding-bottom:30px;margin:0}
 .tl>li:last-child{padding-bottom:0}
-.tl>li::before{content:"";position:absolute;left:-37px;top:7px;width:14px;height:14px;border-radius:50%;background:var(--oxford);border:3px solid var(--mystic)}
+.tl>li::before{content:"";position:absolute;left:-37px;top:7px;width:14px;height:14px;border-radius:50%;background:var(--bg);border:3px solid var(--mystic)}
 .tl .when{font:600 .82rem var(--mono);color:var(--mystic)}
 .tl h3{font-size:1.15rem;margin:2px 0 4px}
 .tl p{margin:0;max-width:62ch}
@@ -104,14 +105,6 @@ h2{font-size:clamp(1.9rem,4vw,2.6rem);margin-bottom:10px}
 .ref p{margin:0}
 .ref .ph-no{margin-top:10px;font-weight:600}
 .ref .ph-no a{text-decoration:none}
-/* faq */
-.faq details{border:1px solid var(--line);border-radius:10px;background:var(--panel);margin-bottom:10px}
-.faq summary{list-style:none;cursor:pointer;padding:16px 22px;font-weight:600;color:var(--vg);display:flex;justify-content:space-between;gap:16px}
-.faq summary::-webkit-details-marker{display:none}
-.faq summary::after{content:"+";font:600 1.2rem var(--mono);color:var(--mystic)}
-.faq details[open] summary::after{content:"\2212"}
-.faq details[open]{border-color:var(--mystic)}
-.faq details p{margin:0;padding:0 22px 18px;max-width:70ch}
 /* contact */
 .links a{overflow-wrap:anywhere;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px 24px;text-decoration:none;font-weight:600;color:var(--vg)}
 footer{background:#011722;border-top:1px solid var(--line);color:var(--muted);text-align:center;padding:30px 24px;font-size:.95rem}
@@ -121,7 +114,7 @@ footer{background:#011722;border-top:1px solid var(--line);color:var(--muted);te
 .typed::before{content:"> building: ";color:var(--mystic)}
 .typed::after{content:"";display:inline-block;width:9px;height:1.05em;background:var(--mystic);margin-left:3px;vertical-align:-.15em;animation:blink 1s steps(1) infinite}
 @keyframes blink{50%{opacity:0}}
-.fchip{position:absolute;z-index:3;font:600 .8rem var(--mono);color:var(--vg);background:var(--oxford);border:1px solid var(--mystic);border-radius:6px;padding:4px 10px;box-shadow:0 8px 20px rgba(2,31,46,.7);animation:float 5s ease-in-out infinite}
+.fchip{position:absolute;z-index:3;font:600 .8rem var(--mono);color:var(--vg);background:var(--bg);border:1px solid var(--mystic);border-radius:6px;padding:4px 10px;box-shadow:0 8px 20px rgba(2,31,46,.7);animation:float 5s ease-in-out infinite}
 @keyframes float{50%{transform:translateY(-10px)}}
 .card>.win-bar{border-radius:0}
 
@@ -155,7 +148,6 @@ h2.rv:not(.in)::after{width:0}
 .nav-link.active{color:var(--vg)}.nav-link.active::after{transform:scaleX(1)}
 .kbtn{font:500 .82rem var(--mono);color:var(--vg);background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:5px 12px;cursor:pointer;transition:border-color .2s,background-color .2s}
 .kbtn:hover{border-color:var(--mystic);background:var(--panel2)}
-.kbtn kbd{font:600 .72rem var(--mono);background:var(--oxford);color:var(--mystic);border:1px solid var(--line);border-radius:4px;padding:0 6px;margin-left:6px}
 main{counter-reset:sec}
 main section:not(.hero):not(.strip){counter-increment:sec}
 main section:not(.hero):not(.strip) h2::before{content:"// 0" counter(sec);display:block;font:600 .8rem var(--mono);color:var(--mystic);letter-spacing:.08em;margin-bottom:8px}
@@ -224,23 +216,29 @@ main section:not(.hero):not(.strip) h2::before{content:"// 0" counter(sec);displ
 .qr-thumb:hover svg{transform:scale(1.08) rotate(-2deg);box-shadow:0 0 0 4px rgba(71,169,207,.25)}
 .qr-big svg{width:min(78vw,300px);height:auto;border-radius:12px;border:3px solid var(--mystic)}
 .qr-url{font:400 .85rem var(--mono);color:var(--vg);overflow-wrap:anywhere;margin:14px 0 6px}
-/* palette + toast + copy */
-.pal{position:fixed;inset:0;z-index:2000;background:rgba(2,31,46,.7);backdrop-filter:blur(4px);display:grid;justify-items:center;align-content:start;padding:14vh 16px 0}
-.pal[hidden]{display:none}
-.pal-box{width:min(560px,100%);box-shadow:0 24px 60px rgba(0,0,0,.45)}
-.pal-in{display:flex;align-items:center;gap:10px;padding:12px 16px;border-bottom:1px solid var(--line);font:600 1rem var(--mono);color:var(--mystic)}
-.pal-in input{flex:1;background:none;border:0;outline:0;color:var(--text);font:400 1rem var(--mono)}
-#palList{list-style:none;margin:0;padding:6px;max-height:320px;overflow:auto}
-#palList li{display:flex;justify-content:space-between;gap:12px;padding:9px 12px;border-radius:8px;cursor:pointer;color:var(--text)}
-#palList li small{font:400 .75rem var(--mono);color:var(--mystic)}
-#palList li.sel{background:var(--fresco);color:#fff}
-#palList li.none{cursor:default;color:var(--muted)}
-.pal-hint{padding:8px 16px;border-top:1px solid var(--line);font:400 .75rem var(--mono);color:var(--muted)}
+.kbtn{display:inline-flex;align-items:center;gap:8px}
+.kbtn svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.kbtn .i-moon{display:none}html[data-theme=light] .kbtn .i-sun{display:none}html[data-theme=light] .kbtn .i-moon{display:block}
+.resume-frame{width:100%;height:min(78vh,820px);border:0;display:block;background:#fff}
+/* light theme */
+html[data-theme=light]{--bg:#EEF7FB;--nav:rgba(238,247,251,.92);--panel:#fff;--panel2:#E3F1F8;--line:rgba(4,75,102,.2);--text:#173A4C;--muted:#41667A;--vg:#04435E;--mystic:#0A6F94}
+html[data-theme=light] body::before{background:radial-gradient(60% 45% at 85% 0,rgba(71,169,207,.22),transparent 70%),radial-gradient(45% 40% at 0 100%,rgba(166,224,244,.5),transparent 70%),radial-gradient(rgba(4,75,102,.1) 1px,transparent 1.2px) 0 0/26px 26px}
+html[data-theme=light] .alt{background:rgba(255,255,255,.6)}
+html[data-theme=light] .tape{background:rgba(255,255,255,.7)}
+html[data-theme=light] .btn-navy{--bs-btn-color:#fff;--bs-btn-hover-bg:var(--fresco);--bs-btn-hover-color:#fff;--bs-btn-active-bg:var(--fresco);--bs-btn-active-color:#fff;--bs-btn-hover-border-color:var(--fresco);--bs-btn-active-border-color:var(--fresco)}
+html[data-theme=light] .btn-outline-navy{--bs-btn-hover-border-color:var(--fresco)}
+html[data-theme=light] .fbtn.on{color:#fff}
+html[data-theme=light] .hero h1{color:var(--vg)}
+html[data-theme=light] .fchip{box-shadow:0 8px 20px rgba(4,75,102,.18)}
+html[data-theme=light] footer{background:#DCEEF6}
+@media(min-width:992px){.navbar-nav .nav-item{display:flex;align-items:center}}
+html[data-theme=light] :is(.ph,.shot .pic,.modal){--vg:#A6E0F4;--mystic:#47A9CF;--panel:#033246;--panel2:#033E55;--line:rgba(71,169,207,.3);--text:#C6E9F6;--muted:rgba(166,224,244,.86);--bg:#021F2E}
+/* toast + copy */
 .toast-lite{position:fixed;left:50%;bottom:26px;transform:translate(-50%,18px);opacity:0;z-index:2100;background:var(--fresco);color:#fff;border:1px solid var(--mystic);border-radius:8px;padding:8px 18px;font:500 .9rem var(--mono);pointer-events:none;transition:opacity .3s,transform .3s}
 .toast-lite.on{opacity:1;transform:translate(-50%,0)}
 .links button{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px 24px;font:inherit;font-weight:600;color:var(--vg);cursor:pointer;transition:border-color .25s}
 .links button:hover{border-color:var(--mystic)}
-@media(max-width:767px){.kbtn kbd{display:none}.sl-btn{width:34px;height:34px}}
+@media(max-width:767px){.sl-btn{width:34px;height:34px}.resume-win{display:none}}
 @media(max-width:767px){section{padding:60px 0}.navbar-brand{font-size:1.1rem}.hero{padding:28px 0 48px;min-height:0;display:block}.shot-wrap{width:min(72%,250px)}.win-body{padding:18px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before{transition:none!important;animation:none!important}}
 </style>
@@ -258,9 +256,9 @@ main section:not(.hero):not(.strip) h2::before{content:"// 0" counter(sec);displ
 <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
 <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
 <li class="nav-item"><a class="nav-link" href="#certifications">Certifications</a></li>
-<li class="nav-item"><a class="nav-link" href="#faq">FAQ</a></li>
+<li class="nav-item"><a class="nav-link" href="#resume">Resume</a></li>
 <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-<li class="nav-item"><button class="kbtn" id="palBtn" type="button" aria-label="Open quick jump">Quick jump <kbd>Ctrl K</kbd></button></li>
+<li class="nav-item"><button class="kbtn" id="themeBtn" type="button" aria-label="Switch to light mode"><svg class="i-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg><svg class="i-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg><span class="tlabel">Light mode</span></button></li>
 <li class="nav-item" id="adminLink" hidden><a class="nav-link fw-bold" href="admin/">Admin</a></li>
 </ul></div></div></nav>
 
@@ -331,10 +329,11 @@ main section:not(.hero):not(.strip) h2::before{content:"// 0" counter(sec);displ
 <div id="certArea"></div>
 </div></section>
 
-<section id="faq"><div class="container">
-<h2>Quick answers</h2>
-<p class="lead">What recruiters and teams usually ask first.</p>
-<div class="faq" id="faqList" style="max-width:820px"></div>
+<section id="resume"><div class="container">
+<h2>Resume</h2>
+<p class="lead">My details on one page. Download a copy or read it right here.</p>
+<div class="d-flex flex-wrap gap-3 mb-4"><a class="btn btn-navy" href="resume.pdf" download>Download resume (PDF)</a><a class="btn btn-outline-navy" href="resume.pdf" target="_blank" rel="noopener">Open in a new tab</a></div>
+<div class="win resume-win"><div class="win-bar">resume.pdf</div><iframe class="resume-frame" src="resume.pdf#view=FitH" title="Resume preview" loading="lazy"></iframe></div>
 </div></section>
 
 <section class="alt text-center" id="contact"><div class="container">
@@ -358,7 +357,6 @@ main section:not(.hero):not(.strip) h2::before{content:"// 0" counter(sec);displ
 <div class="modal-body text-center"><div class="qr-big" id="qrBox"></div><p class="qr-url" id="qrUrl"></p><p class="small mb-3" style="color:var(--muted)">Scan with your phone camera to open this project.</p>
 <div class="d-flex flex-wrap gap-2 justify-content-center"><a class="btn btn-navy btn-sm" id="qrOpen" target="_blank" rel="noopener" href="#">Open site</a><button class="btn btn-outline-navy btn-sm" id="qrCopy" type="button">Copy link</button><button class="btn btn-outline-navy btn-sm" id="qrPng" type="button">Download PNG</button></div></div>
 </div></div></div>
-<div class="pal" id="pal" hidden role="dialog" aria-modal="true" aria-label="Quick jump"><div class="win pal-box"><div class="win-bar">quick-jump</div><div class="pal-in"><span>&gt;</span><input id="palQ" type="text" placeholder="Jump to a section, project or action..." autocomplete="off" aria-label="Search commands"></div><ul id="palList" role="listbox"></ul><div class="pal-hint">Up / Down to move, Enter to open, Esc to close</div></div></div>
 <div class="toast-lite" id="toast" role="status" aria-live="polite"></div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="assets/qrcode.js"></script>
@@ -392,7 +390,6 @@ $('toolGrid').innerHTML=(d.tools||[]).map(g=>'<div class="col-sm-6 col-lg-4"><h3
 CVN={};PROJ=d.projects;$('projGrid').innerHTML=PROJ.map(projCard).join('');
 const groups=[];d.certs.forEach(c=>{let g=groups.find(x=>x.n===c.group);if(!g)groups.push(g={n:c.group,l:[]});g.l.push(c)});
 $('certArea').innerHTML=groups.map((g,i)=>'<h3 class="sub-h">'+e(g.n)+'</h3><div class="row g-4 '+(i<groups.length-1?'mb-5':'')+'">'+g.l.map(c=>'<div class="col-sm-6 col-lg-4"><div class="card cert h-100"><div class="ph"'+(c.img?' data-zoom tabindex="0" role="button" aria-label="View '+e(c.title)+' certificate larger"':'')+'>'+certCover(c,!c.img)+(c.img?'<img src="'+e(c.img)+'" alt="'+e(c.title)+' certificate" onerror="this.parentNode.removeAttribute(\'data-zoom\');this.remove()">':'')+'</div><div class="card-body"><h4>'+e(c.title)+'</h4>'+(c.sub?'<small>'+e(c.sub)+'</small>':'')+'</div></div></div>').join('')+'</div>').join('');
-$('faqList').innerHTML=(d.faq||[]).map(q=>'<details><summary>'+e(q.q)+'</summary><p>'+e(q.a)+'</p></details>').join('');
 const ph=d.contact.phone.replace(/\D/g,''),tel=ph.startsWith('0')?'+63'+ph.slice(1):'+'+ph;
 $('contactLinks').innerHTML='<a href="mailto:'+e(d.contact.email)+'">'+e(d.contact.email)+'</a><a href="tel:'+e(tel)+'">'+e(d.contact.phone)+'</a>'+(d.contact.github?'<a href="'+e(d.contact.github)+'" target="_blank" rel="noopener">GitHub</a>':'')+'';
 $('contactLoc').textContent=d.contact.location;
@@ -403,7 +400,7 @@ initFx();
 }
 function reveal(){if(matchMedia('(prefers-reduced-motion: reduce)').matches||!('IntersectionObserver' in window))return;
 const io=new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting){const el=x.target;el.classList.add('in');io.unobserve(el);setTimeout(()=>{el.style.transitionDelay=''},1300)}}),{threshold:.12});
-document.querySelectorAll('main section:not(.hero) :is(h2,.lead,.box,.card,.win,.faq details,.tl>li,.links a)').forEach(el=>{const q=el.closest('[class*="col-"]')||el,i=[...q.parentNode.children].indexOf(q);el.classList.add('rv');el.style.transitionDelay=(i%6)*80+'ms';io.observe(el)})}
+document.querySelectorAll('main section:not(.hero) :is(h2,.lead,.box,.card,.win,.tl>li,.links a)').forEach(el=>{const q=el.closest('[class*="col-"]')||el,i=[...q.parentNode.children].indexOf(q);el.classList.add('rv');el.style.transitionDelay=(i%6)*80+'ms';io.observe(el)})}
 const DEFAULT={"name": "Precious Micaela A. Alop", "role": "BS Information Technology student", "intro": "I’m a third-year BSIT student eager to strengthen my skills in programming, web development, and graphic design. I have experience building web projects using PHP and MySQL, designing user-friendly interfaces, and creating publication materials for student organizations. I’m looking forward to gaining hands-on experience, learning from IT professionals, and understanding how technology is applied in real-world work environments.", "photo": "images/profile.jpg", "about": [{"text": "Hi, I'm Mica, a third-year Bachelor of Science in Information Technology student at La Consolacion College Tanauan.", "fmt": {"a": "justify"}}, {"text": "I enjoy both programming and design, from developing functional web applications to creating clean, user-friendly interfaces. I have experience working with PHP and MySQL, building web projects, and exploring UI design and prototyping.", "fmt": {"a": "justify"}}, {"text": "As the Public Relations Officer of our student council, I handle publication materials, graphic design, editing, and technical tasks. These experiences have helped me develop my creativity, technical skills, and ability to work with deadlines. I'm eager to learn more about programming, gain practical experience, and understand how IT professionals apply their skills in real-world environments.", "fmt": {"a": "justify"}}], "facts": [["School", "La Consolacion College Tanauan"], ["Program", "BS Information Technology"], ["Student council", "PRO, publicity materials and technical tasks"], ["Based in", "Sto. Tomas City, Batangas, Philippines"], ["Availability", "Open to OJT / internship"]], "education": {"degree": "College - Bachelor of Science in Information Technology", "school": "La Consolacion College Tanauan", "text": "Coursework in programming, databases, web development, and networking, applied through full-stack projects, UI/UX design, and system documentation.", "textFmt": {}}, "skills": [{"title": "Web Development", "items": ["HTML and CSS", "Basic Web Development", "SQL Database Fundamentals", "Basic Debugging and Testing"]}, {"title": "Technical Skills", "items": ["Microsoft Office", "Basic Networking and Cabling", "Computer Troubleshooting", "Network Addressing and Configuration", "AI Literacy"]}, {"title": "Design and Creativity", "items": ["UI/ UX Design", "Graphic Design and Layout", "Photo and Video Editing"]}, {"title": "Professional Skills", "items": ["Communication and Teamwork", "Time Management", "Problem-Solving", "Adaptability", "Willingness to Learn", "Attention to Detail"]}], "projects": [{"title": "QBOMS", "desc": "QR-Based Operation Management System, a multi-tenant web platform built in PHP. This is my capstone project.", "stack": "PHP, MySQL, QR codes", "link": "", "descFmt": {}, "img": ""}, {"title": "SAO Help Desk", "desc": "A student ticketing site for the Student Affairs Office of LCCT, so concerns can be submitted and tracked in one place.", "stack": "PHP, MySQL, Bootstrap", "link": "", "descFmt": {}, "img": ""}, {"title": "SALRC_LCCT", "desc": "A library system moved from an old desktop application to a modern PHP and MySQL web app.", "stack": "PHP, MySQL", "link": "", "descFmt": {}, "img": ""}, {"title": "Goodreads redesign", "desc": "A fresh take on the Goodreads book-tracking experience, built as a working CRUD app.", "stack": "PHP, MySQL, UI design", "link": "", "descFmt": {}, "img": ""}, {"title": "LCCStats", "desc": "An interactive prototype of an app that helps students keep track of their requirements.", "stack": "HTML, CSS, JavaScript", "link": "", "descFmt": {}, "img": ""}, {"title": "Intrams website", "desc": "A website for the intramurals event.", "stack": "", "link": "https://intrams.42web.io/", "descFmt": {}, "img": ""}], "certs": [{"group": "Cisco Networking Academy", "title": "HTML Essentials", "sub": "", "img": "certificates/cert-1.jpg?v=1792280820216"}, {"group": "Cisco Networking Academy", "title": "Network Addressing and Basic Troubleshooting", "sub": "", "img": "certificates/cert-2.jpg?v=1792280862812"}, {"group": "Cisco Networking Academy", "title": "Networking Basics", "sub": "", "img": "certificates/cert-3.jpg?v=1792280879288"}, {"group": "Cisco Networking Academy", "title": "Networking Devices and Basic Configuration", "sub": "", "img": "certificates/cert-4.jpg?v=1792280896186"}, {"group": "Cisco Networking Academy", "title": "Network Support and Security", "sub": "", "img": "certificates/cert-5.jpg?v=1792280915054"}, {"group": "Cisco Networking Academy", "title": "Network Technician Career Path", "sub": "", "img": "certificates/cert-6.jpg?v=1792280933372"}, {"group": "Seminars and technical events", "title": "Bridging Business and Technology for the Next Generation", "sub": "IT Week 2026", "img": "certificates/cert-7.jpg"}, {"group": "Seminars and technical events", "title": "Design, Build, Innovate: The Robotics Experience", "sub": "ICT Week 2026", "img": "certificates/cert-8.jpg"}], "contact": {"email": "mypreciousme09@gmail.com", "phone": "0948 013 1192", "location": "Sto. Tomas City, Batangas, Philippines", "github": "https://github.com/lcct-24-12803"}, "introFmt": {"a": "justify"}, "status": "Open to OJT / internship", "ojt": {"title": "Ready for OJT", "text": "I'm looking for an on-the-job training placement where I can apply what I've learned, contribute to real work, and keep growing alongside a professional team.", "points": [{"title": "Web development", "text": "Responsive pages and interfaces built with HTML, CSS and JavaScript."}, {"title": "Systems and databases", "text": "PHP and MySQL systems, from the database structure to a clean interface."}, {"title": "Networking and IT support", "text": "Basic configuration, cabling and troubleshooting, backed by Cisco Networking Academy training."}, {"title": "Design and publicity", "text": "Layouts, photo and video editing, and publication materials as student council PRO."}]}, "tools": [{"title": "Languages", "items": ["HTML", "CSS", "JavaScript", "PHP", "SQL"]}, {"title": "Frameworks", "items": ["Bootstrap"]}, {"title": "Dev tools", "items": ["Local web hosting", "Git and GitHub"]}, {"title": "Design and office", "items": ["Graphic design and layout", "Microsoft Office", "Microsoft Excel"]}, {"title": "Networking", "items": ["Cabling", "Network addressing", "Troubleshooting"]}], "timeline": [{"when": "2026 – 2027", "title": "Student council PRO", "text": "Handling publication materials, graphic design, editing and technical tasks for the council.", "tags": "Leadership, Graphic Design, Publicity"}, {"when": "2026", "title": "IT Week and ICT Week seminars", "text": "Attended talks on business and technology, and a hands-on robotics experience.", "tags": "Seminars, Robotics"}, {"when": "2024 – Present", "title": "BS Information Technology", "text": "Studying programming, databases, web development and networking at La Consolacion College Tanauan.", "tags": "Programming, Databases, Networking"}, {"when": "2023 – 2024", "title": "Creotec experience: Microsoft Excel", "text": "Gained experience with Microsoft Excel through Creotec finance activities, organizing data and working with spreadsheets.", "tags": "Microsoft Excel, Finance"}, {"when": "Training", "title": "Cisco Networking Academy courses", "text": "Completed six courses, from HTML Essentials to the Network Technician Career Path.", "tags": "Networking, Web"}, {"when": "Development", "title": "Locally hosted web projects", "text": "Built and tested web projects in a local development environment, practicing page design with HTML, CSS and web programming.", "tags": "HTML, CSS, Web Programming"}], "references": [{"name": "Dr. Salem M. Laylo", "role": "IT Program Chair", "org": "La Consolacion College Tanauan", "phone": "+63917 889 8876"}], "faq": [{"q": "Are you open for OJT or an internship?", "a": "Yes. I'm open to OJT and internship opportunities. The fastest way to reach me is by email or phone."}, {"q": "What can you build?", "a": "Responsive websites and PHP and MySQL web systems, such as ticketing, library and operations management systems."}, {"q": "What is your tech stack?", "a": "HTML, CSS, JavaScript, PHP and MySQL, plus networking knowledge from Cisco Networking Academy, UI/UX design and the Microsoft Office suite."}, {"q": "Do you do design work too?", "a": "Yes. As student council PRO, I make publication materials, layouts and edited photos and videos."}, {"q": "Where are you based?", "a": "Sto. Tomas City, Batangas, Philippines. I study at La Consolacion College Tanauan."}, {"q": "Can I see your certificates and resume?", "a": "Yes. My certificates are in the Certifications section and my resume is available as a PDF download."}]};
 (function(){const g=$('glow');if(!g)return;if(matchMedia('(pointer: coarse)').matches||matchMedia('(prefers-reduced-motion: reduce)').matches){g.remove();return}
 let x=innerWidth/2,y=innerHeight/2,tx=x,ty=y,raf=0;
@@ -415,7 +412,7 @@ document.addEventListener('click',ev=>{const t=ev.target.closest('[data-zoom]');
 document.addEventListener('keydown',ev=>{if(ev.key!=='Enter'&&ev.key!==' ')return;const t=ev.target.closest&&ev.target.closest('[data-zoom]');if(t){ev.preventDefault();zoom(t)}});
 /* ===== extras: QR, slideshow, gallery, effects ===== */
 const RM=matchMedia('(prefers-reduced-motion: reduce)').matches,FINE=matchMedia('(hover: hover) and (pointer: fine)').matches,SL_MS=5000;
-let PROJ=[],GAL=null,QRU='',QRN='',PAL=[],palSel=0,palShown=[],_tt;
+let PROJ=[],GAL=null,QRU='',QRN='',_tt;
 const normLink=s=>{s=String(s||'').trim();if(!s)return'';if(!/^https?:\/\//i.test(s))s='https://'+s;try{return new URL(s).href}catch(x){return''}};
 const hostOf=u=>{try{return new URL(u).host.replace(/^www\./,'')}catch(x){return u}};
 const picsOf=p=>((p.imgs&&p.imgs.length)?p.imgs:(p.img?[p.img]:[])).filter(Boolean);
@@ -524,20 +521,11 @@ $('skillFilters').addEventListener('click',ev=>{const b=ev.target.closest('.fbtn
  document.querySelectorAll('#skillFilters .fbtn').forEach(x=>{x.classList.toggle('on',x===b);x.setAttribute('aria-pressed',x===b)});
  cols.forEach((c,i)=>{const show=f===0||f===i+1;c.classList.toggle('gone',!show);if(show){c.classList.remove('flip');void c.offsetWidth;c.classList.add('flip')}});
  const tools=f===0||f===cols.length+1;[$('toolHead'),$('toolWin')].forEach(x=>x.classList.toggle('gone',!tools))});
-/* quick jump palette */
-function jump(sel,i){const t=i==null?document.querySelector(sel):document.querySelector('#projGrid .proj[data-i="'+i+'"]');if(!t)return;t.scrollIntoView({behavior:RM?'auto':'smooth',block:i==null?'start':'center'});if(i!=null){t.classList.remove('flash');void t.offsetWidth;t.classList.add('flash')}}
-function palRender(){const q=$('palQ').value.trim().toLowerCase();palShown=PAL.filter(x=>!q||(x.t+' '+x.k).toLowerCase().includes(q));palSel=Math.min(palSel,Math.max(palShown.length-1,0));
- $('palList').innerHTML=palShown.length?palShown.map((x,i)=>'<li role="option" data-i="'+i+'" class="'+(i===palSel?'sel':'')+'" aria-selected="'+(i===palSel)+'"><span>'+e(x.t)+'</span><small>'+e(x.k)+'</small></li>').join(''):'<li class="none">Nothing matches that.</li>'}
-function palOpen(o){$('pal').hidden=!o;if(o){$('palQ').value='';palSel=0;palRender();setTimeout(()=>$('palQ').focus(),0)}}
-$('palBtn').onclick=()=>palOpen(true);
-$('pal').addEventListener('click',ev=>{if(ev.target===$('pal')){palOpen(false);return}const li=ev.target.closest('li[data-i]');if(li){const x=palShown[+li.dataset.i];palOpen(false);x&&x.run()}});
-$('palQ').addEventListener('input',()=>{palSel=0;palRender()});
-addEventListener('keydown',ev=>{
- if((ev.ctrlKey||ev.metaKey)&&ev.key.toLowerCase()==='k'){ev.preventDefault();palOpen($('pal').hidden);return}
- if($('pal').hidden)return;
- if(ev.key==='Escape')palOpen(false);
- else if(ev.key==='ArrowDown'||ev.key==='ArrowUp'){ev.preventDefault();palSel=(palSel+(ev.key==='ArrowDown'?1:-1)+palShown.length)%Math.max(palShown.length,1);palRender();const s=$('palList').querySelector('.sel');s&&s.scrollIntoView({block:'nearest'})}
- else if(ev.key==='Enter'){const x=palShown[palSel];if(x){ev.preventDefault();palOpen(false);x.run()}}});
+/* theme toggle */
+(function(){const root=document.documentElement,btn=$('themeBtn'),nav=document.querySelector('.navbar'),meta=document.querySelector('meta[name="theme-color"]');
+function apply(t){root.setAttribute('data-theme',t);nav.setAttribute('data-bs-theme',t==='light'?'light':'dark');if(meta)meta.content=t==='light'?'#EEF7FB':'#021F2E';btn.setAttribute('aria-label','Switch to '+(t==='light'?'dark':'light')+' mode');btn.querySelector('.tlabel').textContent=t==='light'?'Dark mode':'Light mode'}
+let t=root.getAttribute('data-theme')==='light'?'light':'dark';apply(t);
+btn.addEventListener('click',()=>{t=t==='light'?'dark':'light';apply(t);try{localStorage.setItem('portfolioTheme',t)}catch(x){}})})();
 /* progress bar + nav spy */
 (function(){const bar=$('prog');let q=0;const up=()=>{q=0;const h=document.documentElement.scrollHeight-innerHeight;bar.style.transform='scaleX('+(h>0?Math.min(1,scrollY/h):0)+')'};
  addEventListener('scroll',()=>{if(!q)q=requestAnimationFrame(up)},{passive:true});up();
@@ -551,9 +539,6 @@ function buildExtras(d){
  const sum=a=>(a||[]).reduce((n,g)=>n+g.items.length,0);
  $('statGrid').innerHTML=[[(d.projects||[]).length,'projects'],[(d.certs||[]).length,'certificates'],[sum(d.skills),'skills'],[sum(d.tools),'tools']].map(s=>'<div class="col-6 col-lg-3 stat"><div class="num" data-to="'+s[0]+'">0</div><div class="lbl"><span>$</span> '+s[1]+'</div></div>').join('');
  $('skillFilters').innerHTML=['All',...d.skills.map(g=>g.title),'Tools'].map((t,i)=>'<button type="button" class="fbtn'+(i?'':' on')+'" data-f="'+i+'" aria-pressed="'+(i===0)+'">'+e(t)+'</button>').join('');
- PAL=[['About','#about'],['Ready for OJT','#ojt'],['Journey','#journey'],['Skills','#skills'],['Projects','#projects'],['Certifications','#certifications'],['Quick answers','#faq'],['Contact','#contact']].map(([t,h])=>({t,k:'go to',run:()=>jump(h)}))
-  .concat((d.projects||[]).map((p,i)=>({t:p.title,k:'project',run:()=>jump(null,i)})))
-  .concat([{t:'Email me',k:'action',run:()=>{location.href='mailto:'+d.contact.email}},{t:'Copy email address',k:'action',run:()=>copyText(d.contact.email)},{t:'Download resume',k:'action',run:()=>{location.href='resume.pdf'}}]);
 }
 
 fetch('content.json?'+Date.now()).then(r=>{if(!r.ok)throw 0;return r.json()}).then(render).catch(()=>render(DEFAULT));
