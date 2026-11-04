@@ -98,7 +98,8 @@
       "stack": "PHP, MySQL, QR codes",
       "link": "",
       "descFmt": {},
-      "img": ""
+      "img": "",
+      "imgs": []
     },
     {
       "title": "SAO Help Desk",
@@ -106,7 +107,8 @@
       "stack": "PHP, MySQL, Bootstrap",
       "link": "",
       "descFmt": {},
-      "img": ""
+      "img": "",
+      "imgs": []
     },
     {
       "title": "SALRC_LCCT",
@@ -114,7 +116,8 @@
       "stack": "PHP, MySQL",
       "link": "",
       "descFmt": {},
-      "img": ""
+      "img": "",
+      "imgs": []
     },
     {
       "title": "Goodreads redesign",
@@ -122,7 +125,8 @@
       "stack": "PHP, MySQL, UI design",
       "link": "",
       "descFmt": {},
-      "img": ""
+      "img": "",
+      "imgs": []
     },
     {
       "title": "LCCStats",
@@ -130,7 +134,8 @@
       "stack": "HTML, CSS, JavaScript",
       "link": "",
       "descFmt": {},
-      "img": ""
+      "img": "",
+      "imgs": []
     },
     {
       "title": "Intrams website",
@@ -138,7 +143,8 @@
       "stack": "",
       "link": "https://intrams.42web.io/",
       "descFmt": {},
-      "img": ""
+      "img": "",
+      "imgs": []
     }
   ],
   "certs": [
@@ -177,18 +183,6 @@
       "title": "Network Technician Career Path",
       "sub": "",
       "img": "certificates/cert-6.jpg?v=1792280933372"
-    },
-    {
-      "group": "Seminars and technical events",
-      "title": "Bridging Business and Technology for the Next Generation",
-      "sub": "IT Week 2026",
-      "img": "certificates/cert-7.jpg"
-    },
-    {
-      "group": "Seminars and technical events",
-      "title": "Design, Build, Innovate: The Robotics Experience",
-      "sub": "ICT Week 2026",
-      "img": "certificates/cert-8.jpg"
     }
   ],
   "contact": {
