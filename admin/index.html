@@ -230,7 +230,7 @@ function galleryField(p){
   for(const f of files){if(p.imgs.length>=MAXPICS){st.textContent='Limit of '+MAXPICS+' pictures reached. The rest were skipped.';break}
    const ok=await new Promise(res=>openCrop(URL.createObjectURL(f),4/3,1400,async url=>{st.textContent='Uploading...';try{await upload(url,null);res(true)}catch(e){st.textContent=e.message;res(false)}},()=>res(true)));if(!ok)break}};
  draw();
- return h('div',{class:'f'},h('span',{},'Slideshow pictures (up to '+MAXPICS+', the first one is the cover)'),cnt,grid,h('span',{class:'small'},'Add pictures (you can pick several, each opens in the crop box)'),fi,st)}
+ return h('div',{class:'f'},h('span',{},'Slideshow pictures (up to '+MAXPICS+', the first one is the cover; until you add one, the site shows a default cover)'),cnt,grid,h('span',{class:'small'},'Add pictures (you can pick several, each opens in the crop box)'),fi,st)}
 const st=f=>{f=f||{};let s='';if(['left','center','right','justify'].includes(f.a))s+='text-align:'+f.a+';'+(f.a==='justify'?'hyphens:auto;':'');if(f.b)s+='font-weight:700;';if(f.i)s+='font-style:italic;';if(f.s==='sm')s+='font-size:.9em;';if(f.s==='lg')s+='font-size:1.15em;';return s};
 function fmtBar(o,key,txt){
  if(!o[key])o[key]={};const f=o[key],btns=[];
