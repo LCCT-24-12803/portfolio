@@ -51,8 +51,9 @@ h2{font-size:clamp(1.9rem,4vw,2.6rem);margin-bottom:10px}
 .shot-wrap{position:relative;width:min(100%,340px);margin:0 auto}.shot{width:100%}
 .shot .pic{position:relative;aspect-ratio:3/4;background:linear-gradient(160deg,var(--fresco),var(--mitchell));display:grid;place-items:center;align-content:center;gap:6px}
 .shot .pic img{position:absolute;inset:0;z-index:1;width:100%;height:100%;object-fit:cover;object-position:center 15%;display:block}
-.shot #initials{font:700 5rem var(--head);color:var(--vg)}
-.shot .ph-note{font:400 .8rem var(--mono);color:var(--vg);opacity:.8}
+.shot .av-art{position:absolute;left:50%;bottom:0;width:80%;height:auto;transform:translateX(-50%);z-index:0}
+.shot #initials{position:absolute;top:14px;left:14px;z-index:0;font:700 1rem var(--mono);color:var(--vg);padding:3px 10px;border:1px solid var(--line);border-radius:6px;background:rgba(2,31,46,.55)}
+.shot .ph-note{position:absolute;bottom:12px;left:50%;transform:translateX(-50%);z-index:0;white-space:nowrap;font:400 .8rem var(--mono);color:var(--vg);background:rgba(2,31,46,.6);border:1px solid var(--line);border-radius:6px;padding:2px 10px}
 .modal-title{font-family:var(--head);color:var(--vg)}
 .modal-content{background:var(--oxford);border-radius:14px;border:1px solid var(--line)}
 #imgBig{max-width:100%;max-height:80vh;object-fit:contain;border-radius:8px}
@@ -77,7 +78,7 @@ h2{font-size:clamp(1.9rem,4vw,2.6rem);margin-bottom:10px}
 .edu{border-left:4px solid var(--mystic);border-radius:4px 12px 12px 4px}
 .edu .sub{color:var(--mystic);font-weight:600;margin-bottom:8px}
 .ph{aspect-ratio:4/3;border-bottom:1px solid var(--line);background:repeating-linear-gradient(135deg,var(--panel2),var(--panel2) 12px,var(--panel) 12px,var(--panel) 24px);display:grid;place-items:center;position:relative;overflow:hidden;color:var(--muted);font:400 .82rem var(--mono)}
-.ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+.ph img{position:absolute;inset:0;z-index:2;width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
 .card:hover .ph img{transform:scale(1.04)}
 .chips{display:flex;flex-wrap:wrap;gap:6px;list-style:none;padding:0!important;margin:0 0 12px!important}
 .chips li{margin:0;font:400 .78rem var(--mono);color:var(--vg);background:var(--panel2);border:1px solid var(--line);border-radius:6px;padding:2px 9px}
@@ -183,7 +184,7 @@ main section:not(.hero):not(.strip) h2::before{content:"// 0" counter(sec);displ
 .flash{animation:flash 1.4s ease-out}
 @keyframes flash{0%,55%{box-shadow:0 0 0 3px var(--mystic)}100%{box-shadow:0 0 0 0 transparent}}
 /* slideshow */
-.slides{position:absolute;inset:0;z-index:1;cursor:zoom-in}
+.slides{position:absolute;inset:0;z-index:2;cursor:zoom-in}
 .ph .sl{opacity:0;transition:opacity .8s ease,transform .5s ease}.ph .sl.on{opacity:1}
 .slider.multi::after{content:"";position:absolute;inset:auto 0 0;height:64px;background:linear-gradient(transparent,rgba(2,31,46,.7));z-index:2;pointer-events:none}
 .sl-btn{position:absolute;top:50%;transform:translateY(-50%);z-index:3;width:38px;height:38px;border-radius:50%;border:1px solid var(--line);background:rgba(2,31,46,.72);color:var(--vg);display:grid;place-items:center;padding:0;cursor:pointer;opacity:0;transition:opacity .25s,background-color .2s}
@@ -202,15 +203,19 @@ main section:not(.hero):not(.strip) h2::before{content:"// 0" counter(sec);displ
 .gal-btn{position:absolute;top:50%;transform:translateY(-50%);width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:rgba(2,31,46,.8);color:var(--vg);display:grid;place-items:center;cursor:pointer;z-index:2}
 .gal-btn.prev{left:12px}.gal-btn.next{right:12px}.gal-btn:hover{background:var(--mitchell);color:#fff}
 .gal-btn svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
-.cover{position:absolute;inset:0;z-index:1;display:grid;place-content:center;justify-items:center;gap:10px;overflow:hidden;background:radial-gradient(rgba(166,224,244,.18) 1px,transparent 1.3px) 0 0/18px 18px,linear-gradient(150deg,var(--fresco),var(--mitchell))}
+.cover{position:absolute;inset:0;z-index:1;display:grid;place-content:center;justify-items:center;gap:10px;overflow:hidden;background:var(--pt,none),var(--gr,linear-gradient(150deg,var(--fresco),var(--mitchell)));--ca:#A6E0F4;--cb:#4FB3D9;--pl:rgba(166,224,244,.18)}
 .cover::after{content:"";position:absolute;inset:0;background:linear-gradient(105deg,transparent 35%,rgba(166,224,244,.16) 50%,transparent 65%);transform:translateX(-120%);animation:cvshine 5.5s ease-in-out infinite}
 @keyframes cvshine{60%,100%{transform:translateX(120%)}}
-.cv-art{width:68%;max-width:270px;height:auto;filter:drop-shadow(0 8px 18px rgba(2,31,46,.45));animation:cvfloat 6s ease-in-out infinite}
+.pt0{--pt:radial-gradient(var(--pl) 1px,transparent 1.3px) 0 0/18px 18px}
+.pt1{--pt:linear-gradient(var(--pl) 1px,transparent 1px) 0 0/22px 22px,linear-gradient(90deg,var(--pl) 1px,transparent 1px) 0 0/22px 22px}
+.pt2{--pt:repeating-linear-gradient(135deg,var(--pl) 0 2px,transparent 2px 15px)}
+.pt3{--pt:radial-gradient(circle at 85% 15%,transparent 0 26px,var(--pl) 27px 28px,transparent 29px 50px,var(--pl) 51px 52px,transparent 53px 74px,var(--pl) 75px 76px,transparent 77px)}
+.cv-art{width:68%;max-width:270px;height:auto;filter:drop-shadow(0 8px 18px rgba(2,31,46,.45));animation:cvfloat 6s ease-in-out infinite;rotate:var(--rot,0deg);scale:calc(var(--fx,1)*var(--sc,1)) var(--sc,1)}
 @keyframes cvfloat{50%{transform:translateY(-6px)}}
-.cv-art .l{fill:none;stroke:var(--vg);stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
-.cv-art .f0{fill:var(--oxford);stroke:none}.cv-art .f1{fill:rgba(2,31,46,.55)}.cv-art .f2{fill:var(--vg)}.cv-art .f3{fill:var(--mystic)}
-.cv-art .f1.l{fill:rgba(2,31,46,.55)}.cv-art .f2.l{fill:var(--vg)}
-.cover span{font:500 .78rem var(--mono);color:var(--vg);background:rgba(2,31,46,.55);border:1px solid var(--line);border-radius:6px;padding:3px 10px}
+.cv-art .l{fill:none;stroke:var(--ca);stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+.cv-art .f0{fill:var(--oxford);stroke:none}.cv-art .f1{fill:rgba(2,31,46,.55)}.cv-art .f2{fill:var(--ca)}.cv-art .f3{fill:var(--cb)}
+.cv-art .f1.l{fill:rgba(2,31,46,.55)}.cv-art .f2.l{fill:var(--ca)}
+.cover span{font:500 .78rem var(--mono);color:var(--ca);background:rgba(2,31,46,.55);border:1px solid var(--pl);border-radius:6px;padding:3px 10px;position:relative;z-index:1}
 /* QR */
 .proj-foot{display:flex;align-items:flex-end;justify-content:space-between;gap:14px;margin-top:16px;padding-top:14px;border-top:1px dashed var(--line)}
 .proj-foot small{display:block;font:400 .78rem var(--mono);color:var(--muted);overflow-wrap:anywhere}
@@ -274,7 +279,7 @@ main section:not(.hero):not(.strip) h2::before{content:"// 0" counter(sec);displ
 </div>
 <div class="win mini"><div class="win-bar">profile.js</div><div class="win-body"><pre class="code" id="codeBlock"></pre></div></div>
 </div>
-<div class="col-md-5 order-1 order-md-2"><div class="shot-wrap"><div class="win shot" data-zoom tabindex="0" role="button" aria-label="View photo larger"><div class="win-bar">profile.jpg</div><div class="pic"><span id="initials" aria-hidden="true"></span><span class="ph-note">Photo placeholder</span><img id="photo" alt="Portrait" onerror="this.remove()"></div></div><div id="chips" aria-hidden="true"></div></div></div>
+<div class="col-md-5 order-1 order-md-2"><div class="shot-wrap"><div class="win shot" data-zoom tabindex="0" role="button" aria-label="View photo larger"><div class="win-bar">profile.jpg</div><div class="pic"><svg class="av-art" viewBox="0 0 120 150" aria-hidden="true"><circle cx="60" cy="58" r="26" fill="#A6E0F4"/><path d="M12 150c0-36 21-58 48-58s48 22 48 58z" fill="#4FB3D9"/><path d="M22 30l-8 8 8 8M98 30l8 8-8 8" fill="none" stroke="#A6E0F4" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" opacity=".75"/><circle cx="104" cy="104" r="4" fill="#A6E0F4" opacity=".6"/><circle cx="16" cy="96" r="3" fill="#A6E0F4" opacity=".6"/></svg><span id="initials" aria-hidden="true"></span><span class="ph-note">Photo placeholder</span><img id="photo" alt="Portrait" onerror="this.remove()"></div></div><div id="chips" aria-hidden="true"></div></div></div>
 </div></div></section>
 
 <div class="tape" aria-hidden="true"><div class="tape-track" id="tape"></div></div>
@@ -384,9 +389,9 @@ $('timeline').innerHTML=(d.timeline||[]).map(t=>'<li><div class="tl-card"><span 
 $('refs').innerHTML=(d.references||[]).map(r=>{const n=String(r.phone||'').replace(/\D/g,''),tl=n.startsWith('0')?'+63'+n.slice(1):'+'+n;return '<div class="box ref"><h3>'+e(r.name)+'</h3><p>'+e(r.role)+'</p><p>'+e(r.org)+'</p>'+(r.phone?'<p class="ph-no"><a href="tel:'+e(tl)+'">'+e(r.phone)+'</a></p>':'')+'</div>'}).join('');
 $('skillGrid').innerHTML=d.skills.map(g=>'<div class="col-sm-6 col-lg-3"><div class="box h-100"><h3>'+e(g.title)+'</h3><ul>'+g.items.map(x=>'<li>'+e(x)+'</li>').join('')+'</ul></div></div>').join('');
 $('toolGrid').innerHTML=(d.tools||[]).map(g=>'<div class="col-sm-6 col-lg-4"><h3 style="font-size:1.05rem">'+e(g.title)+'</h3><ul class="chips">'+g.items.map(x=>'<li>'+e(x)+'</li>').join('')+'</ul></div>').join('');
-PROJ=d.projects;$('projGrid').innerHTML=PROJ.map(projCard).join('');
+CVN={};PROJ=d.projects;$('projGrid').innerHTML=PROJ.map(projCard).join('');
 const groups=[];d.certs.forEach(c=>{let g=groups.find(x=>x.n===c.group);if(!g)groups.push(g={n:c.group,l:[]});g.l.push(c)});
-$('certArea').innerHTML=groups.map((g,i)=>'<h3 class="sub-h">'+e(g.n)+'</h3><div class="row g-4 '+(i<groups.length-1?'mb-5':'')+'">'+g.l.map(c=>'<div class="col-sm-6 col-lg-4"><div class="card cert h-100"><div class="ph"'+(c.img?' data-zoom tabindex="0" role="button" aria-label="View '+e(c.title)+' certificate larger"':'')+'>Certificate image'+(c.img?'<img src="'+e(c.img)+'" alt="'+e(c.title)+' certificate" onerror="this.remove()">':'')+'</div><div class="card-body"><h4>'+e(c.title)+'</h4>'+(c.sub?'<small>'+e(c.sub)+'</small>':'')+'</div></div></div>').join('')+'</div>').join('');
+$('certArea').innerHTML=groups.map((g,i)=>'<h3 class="sub-h">'+e(g.n)+'</h3><div class="row g-4 '+(i<groups.length-1?'mb-5':'')+'">'+g.l.map(c=>'<div class="col-sm-6 col-lg-4"><div class="card cert h-100"><div class="ph"'+(c.img?' data-zoom tabindex="0" role="button" aria-label="View '+e(c.title)+' certificate larger"':'')+'>'+certCover(c,!c.img)+(c.img?'<img src="'+e(c.img)+'" alt="'+e(c.title)+' certificate" onerror="this.parentNode.removeAttribute(\'data-zoom\');this.remove()">':'')+'</div><div class="card-body"><h4>'+e(c.title)+'</h4>'+(c.sub?'<small>'+e(c.sub)+'</small>':'')+'</div></div></div>').join('')+'</div>').join('');
 $('faqList').innerHTML=(d.faq||[]).map(q=>'<details><summary>'+e(q.q)+'</summary><p>'+e(q.a)+'</p></details>').join('');
 const ph=d.contact.phone.replace(/\D/g,''),tel=ph.startsWith('0')?'+63'+ph.slice(1):'+'+ph;
 $('contactLinks').innerHTML='<a href="mailto:'+e(d.contact.email)+'">'+e(d.contact.email)+'</a><a href="tel:'+e(tel)+'">'+e(d.contact.phone)+'</a>'+(d.contact.github?'<a href="'+e(d.contact.github)+'" target="_blank" rel="noopener">GitHub</a>':'')+'<button type="button" id="copyMail" data-v="'+e(d.contact.email)+'">Copy email</button>';
@@ -420,7 +425,7 @@ function qrPng(t,done){const m=qrMatrix(t);if(!m)return;const n=m.length,g=4,u=M
 function toast(m){const t=$('toast');t.textContent=m;t.classList.add('on');clearTimeout(_tt);_tt=setTimeout(()=>t.classList.remove('on'),2200)}
 const copyText=s=>navigator.clipboard?navigator.clipboard.writeText(s).then(()=>toast('Copied to clipboard'),()=>toast('Could not copy')):toast('Copy is not supported here');
 const CHEV=d=>'<svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="'+d+'"/></svg>';
-const SV=b=>'<svg class="cv-art" viewBox="0 0 200 130" aria-hidden="true">'+b+'</svg>';
+const SV=b=>'<svg class="cv-art" viewBox="0 0 200 130" aria-hidden="true">'+b+'<!--O--></svg>';
 const R=(c,x,y,w,h,r)=>'<rect class="'+c+'" x="'+x+'" y="'+y+'" width="'+w+'" height="'+h+'"'+(r?' rx="'+r+'"':'')+'/>';
 const ART={
 qr:SV(R('f1 l',24,10,152,110,10)+[[56,26],[120,26],[56,76]].map(([x,y])=>R('l',x,y,26,26,3)+R('f2',x+8,y+8,10,10,1)).join('')+[[94,28],[94,40],[106,34],[96,56],[108,58],[120,60],[132,56],[94,76],[106,88],[94,100],[120,80],[132,92],[120,104],[138,104],[84,64]].map(([x,y])=>R('f3',x,y,8,8,1)).join('')),
@@ -430,13 +435,40 @@ library:SV('<line class="l" x1="18" y1="112" x2="182" y2="112"/>'+[[28,16,58,'f1
 books:SV('<path class="f1 l" d="M100 36C82 26 56 26 30 34V98C56 90 82 90 100 100z"/><path class="f1 l" d="M100 36C118 26 144 26 170 34V98C144 90 118 90 100 100z"/>'+[48,60,72].map(y=>'<line class="l" x1="44" y1="'+y+'" x2="84" y2="'+(y+2)+'" style="opacity:.55;stroke-width:2.5"/><line class="l" x1="116" y1="'+(y+2)+'" x2="146" y2="'+y+'" style="opacity:.55;stroke-width:2.5"/>').join('')+'<path class="f2" d="M150 30v36l7-6 7 6V28z"/>'+[70,85,100,115].map(x=>'<circle class="f2" cx="'+x+'" cy="118" r="4.5"/>').join('')+'<circle class="l" cx="130" cy="118" r="4" style="stroke-width:2"/>'),
 stats:SV(R('f1 l',22,14,156,102,10)+[32,56,80].map((y,i)=>R('l',38,y,14,14,3)+(i<2?'<polyline class="l" points="40,'+(y+7)+' 44,'+(y+11)+' 50,'+(y+3)+'"/>':'')+R('f3',60,y+3,38,7,3.5)).join('')+'<line class="l" x1="112" y1="102" x2="166" y2="102"/>'+R('f3',116,80,10,22,2)+R('f2',130,64,10,38,2)+R('f3',144,48,10,54,2)+'<polyline class="l" points="116,60 130,48 142,52 160,30"/>'),
 web:SV(R('f1 l',24,18,152,96,8)+'<line class="l" x1="24" y1="40" x2="176" y2="40"/>'+[38,50,62].map(x=>'<circle class="f2" cx="'+x+'" cy="29" r="3.5"/>').join('')+'<polyline class="l" points="80,62 64,78 80,94"/><polyline class="l" points="120,62 136,78 120,94"/><line class="l" x1="108" y1="60" x2="92" y2="96"/>')};
-const CATS=[['qr',/\bqr\b|operation management|multi-tenant/,'QR platform'],['ticket',/ticket|help ?desk|concern|support/,'Help desk'],['event',/event|intramural|sport|tournament|competition|festival/,'Event site'],['library',/librar|catalog|archive/,'Library system'],['books',/book|goodreads|reading/,'Book app'],['stats',/stat|track|requirement|checklist|progress|dashboard|analytics|report/,'Progress tracker']];
-function coverHtml(p){const txt=((p.title||'')+' '+(p.desc||'')+' '+(p.stack||'')).toLowerCase(),c=CATS.find(x=>x[1].test(txt))||['web',0,'Web project'];
- const h=[...String(p.title||'')].reduce((a,ch)=>(a*31+ch.charCodeAt(0))>>>0,7),ang=120+(h%6)*18,g=['linear-gradient('+ang+'deg,var(--fresco),var(--mitchell))','linear-gradient('+ang+'deg,var(--oxford),var(--fresco) 55%,var(--mitchell))','linear-gradient('+ang+'deg,var(--mitchell),var(--fresco))'][h%3];
- return '<div class="cover" role="img" aria-label="Default cover for '+e(p.title)+' ('+c[2]+')" style="background:radial-gradient(rgba(166,224,244,.18) 1px,transparent 1.3px) 0 0/18px 18px,'+g+'">'+ART[c[0]]+'<span>'+e(c[2])+' · cover coming soon</span></div>'}
+const CATS=[['qr',/\bqr\b|operation management|multi-tenant/,'QR platform'],['ticket',/ticket|help ?desk|concern|support/,'Help desk'],['event',/event|intramural|sport|tournament|competition|festival/,'Event site'],['library',/librar|catalog|archive/,'Library system'],['books',/book|goodreads|reading/,'Book app'],['stats',/stat|track|requirement|checklist|progress|dashboard|analytics|report/,'Progress tracker'],['design',/design|ui\/ux|poster|pubmat|layout|graphic|branding/,'Design work']];
+const CCATS=[['bot',/robot/,'Robotics'],['code',/html|css|javascript|php|\bweb\b|coding|programming/,'Web and coding'],['net',/network|cisco|cabling|router|cyber|security|troubleshoot/,'Networking'],['talk',/seminar|event|week|talk|summit|conference|webinar|workshop|business|technology|training/,'Seminar']];
+const CS=(inner)=>SV(R('f1 l',34,10,132,110,8)+'<rect class="l" x="42" y="18" width="116" height="94" rx="4" style="stroke-width:1.5;opacity:.5"/>'+R('f2',72,24,56,6,3)+R('f3',84,36,32,4,2)+inner+R('f3',50,96,48,4,2)+R('f3',50,104,34,4,2)+'<polygon class="f3" points="141,104 138,120 148,114 158,120 155,104"/><circle class="f2" cx="148" cy="98" r="10"/><circle class="f0" cx="148" cy="98" r="3.6"/>');
+Object.assign(ART,{
+design:SV(R('f1 l',24,16,116,98,8)+R('f3',40,34,40,28,4)+'<circle class="f2" cx="108" cy="48" r="12"/>'+R('l',40,74,84,6,3)+R('f3',40,88,56,6,3)+'<g transform="rotate(32 160 66)">'+R('f2 l',154,28,12,50,2)+'<polygon class="f1 l" points="154,78 166,78 160,94"/></g><circle class="f2" cx="170" cy="108" r="5"/><circle class="f3" cx="154" cy="112" r="5"/><circle class="l" cx="138" cy="116" r="4.5" style="stroke-width:2"/>'),
+net:CS('<line class="l" x1="100" y1="52" x2="82" y2="78"/><line class="l" x1="100" y1="52" x2="118" y2="78"/><line class="l" x1="82" y1="78" x2="118" y2="78"/><circle class="f2" cx="100" cy="52" r="7"/><circle class="f3" cx="82" cy="78" r="7"/><circle class="f3" cx="118" cy="78" r="7"/>'),
+code:CS('<polyline class="l" points="88,54 76,66 88,78"/><polyline class="l" points="112,54 124,66 112,78"/><line class="l" x1="105" y1="52" x2="95" y2="80"/>'),
+talk:CS(R('f2 l',93,46,14,26,7)+'<path class="l" d="M86 66a14 14 0 0 0 28 0"/><line class="l" x1="100" y1="80" x2="100" y2="88"/><line class="l" x1="92" y1="88" x2="108" y2="88"/>'),
+bot:CS(R('f1 l',82,50,36,28,6)+'<circle class="f2" cx="92" cy="62" r="3.6"/><circle class="f2" cx="108" cy="62" r="3.6"/><line class="l" x1="94" y1="71" x2="106" y2="71"/><line class="l" x1="100" y1="50" x2="100" y2="43"/><circle class="f3" cx="100" cy="40" r="3.4"/>'),
+award:CS('<polygon class="f2" points="100,46 105,60 120,60 108,69 112,84 100,75 88,84 92,69 80,60 95,60"/>')
+});
+const ORN=[
+'<path class="l" d="M14 14v10M9 19h10" style="stroke-width:2.2"/><path class="l" d="M182 106v10M177 111h10" style="stroke-width:2.2"/><circle class="f3" cx="186" cy="16" r="3"/>',
+'<circle class="f3" cx="16" cy="18" r="4"/><circle class="l" cx="28" cy="10" r="3" style="stroke-width:2"/><circle class="f2" cx="184" cy="114" r="4"/><circle class="l" cx="172" cy="122" r="3" style="stroke-width:2"/>',
+'<line class="l" x1="10" y1="30" x2="26" y2="14" style="stroke-width:2.2;opacity:.7"/><line class="l" x1="16" y1="36" x2="32" y2="20" style="stroke-width:2.2;opacity:.7"/><line class="l" x1="168" y1="122" x2="184" y2="106" style="stroke-width:2.2;opacity:.7"/>',
+'<polygon class="f3" points="186,10 194,24 178,24"/><circle class="l" cx="14" cy="112" r="7" style="stroke-width:2.2"/><rect class="f2" x="172" y="104" width="8" height="8" rx="2" transform="rotate(20 176 108)"/>'
+];
+const CV_COL={qr:['#A6E0F4','#4FB3D9'],ticket:['#8EE3C8','#3FB28F'],event:['#F6D98B','#E0A93B'],library:['#C8B6F2','#8E74D6'],books:['#F4B5A0','#E07C5A'],stats:['#9FD7F7','#5B9DF0'],design:['#F5A9D0','#D9568F'],web:['#A6E0F4','#4FB3D9'],net:['#8FE0EE','#3DB8D3'],code:['#FFD39A','#F29B3F'],talk:['#F6D98B','#E0A93B'],bot:['#B7F0A8','#6CC24F'],award:['#C8B6F2','#8E74D6']};
+let CVN={};
+const hashOf=s=>[...String(s||'')].reduce((a,ch)=>(a*31+ch.charCodeAt(0))>>>0,7);
+/* picks a look for one cover; covers of the same category get different patterns, gradients, flips and ornaments */
+function cvLook(key,seed,ns){const h=hashOf(seed),id=ns+key,occ=CVN[id]=(CVN[id]===undefined?-1:CVN[id])+1,v=(h%4+occ)%4,col=CV_COL[key]||CV_COL.web,ang=110+((h>>3)%8)*20,gx=15+(h>>6)%70,gy=10+(h>>9)%70,k=((h>>12)+occ)%3,
+ tint='radial-gradient(circle at '+gx+'% '+gy+'%,'+col[0]+'38,transparent 58%)',
+ base=['linear-gradient('+ang+'deg,var(--fresco),var(--mitchell))','linear-gradient('+ang+'deg,var(--oxford),var(--fresco) 55%,var(--mitchell))','linear-gradient('+ang+'deg,var(--mitchell),var(--oxford) 70%,var(--fresco))'][k];
+ return{cls:'pt'+v,o:(v+(h>>18)+occ)%4,st:'--ca:'+col[0]+';--cb:'+col[1]+';--pl:'+col[0]+'30;--gr:'+tint+','+base+';--fx:'+(((h>>14)+occ)%2?-1:1)+';--rot:'+[-5,0,4,-2][(v+(h>>16))%4]+'deg;--sc:'+[1,.94,1.04,.9][(v*3+occ)%4]}}
+function cvBuild(key,seed,ns,label,lab,soon){const L=cvLook(key,seed,ns);
+ return '<div class="cover '+L.cls+'" role="img" aria-label="'+e(label)+'" style="'+L.st+'">'+ART[key].replace('<!--O-->',ORN[L.o])+(lab?'<span>'+e(lab)+(soon?' · coming soon':'')+'</span>':'')+'</div>'}
+function coverHtml(p,soon){const txt=((p.title||'')+' '+(p.desc||'')+' '+(p.stack||'')).toLowerCase(),c=CATS.find(x=>x[1].test(txt))||['web',0,'Web project'];
+ return cvBuild(c[0]==='web'?'web':c[0],p.title,'p','Default cover for '+(p.title||'project')+' ('+c[2]+')',soon?c[2]+' · cover coming soon':'',false)}
+function certCover(c,soon){const txt=((c.group||'')+' '+(c.title||'')+' '+(c.sub||'')).toLowerCase(),k=CCATS.find(x=>x[1].test(txt))||['award',0,'Achievement'];
+ return cvBuild(k[0],c.title,'c','Default cover for '+(c.title||'certificate')+' ('+k[2]+')','Certificate · '+k[2],soon)}
 function projCard(p,i){
  const pics=picsOf(p),n=pics.length,link=normLink(p.link),slug=p.title.toLowerCase().replace(/[^a-z0-9]+/g,'-'),qr=link?qrSvg(link,3):'';
- let ph='<div class="ph slider'+(n>1?' multi':'')+'" data-n="'+n+'">'+(n?'Project screenshot':coverHtml(p));
+ let ph='<div class="ph slider'+(n>1?' multi':'')+'" data-n="'+n+'">'+coverHtml(p,!n);
  if(n){ph+='<div class="slides" tabindex="0" role="button" aria-label="View '+e(p.title)+' pictures larger">'+pics.map((s,k)=>'<img class="sl'+(k?'':' on')+'" src="'+e(s)+'" alt="'+e(p.title)+' screenshot '+(k+1)+'"'+(k?' loading="lazy"':'')+' onerror="this.remove()">').join('')+'</div>';
   if(n>1)ph+='<button class="sl-btn prev" type="button" aria-label="Previous picture">'+CHEV('15 5 8 12 15 19')+'</button><button class="sl-btn next" type="button" aria-label="Next picture">'+CHEV('9 5 16 12 9 19')+'</button><div class="sl-count"><b>1</b> / '+n+'</div><div class="sl-dots">'+pics.map((s,k)=>'<button type="button" class="dot'+(k?'':' on')+'" data-k="'+k+'" aria-label="Show picture '+(k+1)+'"></button>').join('')+'</div><div class="sl-bar"><i></i></div>'}
  ph+='</div>';
