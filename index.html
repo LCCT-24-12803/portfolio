@@ -394,7 +394,7 @@ const groups=[];d.certs.forEach(c=>{let g=groups.find(x=>x.n===c.group);if(!g)gr
 $('certArea').innerHTML=groups.map((g,i)=>'<h3 class="sub-h">'+e(g.n)+'</h3><div class="row g-4 '+(i<groups.length-1?'mb-5':'')+'">'+g.l.map(c=>'<div class="col-sm-6 col-lg-4"><div class="card cert h-100"><div class="ph"'+(c.img?' data-zoom tabindex="0" role="button" aria-label="View '+e(c.title)+' certificate larger"':'')+'>'+certCover(c,!c.img)+(c.img?'<img src="'+e(c.img)+'" alt="'+e(c.title)+' certificate" onerror="this.parentNode.removeAttribute(\'data-zoom\');this.remove()">':'')+'</div><div class="card-body"><h4>'+e(c.title)+'</h4>'+(c.sub?'<small>'+e(c.sub)+'</small>':'')+'</div></div></div>').join('')+'</div>').join('');
 $('faqList').innerHTML=(d.faq||[]).map(q=>'<details><summary>'+e(q.q)+'</summary><p>'+e(q.a)+'</p></details>').join('');
 const ph=d.contact.phone.replace(/\D/g,''),tel=ph.startsWith('0')?'+63'+ph.slice(1):'+'+ph;
-$('contactLinks').innerHTML='<a href="mailto:'+e(d.contact.email)+'">'+e(d.contact.email)+'</a><a href="tel:'+e(tel)+'">'+e(d.contact.phone)+'</a>'+(d.contact.github?'<a href="'+e(d.contact.github)+'" target="_blank" rel="noopener">GitHub</a>':'')+'<button type="button" id="copyMail" data-v="'+e(d.contact.email)+'">Copy email</button>';
+$('contactLinks').innerHTML='<a href="mailto:'+e(d.contact.email)+'">'+e(d.contact.email)+'</a><a href="tel:'+e(tel)+'">'+e(d.contact.phone)+'</a>'+(d.contact.github?'<a href="'+e(d.contact.github)+'" target="_blank" rel="noopener">GitHub</a>':'')+'';
 $('contactLoc').textContent=d.contact.location;
 $('foot').innerHTML='&copy; 2026 '+e(d.name)+'. '+e(d.education.school)+'.<br><span style="font:400 .85rem var(--mono);color:var(--mystic)">$ exit 0</span>';
 buildExtras(d);
@@ -482,8 +482,7 @@ document.addEventListener('click',ev=>{
  const sl=ev.target.closest('.slides');
  if(sl){const s=sl.closest('.slider');if(s._moved)return;const art=sl.closest('.proj'),p=PROJ[+art.dataset.i],list=picsOf(p),k=[...sl.querySelectorAll('.sl')].findIndex(x=>x.classList.contains('on'));openGallery(list,Math.max(k,0),p.title);return}
  const q=ev.target.closest('[data-qr]');
- if(q){const p=PROJ[+q.dataset.qr],u=normLink(p.link);QRU=u;QRN=p.title;$('qrTitle').textContent=p.title;$('qrBox').innerHTML=qrSvg(u,4);$('qrUrl').textContent=u;$('qrOpen').href=u;bootstrap.Modal.getOrCreateInstance($('qrModal')).show();return}
- if(ev.target.closest('#copyMail')){copyText($('copyMail').dataset.v)}});
+ if(q){const p=PROJ[+q.dataset.qr],u=normLink(p.link);QRU=u;QRN=p.title;$('qrTitle').textContent=p.title;$('qrBox').innerHTML=qrSvg(u,4);$('qrUrl').textContent=u;$('qrOpen').href=u;bootstrap.Modal.getOrCreateInstance($('qrModal')).show();return}});
 $('qrCopy').onclick=()=>copyText(QRU);
 $('qrPng').onclick=()=>qrPng(QRU,b=>{if(!b)return;const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=(QRN||'project').toLowerCase().replace(/[^a-z0-9]+/g,'-')+'-qr.png';document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),1000)});
 addEventListener('keydown',ev=>{
