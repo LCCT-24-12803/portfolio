@@ -1,187 +1,20 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Personal Web Portfolio</title>
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@400;500;600;800&display=swap" rel="stylesheet">
-<script>try{if(localStorage.getItem('portfolioSky')==='night')document.documentElement.setAttribute('data-theme','night')}catch(x){}</script>
-<style>
-:root{--navy:#012453;--txt:#0b2f63;--mut:#2a5586;--glass:rgba(255,255,255,.42);--gb:rgba(255,255,255,.7);--btn:#012453;--btnt:#fff;--sky1:#4f98d0;--sky2:#8ec1e2;--cl:255,255,255}
-[data-theme=night]{--navy:#dbe9ff;--txt:#e8f1ff;--mut:#a9c3ea;--glass:rgba(10,28,68,.55);--gb:rgba(140,185,255,.35);--btn:#9cc4ff;--btnt:#06122b;--sky1:#050f27;--sky2:#0d2a5c;--cl:120,165,255}
-*{box-sizing:border-box;margin:0}
-html{scroll-behavior:smooth}
-body{font-family:Poppins,sans-serif;color:var(--txt);line-height:1.6;min-height:100vh;overflow-x:hidden}
-#sky{position:fixed;inset:0;z-index:-1;background:linear-gradient(160deg,var(--sky1),var(--sky2));transition:transform 1s cubic-bezier(.6,0,.2,1),background .6s;overflow:hidden}
-#sky.fly{transform:scale(1.5)}
-.cs{position:absolute;inset:-10%;filter:url(#paint)}
-.cl{position:absolute;border-radius:50%;background:radial-gradient(closest-side,rgba(var(--cl),.95),rgba(var(--cl),.5) 55%,rgba(var(--cl),0));animation:dr linear infinite alternate}
-@keyframes dr{from{transform:translateX(-70px)}to{transform:translateX(130px)}}
-#veil{position:fixed;inset:0;z-index:50;pointer-events:none;opacity:0;transition:opacity .5s;background:radial-gradient(circle,rgba(var(--cl),1),rgba(var(--cl),.85))}
-#veil.on{opacity:1}
-.script{font-family:'Great Vibes',cursive;font-weight:400;color:#fff;text-shadow:0 2px 14px rgba(1,36,83,.35)}
-.v{display:none;min-height:100vh}.v.on{display:block;animation:fi .7s}
-@keyframes fi{from{opacity:0}to{opacity:1}}
-.c{display:none;min-height:100vh;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:24px}.c.on{display:flex}
-#welcome .script{font-size:clamp(2.2rem,6vw,4.2rem);line-height:1}
-#welcome h1{font-weight:800;font-size:clamp(2.2rem,8vw,6rem);line-height:1.05;color:#012453;text-shadow:5px 6px 8px rgba(1,36,83,.35);letter-spacing:-.01em}
-.btns{display:flex;gap:clamp(20px,8vw,120px);margin-top:clamp(60px,14vh,160px);flex-wrap:wrap;justify-content:center}
-.pill{font:500 .95rem Poppins,sans-serif;padding:16px 34px;border-radius:30px;border:1px solid rgba(255,255,255,.7);background:rgba(255,255,255,.4);color:#4c6fe0;cursor:pointer;backdrop-filter:blur(8px);transition:.3s}
-.pill.b{font-weight:600}.pill:hover{background:rgba(255,255,255,.75);transform:translateY(-3px)}
-#intro .script{font-size:clamp(1.8rem,5vw,3.4rem);line-height:1.7;opacity:0;animation:up 1.6s forwards}
-#intro .script:nth-child(2){animation-delay:1.8s}
-@keyframes up{from{opacity:0;transform:translateY(16px);filter:blur(6px)}to{opacity:1;transform:none;filter:none}}
-.skip{margin-top:30px;font-size:.8rem;color:#fff;opacity:.8;cursor:pointer;background:none;border:0;font-family:inherit}
-#hub{padding:70px 4vw 40px;align-items:center}
-#hub h2{font-family:'Great Vibes',cursive;font-weight:400;font-size:clamp(2rem,5vw,3.2rem);color:#fff;text-shadow:0 2px 14px rgba(1,36,83,.4);margin-bottom:14px}
-.hubcloud{width:min(980px,100%);padding:clamp(18px,3vw,40px);border-radius:90px;background:rgba(var(--cl),.28);box-shadow:0 0 70px 36px rgba(var(--cl),.3)}
-.grid{display:grid;grid-template-columns:repeat(3,1fr);grid-template-areas:"j a s" "p a c" "r t t";gap:clamp(14px,2.4vw,30px)}
-.op{position:relative;overflow:hidden;min-height:150px;border:6px solid rgba(255,255,255,.8);box-shadow:0 0 36px rgba(255,255,255,.7),inset 0 0 26px rgba(255,255,255,.5);cursor:pointer;background:var(--glass);transition:transform .4s;font:inherit;color:inherit;padding:0}
-.op:nth-child(odd){border-radius:48% 52% 46% 54%/58% 44% 56% 42%}.op:nth-child(even){border-radius:54% 46% 52% 48%/44% 56% 44% 56%}
-.op[data-k=about]{grid-area:a;min-height:340px}.op[data-k=journey]{grid-area:j}.op[data-k=skills]{grid-area:s}.op[data-k=projects]{grid-area:p}.op[data-k=certs]{grid-area:c}.op[data-k=resume]{grid-area:r}.op[data-k=contact]{grid-area:t}
-.op:hover{transform:scale(1.05)}
-.pv{position:absolute;inset:0;filter:blur(3px);transform:scale(1.1);transition:filter .4s;display:flex;align-items:center;justify-content:center}
-.op:hover .pv{filter:blur(.5px)}
-.pv img{width:100%;height:100%;object-fit:cover}
-.mini{display:flex;flex-direction:column;gap:7px;padding:22px;width:100%;color:var(--txt);font-size:.78rem;text-align:left}
-.mini i{font-style:normal;background:rgba(255,255,255,.6);padding:4px 10px;border-radius:9px;color:#012453}
-.mini.r{flex-direction:row;flex-wrap:wrap;justify-content:center}
-.lb{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-weight:500;font-size:1.05rem;color:#0e2a8a;text-shadow:0 0 12px #fff,0 0 4px #fff;text-align:center;padding:10px}
-.hint{position:absolute;left:-8%;bottom:-8%;transform:translateX(-100%);text-align:center;color:#0e2a8a;font-size:.95rem;pointer-events:none;width:170px}
-.hint em{font-family:'Great Vibes',cursive;font-size:1.5rem;display:block;font-style:normal}
-.hint svg{width:120px;height:70px;stroke:#012453;fill:none;stroke-width:2;stroke-dasharray:5 5;display:block;margin:0 auto 4px}
-.top{position:fixed;top:12px;right:14px;z-index:20;display:flex;gap:8px}
-.top button,.top a{width:auto;min-width:42px;height:42px;padding:0 14px;border-radius:21px;border:1px solid var(--gb);background:var(--glass);backdrop-filter:blur(10px);color:var(--navy);cursor:pointer;font:500 .85rem Poppins;display:flex;align-items:center;text-decoration:none}
-#page{padding:70px 4vw 130px}
-.wrap{width:min(1000px,100%);margin:auto}
-.back{display:inline-block;margin-bottom:10px;padding:9px 20px;border-radius:24px;border:1px solid var(--gb);background:var(--glass);backdrop-filter:blur(10px);color:var(--navy);cursor:pointer;font:500 .9rem Poppins}
-#page h2{font-family:'Great Vibes',cursive;font-weight:400;font-size:clamp(2.6rem,7vw,4.4rem);color:#fff;text-shadow:0 2px 14px rgba(1,36,83,.4);line-height:1.2;margin:4px 0 18px}
-.g{background:var(--glass);border:1px solid var(--gb);border-radius:26px;padding:24px 26px;backdrop-filter:blur(14px);box-shadow:0 10px 40px rgba(1,36,83,.12);margin-bottom:20px}
-.g h3{font-weight:600;font-size:1.1rem;color:var(--navy);margin-bottom:6px}
-.g .s{color:var(--mut);font-size:.9rem}
-.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:20px}
-.cols .g{margin:0}
-.g ul{padding-left:18px}
-.chips{display:flex;flex-wrap:wrap;gap:8px;list-style:none;padding:0!important;margin-top:8px}
-.chips li{padding:3px 12px;border-radius:14px;background:rgba(255,255,255,.55);color:#012453;font-size:.8rem}
-.badge{display:inline-block;padding:4px 14px;border-radius:16px;background:rgba(255,255,255,.7);color:#012453;font-size:.8rem;font-weight:600;margin-bottom:12px}
-dl{display:grid;grid-template-columns:auto 1fr;gap:6px 18px;font-size:.92rem}dt{font-weight:600;color:var(--navy)}dd{margin:0}
-.tl{border-left:2px solid var(--gb);padding-left:18px;margin-left:6px}.tl .g{margin-bottom:14px}
-.when{font-size:.78rem;font-weight:600;color:var(--mut)}
-.pimg,.cimg{width:100%;border-radius:16px;margin-bottom:12px;display:block}
-.cimg{aspect-ratio:4/3;object-fit:cover}
-.btn{display:inline-block;padding:10px 24px;border-radius:24px;background:var(--btn);color:var(--btnt);text-decoration:none;font-weight:600;font-size:.9rem;margin:6px 8px 6px 0}
-.btn.o{background:transparent;color:var(--navy);border:1.5px solid var(--navy)}
-iframe{width:100%;height:70vh;border:0;border-radius:18px;background:#fff;margin-top:14px}
-#sw{position:fixed;bottom:14px;left:50%;transform:translateX(-50%);z-index:20;display:none;gap:4px;padding:6px;border-radius:30px;border:1px solid var(--gb);background:var(--glass);backdrop-filter:blur(14px);max-width:96vw;overflow-x:auto}
-#sw.on{display:flex}
-#sw button{border:0;background:none;padding:8px 14px;border-radius:22px;font:500 .8rem Poppins;color:var(--navy);cursor:pointer;white-space:nowrap}
-#sw button.a{background:var(--btn);color:var(--btnt)}
-#tb{position:fixed;bottom:78px;left:50%;transform:translateX(-50%);z-index:30;display:none;width:min(440px,92vw);padding:16px 20px;border-radius:22px;background:#fff;color:#012453;box-shadow:0 10px 40px rgba(1,36,83,.3);font-size:.9rem}
-#tb.on{display:block}#tb b{display:block;margin-bottom:4px}
-#tb .row{display:flex;justify-content:space-between;margin-top:10px;gap:8px}
-#tb button{border:0;padding:7px 18px;border-radius:18px;cursor:pointer;font:600 .8rem Poppins}
-#tb .n{background:#012453;color:#fff}#tb .k{background:#e6eefb;color:#012453}
-@media(max-width:700px){.grid{grid-template-columns:1fr 1fr;grid-template-areas:"a a" "j s" "p c" "r t"}.op[data-k=about]{min-height:260px}.hint{position:static;transform:none;margin:0 auto 10px;width:auto}.hint svg{display:none}.hubcloud{border-radius:50px}}
-@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#030509">
+  <meta name="description" content="Precious Micaela A. Alop — BS Information Technology student">
+  <title>Precious Micaela A. Alop | Cybernetic Arcade</title>
+  <meta http-equiv="refresh" content="0; url=arcade/">
+  <script>location.replace('arcade/');</script>
 </head>
-<body>
-<svg width="0" height="0" style="position:absolute"><filter id="paint" x="-10%" y="-10%" width="120%" height="120%"><feTurbulence type="fractalNoise" baseFrequency=".012" numOctaves="3" seed="4"/><feDisplacementMap in="SourceGraphic" scale="70"/><feGaussianBlur stdDeviation="2.5"/></filter></svg>
-<div id="sky"><div class="cs"></div></div>
-<div id="veil"></div>
-<div class="top"><span id="adm"></span><button id="th" type="button" aria-label="Toggle day or night sky">☀ Day</button></div>
-
-<section class="c on" id="welcome">
-<div class="script">Welcome to My</div>
-<h1>WEBSITE PORTFOLIO</h1>
-<div class="btns"><button class="pill b" id="guide" type="button">Navigate with me</button><button class="pill" id="alone" type="button">Navigate alone</button></div>
-</section>
-
-<section class="c" id="intro">
-<div class="script">A short animated introduction</div>
-<div class="script">the quick travel around my world</div>
-<button class="skip" id="skip" type="button">tap to continue</button>
-</section>
-
-<section class="c" id="hub">
-<h2 id="hubt">Choose an opening</h2>
-<div class="hubcloud"><div class="grid" id="grid"></div></div>
-</section>
-
-<section class="v" id="page"><div class="wrap">
-<button class="back" id="back" type="button">☁ Back to clouds</button>
-<h2 id="pt"></h2><div id="pc"></div>
-</div></section>
-
-<nav id="sw" aria-label="Jump to section"></nav>
-<div id="tb"><b id="tbt"></b><span id="tbx"></span><div class="row"><button class="k" id="tbs" type="button">Skip tour</button><button class="n" id="tbn" type="button">Next ›</button></div></div>
-
-<script>
-const $=i=>document.getElementById(i),e=v=>String(v==null?'':v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const st=f=>{f=f||{};let s='';if(['left','center','right','justify'].includes(f.a))s+='text-align:'+f.a+';';if(f.b)s+='font-weight:700;';if(f.i)s+='font-style:italic;';return s?' style="'+s+'"':''};
-const S=[['about','About me'],['journey','My journey'],['skills','Skills'],['projects','Projects'],['certs','Certificates'],['resume','Resume'],['contact','Contact']];
-const TIP={about:'Your photo opening leads here. Use “Back to clouds” to return to the sky, or the bar below to jump to any section.',journey:'My education, experience and references.',skills:'What I can do and the tools I use.',projects:'Things I have built.',certs:'Courses and seminars I completed.',resume:'Preview and download my resume.',contact:'The last opening: reach out to me here.'};
-let D=null,tour=false,cur='welcome',busy=false;
-const sky=$('sky');
-
-function clouds(n){let s=n*9301+49297;const r=()=>(s=(s*9301+49297)%233280)/233280;
-sky.querySelector('.cs').innerHTML=Array.from({length:15},()=>{const w=260+r()*520;return '<i class="cl" style="width:'+w+'px;height:'+w*(.4+r()*.25)+'px;left:'+(r()*110-10)+'%;top:'+(r()*105-8)+'%;opacity:'+(.55+r()*.45)+';animation-duration:'+(50+r()*70)+'s;animation-delay:-'+r()*80+'s"></i>'}).join('')}
-
-function fly(fn){if(busy)return;busy=true;$('veil').classList.add('on');sky.classList.add('fly');setTimeout(()=>{fn();sky.classList.remove('fly');$('veil').classList.remove('on');setTimeout(()=>busy=false,500)},550)}
-
-function view(id){cur=id;const page=S.some(x=>x[0]===id);
-['welcome','intro','hub'].forEach(k=>$(k).classList.toggle('on',k===id));
-$('page').classList.toggle('on',page);$('sw').classList.toggle('on',page);
-clouds(id==='welcome'?1:id==='intro'?2:id==='hub'?3:S.findIndex(x=>x[0]===id)+4);
-if(page&&D){$('pt').textContent=S.find(x=>x[0]===id)[1];$('pc').innerHTML=pages[id](D);[...$('sw').children].forEach(b=>b.classList.toggle('a',b.dataset.k===id))}
-if(id==='hub')hub();tb();scrollTo(0,0)}
-
-function go(id){if(id===cur)return;fly(()=>view(id));if(id==='hub')history.replaceState(null,'','#clouds');else if(S.some(x=>x[0]===id))history.replaceState(null,'','#'+id);else history.replaceState(null,'',location.pathname)}
-
-const chip=a=>'<ul class="chips">'+a.map(x=>'<li>'+e(x)+'</li>').join('')+'</ul>';
-const pv={
-about:d=>'<img src="'+e(d.photo||'images/profile.jpg')+'" alt="" onerror="this.remove()">',
-journey:d=>'<div class="mini">'+(d.timeline||[]).slice(0,3).map(t=>'<i>'+e(t.title)+'</i>').join('')+'</div>',
-skills:d=>'<div class="mini r">'+((d.skills&&d.skills[0]&&d.skills[0].items)||[]).slice(0,6).map(x=>'<i>'+e(x)+'</i>').join('')+'</div>',
-projects:d=>{const p=(d.projects||[]).find(x=>x.img||(x.imgs&&x.imgs[0])),s=p&&(p.img||p.imgs[0]);return s?'<img src="'+e(s)+'" alt="">':'<div class="mini">'+(d.projects||[]).slice(0,3).map(x=>'<i>'+e(x.title)+'</i>').join('')+'</div>'},
-certs:d=>{const c=(d.certs||[]).find(x=>x.img);return c?'<img src="'+e(c.img)+'" alt="">':'<div class="mini"><i>Certificates</i></div>'},
-resume:d=>'<div class="mini"><i><b>'+e(d.name)+'</b></i><i>'+e(d.role)+'</i><i>Education</i><i>Experience</i></div>',
-contact:d=>'<div class="mini r"><i>'+e(d.contact.email)+'</i><i>'+e(d.contact.phone)+'</i></div>'};
-
-function hub(){$('grid').innerHTML=S.map(s=>'<button class="op" type="button" data-k="'+s[0]+'" aria-label="'+s[1]+'"><div class="pv">'+pv[s[0]](D)+'</div><div class="lb">'+s[1]+'</div>'+(tour&&s[0]==='about'?'<div class="hint"><svg viewBox="0 0 120 70"><path d="M8 66c-10-30 22-40 40-30S86 10 108 12"/></svg>click to know<em>about me</em></div>':'')+'</button>').join('');
-$('hubt').textContent=tour?'Click the glowing opening':'Choose an opening'}
-
-const pages={
-about:d=>(d.status?'<span class="badge">'+e(d.status)+'</span>':'')+'<div class="g"><h3>'+e(d.name)+'</h3><p class="s">'+e(d.role)+'</p><p'+st(d.introFmt)+'>'+e(d.intro)+'</p></div><div class="g">'+(d.about||[]).map(p=>{const o=typeof p==='string'?{text:p}:p;return '<p'+st(o.fmt)+'>'+e(o.text)+'</p>'}).join('<br>')+'</div><div class="g"><dl>'+(d.facts||[]).map(f=>'<dt>'+e(f[0])+'</dt><dd>'+e(f[1])+'</dd>').join('')+'</dl></div>'+(d.ojt?'<div class="g"><h3>'+e(d.ojt.title)+'</h3><p>'+e(d.ojt.text)+'</p></div><div class="cols">'+(d.ojt.points||[]).map(p=>'<div class="g"><h3>'+e(p.title)+'</h3><p>'+e(p.text)+'</p></div>').join('')+'</div>':''),
-journey:d=>'<div class="g"><h3>'+e(d.education.degree)+'</h3><p class="s">'+e(d.education.school)+'</p><p'+st(d.education.textFmt)+'>'+e(d.education.text)+'</p></div><div class="tl">'+(d.timeline||[]).map(t=>'<div class="g"><span class="when">'+e(t.when)+'</span><h3>'+e(t.title)+'</h3><p>'+e(t.text)+'</p>'+(t.tags?chip(String(t.tags).split(',').map(x=>x.trim()).filter(Boolean)):'')+'</div>').join('')+'</div><h3 class="script" style="font-size:2rem;margin:10px 0">References</h3><div class="cols">'+(d.references||[]).map(r=>'<div class="g"><h3>'+e(r.name)+'</h3><p>'+e(r.role)+'<br>'+e(r.org)+'<br>'+e(r.phone)+'</p></div>').join('')+'</div>',
-skills:d=>'<div class="cols">'+(d.skills||[]).map(g=>'<div class="g"><h3>'+e(g.title)+'</h3><ul>'+g.items.map(x=>'<li>'+e(x)+'</li>').join('')+'</ul></div>').join('')+'</div><h3 class="script" style="font-size:2rem;margin:20px 0 10px">Tools stack</h3><div class="cols">'+(d.tools||[]).map(g=>'<div class="g"><h3>'+e(g.title)+'</h3>'+chip(g.items)+'</div>').join('')+'</div>',
-projects:d=>'<div class="cols">'+(d.projects||[]).map(p=>{const i=p.img||(p.imgs&&p.imgs[0]);return '<div class="g">'+(i?'<img class="pimg" src="'+e(i)+'" alt="">':'')+'<h3>'+e(p.title)+'</h3><p'+st(p.descFmt)+'>'+e(p.desc)+'</p><p class="s">'+e(p.stack)+'</p>'+(p.link?'<a class="btn" target="_blank" rel="noopener" href="'+e(p.link)+'">Visit site</a>':'')+'</div>'}).join('')+'</div>',
-certs:d=>{const gs=[];(d.certs||[]).forEach(c=>{let g=gs.find(x=>x.n===c.group);if(!g)gs.push(g={n:c.group,l:[]});g.l.push(c)});return gs.map(g=>'<h3 class="script" style="font-size:2rem;margin:10px 0">'+e(g.n)+'</h3><div class="cols">'+g.l.map(c=>'<div class="g">'+(c.img?'<a href="'+e(c.img)+'" target="_blank" rel="noopener"><img class="cimg" src="'+e(c.img)+'" alt=""></a>':'')+'<h3>'+e(c.title)+'</h3><p class="s">'+e(c.sub)+'</p></div>').join('')+'</div>').join('')},
-resume:d=>'<div class="g"><a class="btn" href="resume.pdf" download>Download resume</a><a class="btn o" href="resume.pdf" target="_blank" rel="noopener">Open in new tab</a><iframe src="resume.pdf" title="Resume preview"></iframe></div>',
-contact:d=>'<div class="g"><p>Let’s talk about OJT, internships or projects.</p><a class="btn" href="mailto:'+e(d.contact.email)+'">'+e(d.contact.email)+'</a><a class="btn o" href="tel:'+e(String(d.contact.phone).replace(/\s/g,''))+'">'+e(d.contact.phone)+'</a>'+(d.contact.github?'<a class="btn o" target="_blank" rel="noopener" href="'+e(d.contact.github)+'">GitHub</a>':'')+'<p class="s" style="margin-top:12px">'+e(d.contact.location)+'</p></div>'};
-
-function tb(){const i=S.findIndex(x=>x[0]===cur),on=tour&&i>-1;$('tb').classList.toggle('on',on);if(!on)return;
-$('tbt').textContent=S[i][1];$('tbx').textContent=TIP[cur];$('tbn').textContent=i===S.length-1?'Finish ✓':'Next ›'}
-function endTour(){tour=false;go('hub')}
-$('tbn').onclick=()=>{const i=S.findIndex(x=>x[0]===cur);i===S.length-1?endTour():go(S[i+1][0])};
-$('tbs').onclick=()=>{tour=false;tb()};
-
-$('guide').onclick=()=>{tour=true;fly(()=>view('intro'));setTimeout(()=>{if(cur==='intro'){busy=false;go('hub')}},5600)};
-$('alone').onclick=()=>{tour=false;go('hub')};
-$('skip').onclick=()=>{busy=false;go('hub')};
-$('grid').onclick=ev=>{const b=ev.target.closest('.op');if(b)go(b.dataset.k)};
-$('back').onclick=()=>go('hub');
-$('sw').innerHTML=S.map(s=>'<button type="button" data-k="'+s[0]+'">'+s[1]+'</button>').join('');
-$('sw').onclick=ev=>{const b=ev.target.closest('button');if(b)go(b.dataset.k)};
-
-const th=$('th');function tlabel(){const n=document.documentElement.getAttribute('data-theme')==='night';th.textContent=n?'☾ Night':'☀ Day'}
-th.onclick=()=>{const n=document.documentElement.getAttribute('data-theme')==='night';n?document.documentElement.removeAttribute('data-theme'):document.documentElement.setAttribute('data-theme','night');try{localStorage.setItem('portfolioSky',n?'day':'night')}catch(x){}tlabel()};tlabel();
-try{const a=JSON.parse(localStorage.getItem('portfolioAdmin')||'null');if(a&&Date.now()-a.t<6048e5)$('adm').innerHTML='<a href="admin/">Admin</a>'}catch(x){}
-
-clouds(1);
-fetch('content.json?'+Date.now()).then(r=>{if(!r.ok)throw 0;return r.json()}).then(d=>{D=d;document.title='Personal Web Portfolio | '+d.name;
-const h=location.hash.slice(1);if(h==='clouds')view('hub');else if(S.some(x=>x[0]===h))view(h)}).catch(()=>{$('welcome').insertAdjacentHTML('beforeend','<p class="script" style="font-size:1.4rem">content.json could not be loaded</p>')});
-</script>
+<body style="margin:0;background:#030509;color:#eef7ff;font-family:system-ui,sans-serif">
+  <main style="min-height:100vh;display:grid;place-items:center;text-align:center;padding:24px">
+    <div>
+      <p>Opening the Cybernetic Arcade…</p>
+      <a href="arcade/" style="color:#1fe3ff">Enter My World</a>
+    </div>
+  </main>
 </body>
 </html>
