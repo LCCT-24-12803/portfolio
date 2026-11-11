@@ -227,3 +227,16 @@ body .main-nav.open>a.deck-card{transition-duration:.7s,.35s,.45s,.3s,.45s}
 @media(max-width:680px){#home .hero-kicker{margin-top:30px}#home .hero-meta{margin-top:30px}}
 .ambient-orb{position:fixed!important;pointer-events:none}
 main>section.panel-open:before,main>section.panel-open:after{display:none!important}
+
+/* ── Touch + mobile fixes ───────────────────────────────── */
+body .main-nav>a.deck-card{-webkit-user-drag:none;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none;-webkit-tap-highlight-color:transparent}
+.deck-hint{display:none;font:inherit;letter-spacing:.14em;color:#8e97a4}
+@media(hover:none),(max-width:680px){.nav-panel-footer .deck-keys{display:none}.deck-hint{display:inline}}
+/* The opening screen must be ONE column on phones: site.css kept a two-column grid, which squeezed the artwork into a sliver */
+@media(max-width:760px){
+  #home.hero{display:flex;flex-direction:column;align-items:stretch;justify-content:flex-start;gap:28px;padding-top:20px;padding-bottom:84px;min-height:100%}
+  #home .hero-copy{order:1;min-width:0}
+  #home .hero-art{order:2;width:100%;height:auto;aspect-ratio:1/1;max-height:min(420px,52vh);min-height:260px;border-radius:3px 48px 3px 48px}
+  #home .hero-bottom{display:none}
+  #home h1{font-size:clamp(44px,14vw,72px)}
+}
