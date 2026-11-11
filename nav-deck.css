@@ -1,0 +1,229 @@
+/* ───────────────────────────────────────────────────────────
+   Card-deck navigation
+   Loaded after site.css. Re-skins the existing #section-navigation
+   markup as a fanned deck of cards. Motion = transform + opacity only.
+   ─────────────────────────────────────────────────────────── */
+:root{
+  --deck-top:76px;
+  --deck-cw:clamp(210px,19vw,288px);
+  --deck-ch:clamp(290px,54vh,410px);
+  --deck-step:clamp(66px,9.4vw,138px);
+  --deck-ease:cubic-bezier(.22,1,.36,1);
+}
+@media(max-width:680px){:root{--deck-top:64px}}
+@media(max-width:520px){:root{--deck-top:66px}}
+
+/* Stage ------------------------------------------------------ */
+body .main-nav{
+  display:block!important;position:fixed;z-index:29;left:0;right:0;top:var(--deck-top);bottom:auto;height:calc(100vh - var(--deck-top));height:calc(100dvh - var(--deck-top));
+  /* .topbar has backdrop-filter, so it is this fixed element's containing block: size by viewport, not by inset */
+  padding:0;border:0;gap:0;overflow:hidden;perspective:1500px;perspective-origin:50% 40%;
+  background:radial-gradient(ellipse 60% 55% at 50% 42%,rgba(255,58,50,.14),transparent 70%),
+             radial-gradient(ellipse at 85% 0%,rgba(255,58,50,.08),transparent 40%),#07090d;
+  clip-path:none;transform:none;opacity:0;visibility:hidden;pointer-events:none;touch-action:pan-y;
+  transition:opacity .4s var(--deck-ease),visibility 0s linear .55s;
+}
+body .main-nav.open{opacity:1;visibility:visible;pointer-events:auto;transition:opacity .35s var(--deck-ease),visibility 0s}
+
+/* Oversized section name behind the deck */
+.deck-title{
+  position:absolute;left:50%;top:44%;z-index:0;translate:-50% -50%;width:100%;text-align:center;
+  font:800 clamp(84px,17vw,250px)/.9 var(--sans);letter-spacing:-.07em;white-space:nowrap;
+  color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.11);pointer-events:none;user-select:none;
+}
+.deck-title.swap{animation:deck-title-in .55s var(--deck-ease)}
+@keyframes deck-title-in{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+
+/* Cards ------------------------------------------------------ */
+body .main-nav>a.deck-card{
+  position:absolute;left:50%;top:44%;display:flex;flex-direction:column;justify-content:flex-end;align-items:flex-start;
+  width:var(--deck-cw);height:var(--deck-ch);min-height:0;margin:calc(var(--deck-ch)/-2) 0 0 calc(var(--deck-cw)/-2);
+  padding:22px 22px 24px;border:1px solid rgba(220,230,245,.16);border-radius:4px 22px 4px 22px;overflow:hidden;
+  background:
+    linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px) 0 0/100% 34px,
+    linear-gradient(150deg,rgba(255,255,255,.09),rgba(255,255,255,.02) 60%),#0d1118;
+  color:#fff;z-index:calc(20 - var(--a,0));
+  transform-origin:50% 118%;transform-style:preserve-3d;backface-visibility:hidden;will-change:transform,opacity;
+  /* closed state: collapsed into one pile */
+  transform:translate3d(0,60px,-240px) scale(.82) rotate(0deg);opacity:0;filter:none;box-shadow:none;
+  transition:transform .55s var(--deck-ease),opacity .3s,filter .45s,border-color .3s,box-shadow .45s;
+  transition-delay:0s;
+}
+body .main-nav.open>a.deck-card{
+  transform:translate3d(calc(var(--o,0)*var(--deck-step)),calc(var(--a,0)*var(--a,0)*7px),calc(var(--a,0)*-70px)) rotate(calc(var(--o,0)*4.5deg));
+  opacity:max(0,calc(1.2 - var(--a,0)*.3));
+  filter:brightness(calc(1 - var(--a,0)*.12));
+  transition-delay:calc(var(--i,0)*.04s),calc(var(--i,0)*.04s),0s,0s,0s;
+}
+body .main-nav.open.settled>a.deck-card{transition-delay:0s}
+body .main-nav>a.deck-card.far{pointer-events:none}
+body .main-nav>a.deck-card:before{display:none}
+
+/* Focused card lifts out of the deck */
+body .main-nav.open>a.deck-card.is-focus{
+  transform:translate3d(0,-22px,60px) scale(1.05) rotate(0deg);opacity:1;filter:none;
+  border-color:rgba(255,67,59,.75);
+  background:
+    linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px) 0 0/100% 34px,
+    linear-gradient(150deg,rgba(255,67,59,.2),rgba(255,255,255,.025) 65%),#0f131a;
+  box-shadow:0 40px 80px rgba(0,0,0,.5),0 0 60px rgba(255,67,59,.14);
+}
+body .main-nav>a.deck-card:after{
+  content:"";position:absolute;left:0;right:100%;bottom:0;height:3px;background:var(--motion-red);
+  box-shadow:0 0 20px var(--motion-red);transition:right .5s var(--deck-ease);
+}
+body .main-nav>a.deck-card.is-focus:after{right:0}
+body .main-nav>a.deck-card:focus-visible{outline:2px solid var(--cyan);outline-offset:4px}
+body .main-nav.flying>a.deck-card:focus-visible{outline:0}
+
+/* Card contents */
+.deck-card .nav-card-no{position:absolute;top:20px;left:22px;margin:0;font:9px var(--mono);letter-spacing:.13em;color:var(--motion-red)}
+.deck-card .deck-num{
+  position:absolute;top:34px;right:14px;font:800 clamp(72px,8vw,112px)/1 var(--sans);letter-spacing:-.08em;
+  color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.18);pointer-events:none;
+}
+.deck-card.is-focus .deck-num{-webkit-text-stroke-color:rgba(255,67,59,.55)}
+.deck-card strong{font-size:clamp(24px,2.5vw,34px);font-weight:700;letter-spacing:-.06em;line-height:1.05}
+.deck-card small{margin-top:9px;max-width:85%;font-size:11px;line-height:1.5;color:#9ca6b4}
+.deck-card i{position:absolute;right:20px;bottom:22px;font-style:normal;font-size:20px;color:var(--motion-red);transition:transform .35s var(--deck-ease)}
+.deck-card.is-focus i{transform:translate(4px,-4px)}
+.deck-card.nav-contact{border-color:rgba(255,67,59,.4)}
+
+/* Selecting a card: it flies to fill the stage, the rest drop away */
+.deck-card>*{transition:opacity .25s}
+body .main-nav.flying>a.deck-card:not(.is-selected){opacity:0!important;transform:translate3d(calc(var(--o,0)*var(--deck-step)*1.4),90px,-200px) rotate(calc(var(--o,0)*7deg))!important;transition-duration:.4s!important;transition-delay:0s!important;pointer-events:none}
+body .main-nav.flying>a.deck-card.is-selected{z-index:60;border-radius:0;border-color:transparent;transition:transform .7s var(--deck-ease),border-radius .5s,box-shadow .5s!important;transition-delay:0s!important}
+body .main-nav.flying>a.deck-card.is-selected>*{opacity:0}
+body .main-nav.flying .deck-title,body .main-nav.flying .nav-panel-footer{opacity:0;transition:opacity .25s}
+
+/* Footer ----------------------------------------------------- */
+body .main-nav .nav-panel-footer{
+  position:absolute;left:0;right:0;bottom:0;z-index:30;display:flex;justify-content:space-between;align-items:center;gap:16px;
+  padding:0 clamp(18px,5vw,64px) clamp(16px,3vh,28px);color:#697381;font:9px var(--mono);letter-spacing:.14em;
+}
+.nav-panel-footer .deck-count{color:#fff}
+.nav-panel-footer .deck-count b{color:var(--motion-red);margin:0 6px 0 0;font-size:inherit}
+.nav-panel-footer kbd{font:inherit;padding:3px 6px;border:1px solid rgba(255,255,255,.18);border-radius:3px;color:#c4ccd6;margin:0 2px}
+.nav-panel-footer .deck-keys{display:flex;align-items:center;gap:3px}
+.deck-arrows{display:none}
+
+@media(max-width:680px){
+  :root{--deck-cw:min(58vw,250px);--deck-ch:min(52vh,380px);--deck-step:20vw}
+  .deck-title{font-size:30vw}
+  .nav-panel-footer .deck-keys{display:none}
+  .nav-panel-footer{justify-content:center}
+  body .main-nav>a.deck-card{padding:18px}
+  .deck-card .nav-card-no{top:16px;left:18px}
+  .deck-card .deck-num{font-size:84px}
+}
+@media(max-height:560px){:root{--deck-ch:min(62vh,300px)}.deck-title{display:none}}
+@media(prefers-reduced-motion:reduce){
+  body .main-nav,body .main-nav>a.deck-card,.deck-title{transition:none!important;animation:none!important}
+}
+
+/* ═══════════════════════════════════════════════════════════
+   View model: Home → Cards → Section panel
+   The page itself never scrolls. #home is the opening screen,
+   the deck is the hub, and every section lives in a panel.
+   ═══════════════════════════════════════════════════════════ */
+html,body{height:100%;overflow:hidden}
+.scroll-progress,.intro-strip{display:none!important}
+main{position:fixed;top:var(--deck-top);left:0;right:0;bottom:0;overflow:hidden auto;overscroll-behavior:contain}
+
+/* Opening screen: sized to fit one viewport */
+#home{min-height:100%;padding-top:clamp(16px,4vh,52px);padding-bottom:clamp(64px,10vh,100px)}
+#home h1{font-size:clamp(46px,min(8vw,12.5vh),112px)}
+#home .hero-art{height:min(560px,64vh);min-height:300px}
+@media(max-width:680px){#home .hero-art{height:360px;min-height:0}#home h1{font-size:clamp(50px,15vw,86px)}}
+a.hero-bottom{text-decoration:none;color:#9aa4b0;cursor:pointer;transition:color .3s}
+a.hero-bottom:hover{color:#fff}
+a.hero-bottom .scroll-line{transition:width .4s var(--deck-ease)}
+a.hero-bottom:hover .scroll-line{width:90px}
+
+/* Sections stay hidden until their card opens them */
+main>section:not(#home):not(.panel-open){display:none}
+main>section.panel-open{
+  display:block;position:fixed;z-index:25;top:var(--deck-top);left:0;right:0;bottom:0;width:auto;max-width:none;margin:0;
+  padding:clamp(28px,6vh,64px) max(24px,calc((100vw - 1180px)/2)) 120px;overflow-y:auto;overscroll-behavior:contain;outline:0;
+  background:radial-gradient(ellipse 70% 50% at 85% 0%,rgba(255,58,50,.10),transparent 60%),#08090d;
+  animation:panel-in .6s var(--deck-ease) both;
+}
+main>section.panel-open[data-enter=next]{--from:7vw}
+main>section.panel-open[data-enter=prev]{--from:-7vw}
+main>section.panel-open.leaving{animation:panel-out .3s ease-in both}
+@keyframes panel-in{from{opacity:0;transform:translateX(var(--from,0))}to{opacity:1;transform:none}}
+@keyframes panel-out{to{opacity:0;transform:scale(.97)}}
+@keyframes rise{from{opacity:0;transform:translateY(30px);filter:blur(5px)}to{opacity:1;transform:none;filter:none}}
+
+/* Staggered entrance: heading first, then content, then each item */
+.panel-open>*{animation:rise .8s var(--deck-ease) backwards;animation-delay:calc(.14s + var(--k,0)*.09s)}
+.panel-open>:nth-child(2){--k:1}.panel-open>:nth-child(3){--k:2}.panel-open>:nth-child(4){--k:3}
+.panel-open :is(.timeline-item,.skill-card,.cert-card,.fact,.profile-frame,.about-copy,.contact-detail,.email-form,.project-showcase,.social-links){
+  animation:rise .75s var(--deck-ease) backwards;animation-delay:calc(.32s + var(--n,0)*.065s)}
+.panel-open :is(.timeline-item,.skill-card,.cert-card,.fact,.contact-detail):nth-child(2){--n:1}
+.panel-open :is(.timeline-item,.skill-card,.cert-card,.fact,.contact-detail):nth-child(3){--n:2}
+.panel-open :is(.timeline-item,.skill-card,.cert-card,.fact,.contact-detail):nth-child(4){--n:3}
+.panel-open :is(.timeline-item,.skill-card,.cert-card,.fact,.contact-detail):nth-child(5){--n:4}
+.panel-open :is(.timeline-item,.skill-card,.cert-card,.fact,.contact-detail):nth-child(6){--n:5}
+.panel-open :is(.timeline-item,.skill-card,.cert-card,.fact,.contact-detail):nth-child(n+7){--n:6}
+.panel-open .about-copy,.panel-open .email-form{--n:2}
+.panel-open .section-heading h2{animation:rise .9s var(--deck-ease) backwards;animation-delay:.2s}
+
+/* Resume reads as its own screen */
+#resume.panel-open{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:28px;border:0}
+#resume.panel-open h2{font-size:clamp(40px,7vw,92px);line-height:1;letter-spacing:-.06em;margin:.2em 0}
+.contact-section.panel-open{padding-top:clamp(28px,6vh,64px)}
+
+/* Bottom bar while inside a section */
+.panel-bar{
+  position:fixed;z-index:26;left:0;right:0;bottom:0;display:flex;align-items:center;justify-content:space-between;gap:14px;
+  padding:12px max(18px,calc((100vw - 1180px)/2));
+  background:linear-gradient(to top,#08090d 55%,rgba(8,9,13,0));
+  transform:translateY(110%);transition:transform .55s var(--deck-ease) .25s;pointer-events:none;
+}
+body[data-view=section] .panel-bar{transform:none;pointer-events:auto}
+.panel-bar button{
+  font:10px var(--mono);letter-spacing:.14em;color:#fff;background:rgba(255,67,59,.08);border:1px solid rgba(255,67,59,.5);
+  padding:11px 15px;border-radius:3px;cursor:pointer;transition:background .25s,border-color .25s,transform .25s;
+}
+.panel-bar button:hover{background:rgba(255,67,59,.2);border-color:var(--motion-red);transform:translateY(-2px)}
+.panel-bar button:focus-visible{outline:2px solid var(--cyan);outline-offset:3px}
+.pb-count{font:10px var(--mono);letter-spacing:.14em;color:#9ba3af;text-align:center}
+.pb-count b{color:var(--motion-red);font-weight:500;margin-right:8px}
+.pb-arrows{display:flex;gap:8px}
+.pb-arrows button{width:44px;padding:11px 0;font-size:14px}
+@media(max-width:560px){.pb-count span{display:none}.panel-bar button{padding:11px 12px}}
+
+/* ── Card selected: richer fly-in ───────────────────────── */
+body .main-nav>a.deck-card:before{
+  display:block;content:"";position:absolute;inset:0;z-index:-1;opacity:0;transition:opacity .5s ease .15s;
+  background:radial-gradient(ellipse 80% 60% at 50% 100%,rgba(255,67,59,.35),transparent 70%),#08090d;
+}
+body .main-nav.flying>a.deck-card.is-selected{
+  transition:transform .8s cubic-bezier(.7,0,.2,1),border-radius .6s ease,box-shadow .6s,border-color .4s!important;
+  box-shadow:0 0 0 100vmax rgba(255,67,59,.0);filter:none!important;
+}
+body .main-nav.flying>a.deck-card.is-selected:before{opacity:1}
+body .main-nav.flying>a.deck-card.is-selected:after{right:0;height:100%;opacity:0;transition:opacity .8s .1s}
+body .main-nav.flying>a.deck-card:not(.is-selected){
+  transition-duration:.5s!important;transition-delay:calc(var(--a,0)*.035s)!important;
+  transform:translate3d(calc(var(--o,0)*var(--deck-step)*2),120px,-260px) rotate(calc(var(--o,0)*9deg)) scale(.9)!important;
+}
+/* red pulse that rides the fly-in */
+body .main-nav.flying:after{
+  content:"";position:absolute;inset:0;z-index:55;pointer-events:none;
+  background:radial-gradient(circle at 50% 44%,rgba(255,67,59,.28),transparent 55%);animation:deck-pulse .8s ease-out both;
+}
+@keyframes deck-pulse{from{opacity:0;transform:scale(.6)}40%{opacity:1}to{opacity:0;transform:scale(1.5)}}
+/* the deck deals out again each time it opens */
+body .main-nav.open>a.deck-card{transition-duration:.7s,.35s,.45s,.3s,.45s}
+
+/* Opening screen: tighten vertical rhythm so the whole hero fits one viewport */
+#home .hero-kicker{margin-top:clamp(18px,4.5vh,62px);margin-bottom:12px}
+#home h1{font-size:clamp(44px,min(7.6vw,10.6vh),104px)}
+#home .hero-intro{margin:clamp(14px,2.6vh,30px) 0 clamp(14px,2.4vh,28px);font-size:clamp(13px,1.85vh,15px);line-height:1.62;max-width:34em}
+#home .hero-meta{margin-top:clamp(18px,3.4vh,44px)}
+#home .hero-bottom{bottom:clamp(14px,2.4vh,30px)}
+@media(max-width:680px){#home .hero-kicker{margin-top:30px}#home .hero-meta{margin-top:30px}}
+.ambient-orb{position:fixed!important;pointer-events:none}
+main>section.panel-open:before,main>section.panel-open:after{display:none!important}
