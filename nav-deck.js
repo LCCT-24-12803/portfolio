@@ -20,7 +20,7 @@ cards.forEach((c,i)=>{
 });
 const title=document.createElement('div');title.className='deck-title';title.setAttribute('aria-hidden','true');nav.insertBefore(title,nav.firstChild);
 const footer=nav.querySelector('.nav-panel-footer');
-footer.innerHTML='<span class="deck-count"><b></b><span class="deck-name"></span></span><span class="deck-keys"><kbd>←</kbd><kbd>→</kbd> BROWSE <kbd>ENTER</kbd> OPEN <kbd>ESC</kbd> HOME</span>';
+footer.innerHTML='<span class="deck-count"><b></b><span class="deck-name"></span></span><span class="deck-keys"><kbd>←</kbd><kbd>→</kbd> BROWSE <kbd>ENTER</kbd> OPEN <kbd>ESC</kbd> HOME</span><span class="deck-hint">SWIPE · TAP TO OPEN</span>';
 const countNo=footer.querySelector('.deck-count b'),countName=footer.querySelector('.deck-name');
 
 /* ── Panel bar ──────────────────────────────────────────── */
@@ -134,7 +134,7 @@ function select(card){
 }
 nav.addEventListener('pointerdown',e=>{lastPointer=e.pointerType;focusAtDown=focus},{passive:true});
 cards.forEach((c,j)=>{
-  c.addEventListener('pointerenter',e=>{if(e.pointerType==='mouse'&&!busy)setFocus(j)});
+  c.setAttribute('draggable','false');
   c.addEventListener('focus',()=>{if(!busy&&j!==focus)setFocus(j)});
 });
 nav.addEventListener('click',e=>{
@@ -143,7 +143,7 @@ nav.addEventListener('click',e=>{
   e.preventDefault();e.stopImmediatePropagation();
   if(swiped){swiped=false;return}
   const j=cards.indexOf(card);
-  if(lastPointer!=='mouse'&&j!==focusAtDown&&e.detail!==0){setFocus(j);return}   // touch: first tap focuses, second opens
+  if(j!==focusAtDown&&e.detail!==0){setFocus(j);return}   // first click/tap on a side card brings it forward, the next one opens it
   select(card);
 },true);
 
@@ -177,10 +177,14 @@ document.addEventListener('keydown',e=>{
 });
 
 /* ── Wheel: browse the deck; scrolling past the opening screen opens it ── */
+let wAcc=0,wLast=0,wDone=false;
 nav.addEventListener('wheel',e=>{
   e.preventDefault();if(busy)return;
-  const d=Math.abs(e.deltaX)>Math.abs(e.deltaY)?e.deltaX:e.deltaY,now=performance.now();
-  if(Math.abs(d)<8||now-wheelLock<220)return;wheelLock=now;setFocus(focus+(d>0?1:-1),{moveDom:true});
+  const now=performance.now();
+  if(now-wLast>160){wAcc=0;wDone=false}                              // a pause of 160ms starts a new gesture
+  wLast=now;if(wDone)return;                                         // one card per gesture: trackpad inertia can't skip ahead
+  wAcc+=(Math.abs(e.deltaX)>Math.abs(e.deltaY)?e.deltaX:e.deltaY)*(e.deltaMode===1?16:1);
+  if(Math.abs(wAcc)>=70){const dir=wAcc>0?1:-1;wDone=true;wAcc=0;setFocus(focus+dir,{moveDom:true})}
 },{passive:false});
 main.addEventListener('wheel',e=>{
   if(view!=='home'||busy||e.deltaY<25)return;
@@ -188,12 +192,15 @@ main.addEventListener('wheel',e=>{
 },{passive:true});
 
 /* ── Touch swipe on the deck ────────────────────────────── */
-let sx=0,sy=0,swiped=false,tracking=false;
-nav.addEventListener('pointerdown',e=>{if(e.pointerType==='mouse')return;tracking=true;sx=e.clientX;sy=e.clientY;swiped=false});
+let sx=0,sy=0,sid=null,swiped=false,swipeT=0;
+nav.addEventListener('pointerdown',e=>{if(e.pointerType==='mouse')return;sid=e.pointerId;sx=e.clientX;sy=e.clientY;swiped=false});
 nav.addEventListener('pointerup',e=>{
-  if(!tracking)return;tracking=false;
+  if(e.pointerId!==sid)return;sid=null;
   const dx=e.clientX-sx,dy=e.clientY-sy;
-  if(Math.abs(dx)>40&&Math.abs(dx)>Math.abs(dy)*1.3){swiped=true;setFocus(focus+(dx<0?1:-1));setTimeout(()=>{swiped=false},60)}
+  if(!busy&&Math.abs(dx)>45&&Math.abs(dx)>Math.abs(dy)*1.3){
+    swiped=true;clearTimeout(swipeT);swipeT=setTimeout(()=>{swiped=false},400);   // swallow the click the browser fires after a swipe
+    setFocus(focus+(dx<0?1:-1));
+  }
 });
-nav.addEventListener('pointercancel',()=>{tracking=false});
+nav.addEventListener('pointercancel',()=>{sid=null});
 })();
