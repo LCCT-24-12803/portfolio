@@ -89,7 +89,7 @@ function go(t,{push=true}={}){
     closeDeck();chrome('home');
   }else if(to==='cards'){
     chrome('cards');openDeck();
-    if(from==='section')setTimeout(()=>{if(view==='cards')hidePanels()},650);   // deck fades in over the panel first
+    if(from==='section')setTimeout(()=>{if(view==='cards')hidePanels()},430);   // deck fades in over the panel first
   }else{
     const dir=from==='section'?(ids.indexOf(t)>ids.indexOf(current)?'next':'prev'):'fade';
     showPanel(t,dir);closeDeck();chrome('section');
@@ -120,7 +120,7 @@ function select(card){
     history.pushState(null,'','#'+id);
     showPanel(id,'fade');chrome('section');
     nav.classList.remove('open','settled');            // deck fades out and reveals the panel beneath
-    setTimeout(()=>{nav.classList.remove('flying');resetCards();busy=false;if(pendingEsc){pendingEsc=false;escape_()}},700);
+    setTimeout(()=>{nav.classList.remove('flying');resetCards();busy=false;if(pendingEsc){pendingEsc=false;escape_()}},430);
   };
   if(reduced.matches){finish();return}
   const nr=nav.getBoundingClientRect(),cr=card.getBoundingClientRect();
@@ -130,7 +130,7 @@ function select(card){
   card.classList.add('is-selected');nav.classList.add('flying');
   card.style.transformOrigin='50% 50%';
   card.style.transform=`translate3d(${dx}px,${dy}px,0) scale(${s})`;
-  setTimeout(finish,760);
+  setTimeout(finish,540);
 }
 nav.addEventListener('pointerdown',e=>{lastPointer=e.pointerType;focusAtDown=focus},{passive:true});
 cards.forEach((c,j)=>{
