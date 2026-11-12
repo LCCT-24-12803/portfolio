@@ -240,3 +240,78 @@ body .main-nav>a.deck-card{-webkit-user-drag:none;user-select:none;-webkit-user-
   #home .hero-bottom{display:none}
   #home h1{font-size:clamp(44px,14vw,72px)}
 }
+
+
+/* ═══ Smoothness pass ═══════════════════════════════════════════════════════
+   Goal: keep every frame cheap while navigating. Nothing here changes the look
+   except removing effects that were invisible or too costly to animate. */
+
+/* 1. No blur() in entrance animations: animating a filter re-rasterises the element every frame */
+@keyframes rise{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+@keyframes slide-in{from{opacity:0;transform:translateX(24px) scale(.985)}to{opacity:1;transform:none}}
+@keyframes projectEnter{from{opacity:0;transform:translateY(24px) scale(.985)}to{opacity:1;transform:none}}
+@keyframes heroRise{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
+@keyframes headingSnap{from{opacity:0;transform:translateY(38px) skewY(3deg)}to{opacity:1;transform:none}}
+.reveal:not(.visible){filter:none}
+
+/* 2. Quicker, lighter panel entrance */
+main>section.panel-open{animation-duration:.45s}
+.panel-open>*{animation-duration:.55s;animation-delay:calc(.04s + var(--k,0)*.05s)}
+.panel-open :is(.timeline-item,.skill-card,.cert-card,.fact,.profile-frame,.about-copy,.contact-detail,.email-form,.project-showcase,.social-links){animation-duration:.5s;animation-delay:calc(.14s + var(--n,0)*.04s)}
+.panel-open .section-heading h2{animation-duration:.6s;animation-delay:.06s}
+.panel-open .skill-card li{animation-delay:calc(.3s + var(--k,0)*.03s)}
+
+/* 3. Section -> section: the new panel is opaque from its first frame (same background as the old one), so there is no flash of the
+      page behind and no ghosting; only its content animates in, sliding from the direction you are moving */
+main>section.panel-open:is([data-enter=next],[data-enter=prev]){animation:none}
+@keyframes rise-x{from{opacity:0;transform:translateX(var(--from,0))}to{opacity:1;transform:none}}
+main>section.panel-open:is([data-enter=next],[data-enter=prev])>*{animation-name:rise-x}
+
+/* 4. Deck: drop effects that cost a lot and cannot be seen */
+body .main-nav{backdrop-filter:none;-webkit-backdrop-filter:none}              /* a full-screen blur behind a 97%-opaque background */
+.topbar{backdrop-filter:none;-webkit-backdrop-filter:none;background:rgba(8,10,14,.93);transform:translateZ(0)}  /* transform keeps it the containing block for the fixed deck, as before */
+body .main-nav.open>a.deck-card{filter:none}                                  /* distance already dims cards through opacity */
+body .main-nav>a.deck-card{will-change:auto}
+body .main-nav.open>a.deck-card,body .main-nav.flying>a.deck-card{will-change:transform,opacity}
+body .main-nav.flying>a.deck-card.is-selected{transition:transform .55s cubic-bezier(.65,0,.25,1),border-radius .45s ease,border-color .3s!important;box-shadow:none}
+body .main-nav.flying>a.deck-card.is-selected:before{transition:opacity .35s ease .05s}
+body .main-nav.flying>a.deck-card:not(.is-selected){transition-duration:.4s!important}
+
+/* 5. Don't paint or animate what is covered */
+body[data-view=cards] #home,body[data-view=section] #home{visibility:hidden;transition:visibility 0s linear .6s}
+body:not([data-view=home]) :is(#home *,.ambient-orb){animation-play-state:paused!important}
+.ambient-orb{filter:none;background:radial-gradient(circle,rgba(255,49,40,.95),rgba(255,49,40,0) 68%)}   /* same glow without a 100px blur */
+
+/* 6. Custom cursor: no blend mode (forces the page behind it to be re-composited on every move) */
+.motion-cursor,.cursor-aura{mix-blend-mode:normal}
+.motion-cursor{will-change:transform}
+@media(hover:none),(pointer:coarse){.noise{display:none}.ambient-orb{display:none}}
+
+/* 7. Phones: shorter stagger, fewer things animating at once */
+@media(max-width:760px),(hover:none){
+  .panel-open>*{animation-delay:calc(.02s + var(--k,0)*.035s)}
+  .panel-open :is(.timeline-item,.skill-card,.cert-card,.fact,.profile-frame,.about-copy,.contact-detail,.email-form,.project-showcase,.social-links){animation-delay:calc(.08s + min(var(--n,0),3)*.03s);animation-duration:.4s}
+  .panel-open .skill-card li{animation:none}
+}
+
+/* 8. Hero art: no animated filters. A filter on an element that contains other animations is recomputed every frame.
+      The glow is now a static box-shadow; the whole-art drop-shadow was black on near-black, so it is dropped. */
+.hero-art{filter:none}
+.hero-art .core{filter:none;box-shadow:0 0 34px rgba(255,59,53,.42)}
+@keyframes float{50%{translate:0 -12px}}
+@keyframes core-pulse{}
+@keyframes corePulse{}
+
+/* 9. Hero grid drift on the GPU: slide an oversized layer by exactly two 38px tiles (seamless) instead of animating background-position (repaints every frame) */
+.art-grid{background:none!important;overflow:hidden;animation:none!important}
+.art-grid::before{content:"";position:absolute;inset:-76px;background-image:linear-gradient(rgba(128,180,210,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(128,180,210,.07) 1px,transparent 1px);background-size:38px 38px;animation:gridSlide 21s linear infinite;will-change:transform}
+@keyframes gridSlide{to{transform:translate3d(76px,76px,0)}}
+@media(prefers-reduced-motion:reduce){.art-grid::before{animation:none}}
+
+/* 10. Deck browsing: never transition box-shadow (big blurred shadows repaint every frame). Shadows are static and ride along in the card's GPU layer. */
+body .main-nav>a.deck-card{transition:transform .55s var(--deck-ease),opacity .3s,border-color .3s}
+body .main-nav.open>a.deck-card{box-shadow:0 24px 50px rgba(0,0,0,.45)}
+body .main-nav.open>a.deck-card.is-focus{box-shadow:0 40px 80px rgba(0,0,0,.5),0 0 60px rgba(255,67,59,.11)}
+
+/* 11. Giant outlined deck title gets its own layer so its swap animation never repaints the text */
+.deck-title{will-change:transform,opacity}
