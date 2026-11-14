@@ -149,7 +149,7 @@ function journey(d) {
 
   const nodes = $$('.j-node', root), stage = $('.j-stage', root), bar = $('.j-bar i', root), line = $('.j-line i', root),
         playB = $('.j-play', root), DUR = 6000;
-  let idx = 0, playing = !reduced.matches, elapsed = 0, hovering = false, dir = 1;
+  let idx = 0, playing = false,,  elapsed = 0, hovering = false, dir = 1;
   if (reduced.matches) { playB.hidden = true; $('.j-bar', root).hidden = true; }
 
   function set(i, { user = false, from = idx } = {}) {
