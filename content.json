@@ -114,7 +114,7 @@
       "title": "SALRC_LCCT",
       "desc": "A library system moved from an old desktop application to a modern PHP and MySQL web app.",
       "stack": "PHP, MySQL",
-      "link": "https://salrc.wuaze.com/",
+      "link": "https://salrc.infinityfree.io/",
       "descFmt": {},
       "img": "",
       "imgs": []
@@ -123,7 +123,7 @@
       "title": "BSIT–LCCT Website",
       "desc": "A web project published for the BSIT community at La Consolacion College Tanauan. Open the live site to explore it.",
       "stack": "Web development · PHP / Web",
-      "link": "https://bsit-lcct.wuaze.com/?i=1",
+      "link": "https://lcct.infinityfree.io/",
       "img": "",
       "imgs": []
     },
