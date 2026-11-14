@@ -1,9 +1,16 @@
-/* responsive.css — loaded LAST, after Bootstrap 5.3 + the site styles.
-   Bootstrap breakpoints: sm 576 · md 768 · lg 992 · xl 1200 · xxl 1400 */
+/* ═══════════════════════════════════════════════════════════════════════
+   responsive.css — loaded LAST, after Bootstrap 5.3 + the site styles.
+   Goal: the same layout feels right on a phone, tablet, laptop or big
+   monitor — never cramped, never stretched.
 
+   Bootstrap breakpoints used throughout:
+     sm 576 · md 768 · lg 992 · xl 1200 · xxl 1400
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* ── 0. Fluid sizing tokens ─────────────────────────────────────────── */
 :root{
-  --gut:16px;
-  --maxw:1180px;
+  --gut:16px;            /* side gutter of every panel */
+  --maxw:1180px;         /* widest the content is allowed to get */
   --bs-body-font-family:var(--sans);
   --bs-body-color:var(--ink);
   --bs-body-bg:var(--bg);
@@ -11,35 +18,39 @@
 }
 @media(min-width:576px){:root{--gut:24px}}
 @media(min-width:992px){:root{--gut:36px}}
-@media(min-width:1400px){:root{--maxw:1280px}}
-@media(min-width:1800px){:root{--maxw:1480px;--gut:48px}}
-@media(min-width:2400px){:root{--maxw:1700px}}
+@media(min-width:1400px){:root{--maxw:1200px}}
+@media(min-width:1800px){:root{--maxw:1260px;--gut:48px}}
+@media(min-width:2400px){:root{--maxw:1400px}}
 
+/* Body copy: ~14.5px on small phones, ~17px on big monitors */
 html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 body{font-size:clamp(14.5px,calc(13.6px + .22vw),17px);overscroll-behavior:none}
 html{overscroll-behavior:none}
 
-/* Undo Bootstrap reboot where it fights the design */
+/* ── 1. Undo Bootstrap "reboot" where it fights the custom design ───── */
 h1,h2,h3,h4,h5,h6{font-family:inherit;color:inherit;font-weight:700}
-.mark{padding:0;background:none;color:inherit}
+.mark{padding:0;background:none;color:inherit}   /* Bootstrap's .mark is a highlighter; ours is the logo */
 a{color:inherit}a:hover{color:inherit}
 img,svg{vertical-align:middle}
 label{display:block}
 button{border-radius:0}
 fieldset{min-width:0}
 
-/* Content width */
+/* ── 2. Content width = Bootstrap-style container, fluid between steps ─ */
 .section-wrap{width:min(var(--maxw),calc(100% - 2*var(--gut)))}
 main>section.panel-open{
   padding-left:max(var(--gut),calc((100vw - var(--maxw))/2));
   padding-right:max(var(--gut),calc((100vw - var(--maxw))/2));
   padding-bottom:calc(112px + env(safe-area-inset-bottom,0px));
 }
+/* the opening screen keeps the same gutters */
 #home.section-wrap{width:min(var(--maxw),calc(100% - 2*var(--gut)))}
+
+/* the bottom bar and top bar respect phone notches / home indicators */
 .panel-bar{padding-bottom:calc(14px + env(safe-area-inset-bottom,0px));padding-left:max(var(--gut),env(safe-area-inset-left,0px));padding-right:max(var(--gut),env(safe-area-inset-right,0px))}
 .topbar{padding-left:max(var(--gut),env(safe-area-inset-left,0px));padding-right:max(var(--gut),env(safe-area-inset-right,0px))}
 
-/* Bootstrap grid replaces the old CSS grids */
+/* ── 3. Bootstrap grid replaces the old CSS-grid layouts ─────────────── */
 .about-grid.row,.contact-layout.row,.skill-grid.row,.certificate-grid.row{display:flex;grid-template-columns:none}
 .about-grid.row{gap:0;align-items:flex-start}
 .contact-layout.row{gap:0;padding-top:clamp(28px,5vh,60px);padding-bottom:clamp(40px,8vh,90px)}
@@ -50,7 +61,7 @@ main>section.panel-open{
 @media(min-width:768px){.about-grid .profile-frame{margin-inline:0}}
 .contact-details{min-width:0}
 
-/* Never push the page sideways */
+/* ── 4. Never let anything push the page sideways ───────────────────── */
 html,body{max-width:100%;overflow-x:hidden}
 main,main>section{min-width:0}
 .panel-open :is(img,video,canvas,svg){max-width:100%}
@@ -59,18 +70,18 @@ main,main>section{min-width:0}
 .stack-chips{flex-wrap:wrap}
 .project-thumb-rail,.j-rail,.belt-window{-webkit-overflow-scrolling:touch}
 
-/* Stop swipes from becoming browser Back / pull-to-refresh */
+/* ── 5. Stop swipes from becoming browser Back / pull-to-refresh ────── */
 .project-showcase,.project-stage,.j-stage,.j-rail,.main-nav,.project-thumb-rail,.belt-window{overscroll-behavior-x:contain}
 .project-stage,.j-stage{touch-action:pan-y}
 main,main>section.panel-open{overscroll-behavior:contain}
 
-/* Headings scale smoothly */
-.section-heading h2,.contact-layout h2,.resume-copy h2{font-size:clamp(42px,calc(28px + 3.6vw),88px);line-height:1.02}
+/* ── 6. Headings scale smoothly instead of jumping ──────────────────── */
+.section-heading h2,.contact-layout h2,.resume-copy h2{font-size:clamp(42px,calc(28px + 3.6vw),76px);line-height:1.02}
 #journey .section-heading h2{font-size:clamp(34px,calc(20px + 2.8vw),64px)}
 .section-heading{gap:clamp(12px,2.4vw,40px)}
 .section-aside{max-width:46ch}
 
-/* Phones */
+/* ── 7. Phones (< 576) ──────────────────────────────────────────────── */
 @media(max-width:575.98px){
   main>section.panel-open{padding-top:22px}
   .section-heading{display:block}
@@ -86,23 +97,22 @@ main,main>section.panel-open{overscroll-behavior:contain}
   .visual-corner{display:none}
 }
 
-/* Tablets */
+/* ── 8. Tablets (576 – 991) ─────────────────────────────────────────── */
 @media(min-width:576px) and (max-width:991.98px){
   main>section.panel-open{padding-top:clamp(28px,5vh,48px)}
 }
 
-/* Laptops / desktops */
+/* ── 9. Laptops and desktops (≥ 992) ────────────────────────────────── */
 @media(min-width:992px){
   .skill-grid.row{--bs-gutter-x:14px;--bs-gutter-y:14px}
 }
 
-/* Big monitors */
+/* ── 10. Big monitors (≥ 1600): let the content breathe a bit more ───── */
 @media(min-width:1600px){
-  .section-aside,.about-copy p,.contact-lead,.resume-lead{font-size:1.06em}
   .skill-card,.cert-card{padding-block:clamp(22px,1.5vw,30px)}
 }
 
-/* Phones on their side */
+/* ── 11. Short landscape screens (phones on their side) ─────────────── */
 @media(max-height:520px) and (orientation:landscape){
   main>section.panel-open{padding-top:16px;padding-bottom:84px}
   .section-heading h2,.contact-layout h2,.resume-copy h2,#journey .section-heading h2{font-size:clamp(28px,7vh,44px)}
@@ -110,7 +120,7 @@ main,main>section.panel-open{overscroll-behavior:contain}
   #home .hero-art{min-height:200px;max-height:70vh}
 }
 
-/* Touch devices: bigger tap targets */
+/* ── 12. Touch devices: bigger tap targets ──────────────────────────── */
 @media(hover:none) and (pointer:coarse){
   button,.button,.copy-btn,.skill-filter button,.topic-chips button{min-height:44px}
 }
