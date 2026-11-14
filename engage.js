@@ -149,7 +149,7 @@ function journey(d) {
 
   const nodes = $$('.j-node', root), stage = $('.j-stage', root), bar = $('.j-bar i', root), line = $('.j-line i', root),
         playB = $('.j-play', root), DUR = 6000;
-  let idx = 0, playing = false,,  elapsed = 0, hovering = false, dir = 1;
+  let idx = 0, playing = false, elapsed = 0, hovering = false, dir = 1;
   if (reduced.matches) { playB.hidden = true; $('.j-bar', root).hidden = true; }
 
   function set(i, { user = false, from = idx } = {}) {
@@ -207,10 +207,10 @@ function journey(d) {
     if (elapsed >= DUR) set(idx + 1);
   }, 100);
   onPanelOpen('journey', () => {
-    set(0, { from: 0 }); setPlay(!reduced.matches);
+    set(0, { from: 0 }); setPlay(false);
     $$('#j-stats b').forEach(b => countUp(b, Number(b.dataset.to)));
   });
-  set(0, { from: 0 }); setPlay(!reduced.matches);
+  set(0, { from: 0 }); setPlay(false);
   $$('#j-stats b').forEach(b => { b.textContent = b.dataset.to; });
 }
 
@@ -218,7 +218,7 @@ function journey(d) {
 function skills(d) {
   const g = d.skills || [], grid = $('#skills-grid'), fil = $('#skill-filter'); if (!grid) return;
   grid.innerHTML = g.map((x, i) =>
-    `<article class="skill-card" data-g="${i}"><span class="card-index">${pad(i + 1)} / TOOLSET</span><h3>${esc(x.title)}</h3><span class="skill-count">${(x.items || []).length} SKILLS</span><ul>${(x.items || []).map((v, k) => `<li style="--k:${k}">${esc(v)}</li>`).join('')}</ul></article>`).join('');
+    `<div class="col"><article class="skill-card h-100" data-g="${i}"><span class="card-index">${pad(i + 1)} / TOOLSET</span><h3>${esc(x.title)}</h3><span class="skill-count">${(x.items || []).length} SKILLS</span><ul>${(x.items || []).map((v, k) => `<li style="--k:${k}">${esc(v)}</li>`).join('')}</ul></article></div>`).join('');
   if (fil) {
     const short = t => String(t).split(' ')[0];
     fil.innerHTML = '<span class="sf-label">HIGHLIGHT</span><button type="button" class="active" data-f="all" aria-pressed="true">All</button>' +
@@ -247,7 +247,7 @@ function certs(d) {
   const c = d.certs || [], grid = $('#certificate-grid'), path = $('#cert-path'); if (!grid) return;
   const list = c.map(x => ({ src: x.img, title: x.title, alt: 'Certificate: ' + x.title, open: String(x.img).split('?')[0] }));
   grid.innerHTML = c.map((x, i) =>
-    `<article class="cert-card" data-i="${i}" style="--n:${i}"><button type="button" class="cert-open" data-i="${i}" aria-label="View certificate: ${esc(x.title)}"><img src="${esc(x.img)}" alt="${esc(x.title)}" loading="lazy"></button><h3>${esc(x.title)}</h3><p>${esc(x.group || 'CERTIFICATE')}</p></article>`).join('');
+    `<div class="col"><article class="cert-card h-100" data-i="${i}" style="--n:${i}"><button type="button" class="cert-open" data-i="${i}" aria-label="View certificate: ${esc(x.title)}"><img src="${esc(x.img)}" alt="${esc(x.title)}" loading="lazy"></button><h3>${esc(x.title)}</h3><p>${esc(x.group || 'CERTIFICATE')}</p></article></div>`).join('');
   if (path) {
     path.innerHTML = `<div class="cp-head"><span>CISCO NETWORKING ACADEMY</span><b><em id="cp-count">0</em> / ${c.length} COURSES COMPLETED</b></div><ol class="cp-steps" style="--cols:${c.length}">${c.map((x, i) => `<li style="--i:${i}"><button type="button" data-i="${i}" aria-label="Open certificate ${i + 1}: ${esc(x.title)}"><span class="cp-n">${pad(i + 1)}</span><span class="cp-t">${esc(x.title)}</span></button></li>`).join('')}</ol>`;
     $('#cp-count').textContent = c.length;
@@ -287,9 +287,9 @@ function resumeStatic() {
 function projects() {
   const show = $('#project-showcase'), stage = $('#project-stage'); if (!show || !stage) return;
   const controls = $('.project-controls', show);
-  const bar = document.createElement('div'); bar.className = 'project-progress'; bar.setAttribute('aria-hidden', 'true'); bar.innerHTML = '<i></i>';
+  const bar = document.createElement('div'); bar.className = 'project-progress'; bar.hidden = true; bar.setAttribute('aria-hidden', 'true'); bar.innerHTML = '<i></i>';
   controls.parentNode.insertBefore(bar, controls);
-  const restart = () => { bar.classList.remove('run'); void bar.offsetWidth; bar.classList.add('run'); };
+  const restart = () => {};
   new MutationObserver(restart).observe(stage, { childList: true });
   ['mouseenter', 'focusin'].forEach(ev => show.addEventListener(ev, () => bar.classList.add('paused')));
   ['mouseleave', 'focusout'].forEach(ev => show.addEventListener(ev, e => { if (ev === 'focusout' && show.contains(e.relatedTarget)) return; bar.classList.remove('paused'); restart(); }));
