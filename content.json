@@ -105,7 +105,7 @@
       "title": "SAO Help Desk",
       "desc": "A student ticketing site for the Student Affairs Office of LCCT, so concerns can be submitted and tracked in one place.",
       "stack": "PHP, MySQL, Bootstrap",
-      "link": "https://lccticketing.wuaze.com/",
+      "link": "https://lcct.infinityfree.io/",
       "descFmt": {},
       "img": "",
       "imgs": []
@@ -123,7 +123,7 @@
       "title": "BSIT–LCCT Website",
       "desc": "A web project published for the BSIT community at La Consolacion College Tanauan. Open the live site to explore it.",
       "stack": "Web development · PHP / Web",
-      "link": "https://lcct.infinityfree.io/",
+      "link": "https://bsit-lcct.wuaze.com/?i=1",
       "img": "",
       "imgs": []
     },
