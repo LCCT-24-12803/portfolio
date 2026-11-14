@@ -34,7 +34,7 @@ a{color:inherit}a:hover{color:inherit}
 img,svg{vertical-align:middle}
 label{display:block}
 button{border-radius:0}
-fieldset{min-width:0}
+/* Bootstrap's <kbd> is a white box; the keyboard hints use outlined keys */ kbd{background:transparent;color:#c4ccd6;font-family:inherit;font-size:inherit;font-weight:inherit;padding:3px 6px;border:1px solid rgba(255,255,255,.22);border-radius:3px}
 
 /* ── 2. Content width = Bootstrap-style container, fluid between steps ─ */
 .section-wrap{width:min(var(--maxw),calc(100% - 2*var(--gut)))}
